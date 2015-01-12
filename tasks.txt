@@ -1,0 +1,3 @@
+regisrtration/login
+fill db
+search/filter tours/places
