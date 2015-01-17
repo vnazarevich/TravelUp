@@ -9,6 +9,14 @@
     <servlet-class>com.epam.travelup.signup.servlet.SignUpStartServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>com.epam.travelup.signup.servlet.LoginStartServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ConfirmLogin</servlet-name>
+    <servlet-class>com.epam.travelup.signup.servlet.ConfirmLoginServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>VerifyUser</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.CheckUserServlet</servlet-class>
   </servlet>
@@ -21,12 +29,20 @@
     <url-pattern>/signup</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>VerifyUser</servlet-name>
     <url-pattern>/verifyuser</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ConfirmSignUp</servlet-name>
     <url-pattern>/confirmsignup</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>ConfirmLogin</servlet-name>
+    <url-pattern>/confirmlogin</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
@@ -44,6 +60,18 @@
   </filter>
   <filter-mapping>
     <filter-name>CharsetFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>LangFilter</filter-name>
+    <filter-class>com.epam.travelup.filter.SetLanguageFilter</filter-class>
+    <init-param>
+      <param-name>test-param</param-name>
+      <param-value>Initialization Parameter</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>LangFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 </web-app>

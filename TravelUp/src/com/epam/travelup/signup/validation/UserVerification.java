@@ -38,7 +38,7 @@ public class UserVerification extends HashMap<String, VerificationCommand> {
 		}
 
 		private boolean isUnique(String value){
-			List<User> users = UserService.getUsersWhere("mail",value,"en");
+			List<User> users = UserService.getUsersWhere("mail",value);
 			if(users.size()==0){
 				return true;
 			}
@@ -57,7 +57,7 @@ public class UserVerification extends HashMap<String, VerificationCommand> {
 			return isUnique(value);
 		}
 		private boolean isUnique(String value){
-			List<User> users = UserService.getUsersWhere("login", value, "en");
+			List<User> users = UserService.getUsersWhere("login", value);
 			if(users.size()==0){
 				return true;
 			}

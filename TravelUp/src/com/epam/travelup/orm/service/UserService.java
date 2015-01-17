@@ -6,8 +6,8 @@ import com.epam.travelup.orm.dao.Dao;
 import com.epam.travelup.orm.model.User;
 
 public class UserService {
-	public static List<User> getUsersWhere(String attr, String value, String lang){
-		Dao<User> dao = new Dao<User>(User.class,lang);
+	public static List<User> getUsersWhere(String attr, String value){
+		Dao<User> dao = new Dao<User>(User.class,"en");
 		List<User> users = dao.selectWhere(attr, value, "=");
 		return users;
 	}
