@@ -115,8 +115,9 @@ public class Dao<T>{
 		}
 
 	}
-	public boolean insert(Map<String,Object> inputs){
+	public boolean insert(T model){
 
+		Map<String,Object> inputs = new Transformer<T>(type, language).modelToTable(model);
 		List<String> attrs=new ArrayList<String>();
 		attrs.addAll(inputs.keySet());
 

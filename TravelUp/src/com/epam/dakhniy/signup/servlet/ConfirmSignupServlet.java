@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.epam.dakhniy.locaization.LanguageContainer;
 import com.epam.dakhniy.orm.dao.Dao;
 import com.epam.dakhniy.orm.model.User;
+import com.epam.dakhniy.orm.service.UserService;
 import com.epam.dakhniy.orm.transformer.Transformer;
 import com.epam.dakhniy.signup.validation.UserVerification;
 import com.epam.dakhniy.signup.validation.VerificationCommand;
@@ -61,10 +62,12 @@ public class ConfirmSignupServlet extends HttpServlet {
 			user.setActive(false);
 			user.setLastName(request.getParameter("surname"));
 			user.setPassword(request.getParameter("password"));
-			Dao<User> dao = new Dao<User>(User.class, "en");
-			Map<String,Object> map = new Transformer<User>(User.class, "en").modelToTable(user);
-			System.out.println(map);
-			dao.insert(map);
+			try{
+				UserService.insertUser(user);
+			}catch(Exception e){
+				//LOG HERE
+				request.setAttribute("status", LanguageContainer.getBundle().getString("auth.fail"));
+			}
 			request.setAttribute("status", LanguageContainer.getBundle().getString("auth.success"));
 
 		}else{

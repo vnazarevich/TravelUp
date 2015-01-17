@@ -11,4 +11,7 @@ public class UserService {
 		List<User> users = dao.selectWhere(attr, value, "=");
 		return users;
 	}
+	public static void insertUser(User user){
+		new Dao<User>(User.class,"en").insert(user);
+	}
 }

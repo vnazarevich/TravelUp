@@ -6,18 +6,23 @@ public class Place {
 
 	@DBField(name = "id")
 	private int id;
-	
-	@DBKey(name="name_id")
-	private PlaceName name;
 
-	@DBKey(name="description_id")
-	private PlaceDescripion description;
+	@DBKey(name="name_id")
+	private PlaceInfo name;
+
+	@DBKey(name="info_id")
+	private PlaceInfo info;
 
 	@DBField(name = "wiki")
 	private String wiki;
 
 	@DBField(name = "picture")
 	private String picture;
+
+	@DBField(name="x_coordinate")
+	private String xCoordinate;
+	@DBField(name="y_coordinates")
+	private String yCoordinate;
 
 	public Place() {
 
@@ -32,12 +37,12 @@ public class Place {
 		this.id = id;
 	}
 
-	public PlaceDescripion getDescription() {
-		return description;
+	public PlaceInfo getDescription() {
+		return info;
 	}
 
-	public void setDescription(PlaceDescripion description) {
-		this.description = description;
+	public void setDescription(PlaceInfo description) {
+		this.info = description;
 	}
 
 	public String getWiki() {
@@ -56,17 +61,50 @@ public class Place {
 		this.picture = picture;
 	}
 
-	public PlaceName getName() {
+	public PlaceInfo getName() {
 		return name;
 	}
 
-	public void setName(PlaceName name) {
+	public void setName(PlaceInfo name) {
 		this.name = name;
 	}
 
+	public PlaceInfo getInfo() {
+		return info;
+	}
+
+
+	public void setInfo(PlaceInfo info) {
+		this.info = info;
+	}
+
+
+	public String getxCoordinate() {
+		return xCoordinate;
+	}
+
+
+	public void setxCoordinate(String xCoordinate) {
+		this.xCoordinate = xCoordinate;
+	}
+
+
+	public String getyCoordinate() {
+		return yCoordinate;
+	}
+
+
+	public void setyCoordinate(String yCoordinate) {
+		this.yCoordinate = yCoordinate;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Description: " + this.getDescription() + "\n" + "Wiki: "
-				+ this.getWiki() + "\n" + "Picture: " + this.getPicture();
+		return "Place [id=" + id + ", name=" + name + ", info=" + info
+				+ ", wiki=" + wiki + ", picture=" + picture + ", xCoordinate="
+				+ xCoordinate + ", yCoordinate=" + yCoordinate + "]";
 	}
+
+
 }
