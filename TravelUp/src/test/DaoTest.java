@@ -2,11 +2,8 @@ package test;
 
 import java.util.List;
 
-import com.epam.dakhniy.orm.dao.Dao;
-import com.epam.dakhniy.orm.model.Portfolio;
-import com.epam.dakhniy.orm.model.Tour;
-import com.epam.dakhniy.orm.transformer.Transformer;
-import com.sun.scenario.effect.impl.prism.PrTexture;
+import com.epam.travelup.orm.dao.Dao;
+import com.epam.travelup.orm.model.Tour;
 
 public class DaoTest {
 
