@@ -6,15 +6,15 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>SignUp</servlet-name>
-    <servlet-class>com.epam.dakhniy.signup.servlet.SignUpStartServlet</servlet-class>
+    <servlet-class>com.epam.travelup.signup.servlet.SignUpStartServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>VerifyUser</servlet-name>
-    <servlet-class>com.epam.dakhniy.signup.servlet.CheckUserServlet</servlet-class>
+    <servlet-class>com.epam.travelup.signup.servlet.CheckUserServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ConfirmSignUp</servlet-name>
-    <servlet-class>com.epam.dakhniy.signup.servlet.ConfirmSignupServlet</servlet-class>
+    <servlet-class>com.epam.travelup.signup.servlet.ConfirmSignupServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SignUp</servlet-name>
@@ -36,7 +36,7 @@
   </jsp-config>
   <filter>
     <filter-name>CharsetFilter</filter-name>
-    <filter-class>com.epam.dakhniy.filter.CharsetFilter</filter-class>
+    <filter-class>com.epam.travelup.filter.CharsetFilter</filter-class>
     <init-param>
       <param-name>requestEncoding</param-name>
       <param-value>UTF-8</param-value>
