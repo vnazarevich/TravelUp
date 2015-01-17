@@ -1,6 +1,8 @@
 package com.epam.dakhniy.signup.servlet;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.sql.Date;
 import java.util.Enumeration;
 import java.util.Map;
@@ -16,6 +18,7 @@ import com.epam.dakhniy.orm.dao.Dao;
 import com.epam.dakhniy.orm.model.User;
 import com.epam.dakhniy.orm.service.UserService;
 import com.epam.dakhniy.orm.transformer.Transformer;
+import com.epam.dakhniy.password.PasswordCoder;
 import com.epam.dakhniy.signup.validation.UserVerification;
 import com.epam.dakhniy.signup.validation.VerificationCommand;
 
@@ -61,8 +64,9 @@ public class ConfirmSignupServlet extends HttpServlet {
 			user.setFirstName(request.getParameter("name"));
 			user.setActive(false);
 			user.setLastName(request.getParameter("surname"));
-			user.setPassword(request.getParameter("password"));
-			try{
+			try {
+				String password = PasswordCoder.getSecurePassword(request.getParameter("password"), user.getMail());
+				user.setPassword(password);
 				UserService.insertUser(user);
 			}catch(Exception e){
 				//LOG HERE
