@@ -21,7 +21,7 @@ public class ConnectionManager {
 		}
 		cpds.setJdbcUrl( "jdbc:mysql://localhost:3306/toursite_database?useUnicode=true&characterEncoding=UTF-8" ); 
 		cpds.setUser("root"); 
-		cpds.setPassword("pascal1236"); 
+		cpds.setPassword("root"); 
 		
 	}
 
