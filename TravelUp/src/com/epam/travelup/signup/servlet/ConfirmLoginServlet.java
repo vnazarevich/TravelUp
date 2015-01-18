@@ -67,7 +67,7 @@ public class ConfirmLoginServlet extends HttpServlet {
 		}else{
 			request.setAttribute("status",  LanguageContainer.getBundle().getString("login.fail"));
 		}
-		request.getRequestDispatcher("pages/login.jsp").forward(request, response);
+		request.getRequestDispatcher("pages/index.jsp").forward(request, response);
 	}
 
 }
