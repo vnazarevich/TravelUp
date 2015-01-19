@@ -1,3 +1,4 @@
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <header id="header" class="wide-fat">
 
                 <div class="container">
@@ -14,7 +15,9 @@
                     </div>
                     </div>
                     <div class="col-xs-12 col-sm-10 no-margin"> <!-- /#main -->
-                    <Label id="login-status" class="error-label">${status}</Label>
+                    <c:if test="${sessionScope.user!=null}">
+					   <p>${lang.getString('login.hello')} ${sessionScope.user.getFirstName()}!</p>
+					</c:if>
                     </div>
 
                 </div>
@@ -24,17 +27,28 @@
                     <a class="toggle-menu" href="#"></a>
                     <div class="menu-body closed">
                         <ul>
-                            <li><a data-toggle="modal" data-target="#loginBox" href="#"><i class="fa fa-lock"></i> login</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> register</a></li>
-                            <li><a href="#"><i class="fa fa-bus"></i> Tours</a></li>
-                            <li><a href="#"><i class="fa fa-location-arrow"></i> send request</a></li>
-                            <li><a href="#"><i class="fa fa-map-marker"></i> Places</a></li>
-                            <li><a href="#"><i class="fa fa-picture-o"></i> Gallery</a></li>
-                          <li><a href="#"><i class="fa fa-youtube-play"></i> Video</a></li>
-                          <li><a href="#"><i class="fa fa-users"></i> About</a></li>
-                          <li><a href="#"><i class="fa fa-home"></i> My cabinet</a></li>
-                          <li><a href="#"><i class="fa fa-suitcase"></i> Admin panel</a></li>
+                        	<c:choose>
+						      <c:when test="${sessionScope.user==null}">
+						      	<li><a data-toggle="modal" data-target="#loginBox" href="#"><i class="fa fa-lock"></i> ${lang.getString('menu.login')}</a></li>
+						      </c:when>
+
+						      <c:otherwise>
+						      	<li><a href="logout"><i class="fa fa-lock"></i> ${lang.getString('menu.logout')}</a></li>
+						      </c:otherwise>
+							</c:choose>
+                            <li><a href="#"><i class="fa fa-user"></i> ${lang.getString('menu.register')}</a></li>
+                            <li><a href="#"><i class="fa fa-bus"></i> ${lang.getString('menu.tours')}</a></li>
+                            <li><a href="#"><i class="fa fa-location-arrow"></i> ${lang.getString('menu.sendrequest')}</a></li>
+                            <li><a href="#"><i class="fa fa-map-marker"></i> ${lang.getString('menu.places')}</a></li>
+                            <li><a href="#"><i class="fa fa-picture-o"></i> ${lang.getString('menu.gallery')}</a></li>
+                          <li><a href="#"><i class="fa fa-youtube-play"></i> ${lang.getString('menu.video')}</a></li>
+                          <li><a href="#"><i class="fa fa-users"></i> ${lang.getString('menu.about')}</a></li>
+                          <c:if test="${sessionScope.user!=null}">
+	                          <li><a href="#"><i class="fa fa-home"></i> ${lang.getString('menu.userpage')}</a></li>
+	                          <li><a href="#"><i class="fa fa-suitcase"></i> ${lang.getString('menu.adminpanel')}</a></li>
+                          </c:if>
                         </ul>
+
                     </div>
 
 

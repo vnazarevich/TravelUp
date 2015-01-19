@@ -6,7 +6,7 @@
 <html lang="en-US">
     <head>
 
-        
+
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>TravelUp</title>
@@ -21,9 +21,9 @@
     <noscript>JavaScript is off. Please enable to view full site.</noscript>
 </div>
         <div id="site">
-        
+
         <div class="overlayup"></div>
-        
+
         <!-- VideoBG -->
 <video class="video-on-bg" autoplay loop poster="images/karpaty.jpg" id="video-on-bg">
     <source src="video/UkrainianCarpathians.mp4" type="video/mp4">
@@ -33,21 +33,21 @@
     document.createElement('video');
 </script>
 <![endif]-->
- 
+
 <!-- / VideoBG -->
 
           <jsp:include page="/pages/header.jsp" />
-          
+
           <jsp:include page="/pages/loginBox.jsp" />
 
 
-            
+
 
 
             <section id="travelup" class="section wide-fat">
 
 
-                <div class="container">	
+                <div class="container">
 
 
                     <article id="post-6" class="contact section-intro">
@@ -57,19 +57,19 @@
 
                             <p>Integer sollicitudin ligula non enim sodales, non lacinia nunc ornare. Sed commodo tempor dapibus.<br /> Duis convallis turpis in tortor volutpat, eget rhoncus nisi fringilla. Phasellus ornare risus in euismod varius nullam feugiat ultrices.<br /> Sed condimentum est libero, aliquet iaculis diam bibendum ullamcorper.</p>
 <br /><br /><br /><br /><br /><br /><br />
-                        </div>				
+                        </div>
 
-                    </article><!-- /#post-6.contact -->			
+                    </article><!-- /#post-6.contact -->
 
-                   
-                    <center><a class="button" href="#">Start your trip now!</a></center>
 
-                   
+                    <center><a class="button" href="#">${lang.getString("mainpage.startbutton")}</a></center>
+
+
 
                 </div>
 
 
-            </section><!-- /#contact.section -->			
+            </section><!-- /#contact.section -->
 
 
 

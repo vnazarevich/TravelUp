@@ -53,6 +53,7 @@ public class ConfirmLoginServlet extends HttpServlet {
 			user=users.get(0);
 			try {
 				password=PasswordCoder.getSecurePassword(password, user.getMail());
+				System.out.println(password);
 			} catch (NoSuchAlgorithmException | NoSuchProviderException e) {
 				e.printStackTrace();
 				logined=false;
@@ -62,12 +63,14 @@ public class ConfirmLoginServlet extends HttpServlet {
 			}
 		}
 		if(logined){
-			request.setAttribute("status", LanguageContainer.getBundle().getString("login.success"));
+
+			//request.setAttribute("status", LanguageContainer.getBundle().getString("login.success"));
 			request.getSession().setAttribute("user", user);
+			response.sendRedirect("index");
 		}else{
-			request.setAttribute("status",  LanguageContainer.getBundle().getString("login.fail"));
+			response.getWriter().write("error");
 		}
-		request.getRequestDispatcher("pages/index.jsp").forward(request, response);
+
 	}
 
 }

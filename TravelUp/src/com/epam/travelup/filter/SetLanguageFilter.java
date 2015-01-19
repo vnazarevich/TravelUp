@@ -44,7 +44,7 @@ public class SetLanguageFilter implements Filter {
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		ResourceBundle lang = (ResourceBundle) session.getAttribute("lang");
 		if(lang==null){
-			LanguageContainer.SetLanguage("en");
+			LanguageContainer.SetLanguage("ua");
 			session.setAttribute("lang", LanguageContainer.getBundle());
 		}
 		chain.doFilter(request, response);

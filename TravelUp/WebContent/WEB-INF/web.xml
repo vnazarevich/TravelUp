@@ -2,15 +2,23 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>TravelUp</display-name>
   <welcome-file-list>
-    <welcome-file>pages/index.jsp</welcome-file>
+    <welcome-file>/index</welcome-file>
   </welcome-file-list>
   <servlet>
     <servlet-name>SignUp</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.SignUpStartServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>Index</servlet-name>
+    <servlet-class>com.epam.travelup.signup.servlet.IndexServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.LoginStartServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>com.epam.travelup.signup.servlet.LogoutServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ConfirmLogin</servlet-name>
@@ -41,8 +49,16 @@
     <url-pattern>/confirmsignup</url-pattern>
   </servlet-mapping>
    <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>ConfirmLogin</servlet-name>
     <url-pattern>/confirmlogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Index</servlet-name>
+    <url-pattern>/index</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>

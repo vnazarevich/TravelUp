@@ -12,10 +12,10 @@
         <link rel="stylesheet" href="styles/jquery-ui-1.10.3.custom.min.css" />
 
         <!-- MI slider -->
-        <link rel="stylesheet" href="styles/mi-slider.css" />	
+        <link rel="stylesheet" href="styles/mi-slider.css" />
 
         <!-- Chozen UI -->
-        <link rel="stylesheet" href="styles/chosen.css" />	
+        <link rel="stylesheet" href="styles/chosen.css" />
 
         <!-- Range Slider UI #2 -->
         <link rel="stylesheet" href="styles/rangeslider-classic.css" />
@@ -23,3 +23,4 @@
         <!-- Elegant Font -->
         <link rel="stylesheet" href="inc/elegant-font/style.css" />
         <!--[if lte IE 7]><script src="inc/elegant-font/lte-ie7.js"></script><![endif]-->
+
