@@ -66,7 +66,7 @@ public class ConfirmLoginServlet extends HttpServlet {
 
 			//request.setAttribute("status", LanguageContainer.getBundle().getString("login.success"));
 			request.getSession().setAttribute("user", user);
-			response.sendRedirect("index");
+			response.sendRedirect("");
 		}else{
 			response.getWriter().write("error");
 		}
