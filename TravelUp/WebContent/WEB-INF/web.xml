@@ -16,7 +16,7 @@
     <servlet-name>Login</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.LoginStartServlet</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>Logout</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.LogoutServlet</servlet-class>
   </servlet>
@@ -48,7 +48,7 @@
     <servlet-name>ConfirmSignUp</servlet-name>
     <url-pattern>/confirmsignup</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>Logout</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
