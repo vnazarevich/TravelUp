@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<html lang="en-US">
+<html>
     <head>
 
 
@@ -11,8 +11,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>TravelUp</title>
 
+        <!-- Styles -->
         <jsp:include page="/pages/styles.jsp" />
-
+        
+        <!-- Scripts -->
+        <jsp:include page="/pages/scripts.jsp" />
     </head>
     <body>
 
@@ -34,11 +37,11 @@
 </script>
 <![endif]-->
 
-<!-- / VideoBG -->
+         <!-- / VideoBG -->
 
           <jsp:include page="/pages/header.jsp" />
-
           <jsp:include page="/pages/loginBox.jsp" />
+          <jsp:include page="/pages/signupBox.jsp" />
 
 
 
@@ -76,25 +79,8 @@
 
 
 
-            <footer id="footer" class="widefat">
-
-
-
-                <div class="container">
-
-
-                    <div class="footer-inner">
-
-                        <p class="credit">TravelUp - Copyright 2015. Developed by jTeam</p>
-
-                    </div><!-- /.footer-inner -->
-
-
-                </div>
-
-
-
-            </footer><!-- /#footer -->
+           <!-- Footer -->
+           <jsp:include page="/pages/footer.jsp" />
 
 
 
@@ -103,9 +89,7 @@
 
 
 
-        <!-- Scripts -->
-
-        <jsp:include page="/pages/scripts.jsp" />
+        
 
     </body>
 </html>

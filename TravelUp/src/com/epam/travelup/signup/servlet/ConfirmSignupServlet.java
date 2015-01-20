@@ -14,8 +14,11 @@ import com.epam.travelup.locaization.LanguageContainer;
 import com.epam.travelup.orm.model.User;
 import com.epam.travelup.orm.service.UserService;
 import com.epam.travelup.password.PasswordCoder;
+import com.epam.travelup.sender.MailActivationSender;
 import com.epam.travelup.signup.validation.UserVerification;
 import com.epam.travelup.signup.validation.VerificationCommand;
+
+import com.epam.travelup.;
 
 
 
@@ -61,10 +64,12 @@ public class ConfirmSignupServlet extends HttpServlet {
 			user.setFirstName(request.getParameter("name"));
 			user.setActive(false);
 			user.setLastName(request.getParameter("surname"));
+			MailActivationSender sender = new MailActivationSender(request.getParameter("name"), request.getParameter("email"), request.getParameter("login"));
+			sender.send();
 			try {
 				String password = PasswordCoder.getSecurePassword(request.getParameter("password"), user.getMail());
 				user.setPassword(password);
-				UserService.insertUser(user);
+	   			UserService.insertUser(user);
 			}catch(Exception e){
 				//LOG HERE
 				request.setAttribute("status", LanguageContainer.getBundle().getString("auth.fail"));

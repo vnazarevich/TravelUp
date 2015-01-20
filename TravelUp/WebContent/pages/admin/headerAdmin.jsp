@@ -14,9 +14,56 @@
 
                     </div>
                     </div>
-                    <div class="col-xs-12 col-sm-8 no-margin">
+                    <div class="col-xs-12 col-sm-8 no-margin"> <!-- /#main-menu -->
+                    
+                    <div id="main-menu">
+
+                        <nav class="navigation">
+                            <ul class="hidden-xs hidden-sm hidden-md">
+                                
+                                <li class="menu-item customers">
+                                    <a href="#"><i class="icon_pin"></i> Customers</a>
+                                </li>
+                                
+                                <li class="menu-item suppliers">
+                                    <a href="#"><i class="icon_ribbon"></i> Suppliers</a>
+                                </li>
+                                
+                                
+                                <li class="menu-item active-tours">
+                                    <a href="#"><i class="icon_contacts"></i> Active tours</a>
+                                </li>
+                                <li class="menu-item proposals"> 
+                                <a href="#"><i class="icon_contacts"></i> Proposals</a> </li>
+
+                            </ul>
+
+                            <select class="top-drop-menu nav visible-sm visible-xs visible-md">
+                                 <optgroup label="Admin Panel">
+
+                                    <option value="#">
+                                        Customers
+                                    </option>
+                                    <option value="#">
+                                        Suppliers
+                                    </option>
+                                    <option value="#">
+                                        Active tours
+                                    </option>
+                                    <option value="#">
+                                        Proposals
+                                    </option>
+
+                              </optgroup>
+                                
+
+                          </select>
+                      </nav>
+
+                    </div><!-- /#main-menu -->
+                    
                     </div>
-                     <div class="col-xs-12 col-sm-1 no-margin">
+                    <div class="col-xs-12 col-sm-1 no-margin">
                     <c:if test="${sessionScope.user!=null}">
 					   <p align="center">${lang.getString('login.hello')} ${sessionScope.user.getFirstName()}!</p>
 					</c:if>
