@@ -15,6 +15,54 @@
                     </div>
                     </div>
                     <div class="col-xs-12 col-sm-8 no-margin">
+					<c:if test="${user.isAdmin()==true}">
+                     <div id="main-menu">
+
+                        <nav class="navigation">
+                            <ul class="hidden-xs hidden-sm hidden-md">
+
+                                <li class="menu-item customers">
+                                    <a href="#"><i class="fa fa-users"></i> Customers</a>
+                                </li>
+
+                                <li class="menu-item suppliers">
+                                    <a href="#"><i class="fa fa-usd"></i> Suppliers</a>
+                                </li>
+
+
+                                <li class="menu-item active-tours">
+                                    <a href="#"><i class="icon_map"></i> Active tours</a>
+                                </li>
+                                <li class="menu-item proposals">
+                                <a href="#"><i class="icon_search_alt"></i> Proposals</a> </li>
+
+                            </ul>
+
+                            <select class="top-drop-menu nav visible-sm visible-xs visible-md">
+                                 <optgroup label="Admin Panel">
+
+                                    <option value="#">
+                                        Customers
+                                    </option>
+                                    <option value="#">
+                                        Suppliers
+                                    </option>
+                                    <option value="#">
+                                        Active tours
+                                    </option>
+                                    <option value="#">
+                                        Proposals
+                                    </option>
+
+                              </optgroup>
+
+
+                          </select>
+                      </nav>
+
+                    </div>
+					</c:if>
+
                     </div>
                      <div class="col-xs-12 col-sm-1 no-margin">
                     <c:if test="${sessionScope.user!=null}">
