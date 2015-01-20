@@ -36,6 +36,10 @@
     <servlet-name>ConfirmSignUp</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.ConfirmSignupServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Tours</servlet-name>
+    <servlet-class>com.epam.travelup.tour.servlet.TourServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>SignUp</servlet-name>
     <url-pattern>/signup</url-pattern>
@@ -64,9 +68,13 @@
     <servlet-name>Index</servlet-name>
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>SearchUser</servlet-name>
     <url-pattern>/search_user</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>Tours</servlet-name>
+	<url-pattern>/tours</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>

@@ -42,6 +42,27 @@ public class PlaceInfo {
 	public void setUaDescription(String uaDescription) {
 		this.uaDescription = uaDescription;
 	}
+	
+	public String getName(String lang){
+		String name = null;
+		if(lang.equals("ua")){
+			name = this.getUaName();
+		} else if(lang.equals("en")){
+			name = this.getEnName();
+		}
+		return name;
+	}
+	
+	public String getDescription(String lang){
+		String desc = null;
+		if(lang.equals("ua")){
+			desc = this.getUaDescription();
+		} else if(lang.equals("en")){
+			desc = this.getEnDescription();
+		}
+		return desc;
+	}
+	
 	@Override
 	public String toString() {
 		return "PlaceInfo [id=" + id + ", uaName=" + uaName + ", enName="

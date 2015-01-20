@@ -18,7 +18,6 @@ import com.epam.travelup.sender.MailActivationSender;
 import com.epam.travelup.signup.validation.UserVerification;
 import com.epam.travelup.signup.validation.VerificationCommand;
 
-import com.epam.travelup.;
 
 
 

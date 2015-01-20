@@ -25,6 +25,17 @@ public class TourName {
 	public void setEnName(String enName) {
 		this.enName = enName;
 	}
+	
+	public String getName(String lang){
+		String name = null;
+		if(lang.equals("ua")){
+			name = this.getUaName();
+		} else if(lang.equals("en")){
+			name = this.getEnName();
+		}
+		return name;
+	}
+	
 	@Override
 	public String toString() {
 		return "TourName [id=" + id + ", uaName=" + uaName + ", enName="
