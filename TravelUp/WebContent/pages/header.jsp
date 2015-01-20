@@ -18,6 +18,7 @@
                     <c:if test="${sessionScope.user!=null}">
 					   <p>${lang.getString('login.hello')} ${sessionScope.user.getFirstName()}!</p>
 					</c:if>
+					 <p>${status}</p>
                     </div>
 
                 </div>
@@ -36,7 +37,7 @@
 						      	<li><a href="logout"><i class="fa fa-lock"></i> ${lang.getString('menu.logout')}</a></li>
 						      </c:otherwise>
 							</c:choose>
-                            <li><a href="#"><i class="fa fa-user"></i> ${lang.getString('menu.register')}</a></li>
+                            <li><a data-toggle="modal" data-target="#signupBox" href="#"><i class="fa fa-user"></i> ${lang.getString('menu.register')}</a></li>
                             <li><a href="#"><i class="fa fa-bus"></i> ${lang.getString('menu.tours')}</a></li>
                             <li><a href="#"><i class="fa fa-location-arrow"></i> ${lang.getString('menu.sendrequest')}</a></li>
                             <li><a href="#"><i class="fa fa-map-marker"></i> ${lang.getString('menu.places')}</a></li>

@@ -1,5 +1,6 @@
-        <!-- jQuery -->
-        <script src="inc/js/jquery-1.10.2.min.js"></script>
+        <!-- jQuery 
+        <script src="inc/js/jquery-1.10.2.min.js"></script> -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="inc/js/jquery-migrate-1.2.1.js"></script>
 
         <!-- modernizer -->

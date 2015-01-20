@@ -11,8 +11,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>TravelUp</title>
 
+        <!-- Styles -->
         <jsp:include page="/pages/styles.jsp" />
-
+        
+        <!-- Scripts -->
+        <jsp:include page="/pages/scripts.jsp" />
     </head>
     <body>
 
@@ -34,11 +37,11 @@
 </script>
 <![endif]-->
 
-<!-- / VideoBG -->
+         <!-- / VideoBG -->
 
           <jsp:include page="/pages/header.jsp" />
-
           <jsp:include page="/pages/loginBox.jsp" />
+          <jsp:include page="/pages/signupBox.jsp" />
 
 
 
@@ -76,8 +79,8 @@
 
 
 
+           <!-- Footer -->
            <jsp:include page="/pages/footer.jsp" />
-           <!-- /#footer -->
 
 
 
@@ -86,9 +89,7 @@
 
 
 
-        <!-- Scripts -->
-
-        <jsp:include page="/pages/scripts.jsp" />
+        
 
     </body>
 </html>

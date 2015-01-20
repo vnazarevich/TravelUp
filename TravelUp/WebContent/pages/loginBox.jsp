@@ -1,4 +1,3 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <div class="modal fade" id="loginBox" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -8,14 +7,14 @@
                                 <div class=" field-row" >
 
 
-                                    <input  placeholder="${lang.getString("auth.header.login")}" type="text" id="login" name="login"  class="form-control" required>
+                                <Label id="login-status" class="error-label" style="color:#b94a48"></Label>
+                                    <input  placeholder="${lang.getString("auth.header.login")}" type="text" id="user-name" name="login"  class="form-control" required>
 
 
-                                    <input  type="password" placeholder="${lang.getString("auth.header.password")}" id="password" name="password"  class="form-control" required>
+                                    <input  type="password" placeholder="${lang.getString("auth.header.password")}" id="pass" name="password"  class="form-control" required>
 
                                 </div>
                                 <button type="submit" class="button green" id="login-button" value="Login">${lang.getString("login.submit")}</button>
-                                <Label id="login-status" class="error-label"></Label>
                             </form>
                         </div>
 
@@ -24,8 +23,8 @@
             </div>
 <script>
 	$("#login-form").submit(function(e){
-		var login = $("#login").val();
-		var password = $("#password").val();
+		var login = $("#user-name").val();
+		var password = $("#pass").val();
 		var answer="";
 		$.ajaxSetup({async: false});
 	  	  $.post('confirmlogin',{login:login,password:password} ,function(responseText) {
@@ -38,7 +37,7 @@
 	  	}
 	  	return true;
 	});
-	$('#login, #password').focus(function(e){
+	$('#user-name, #pass').focus(function(e){
 		$("#login-status").html("");
 	});
 </script>
