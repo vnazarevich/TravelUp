@@ -92,7 +92,7 @@
                             <li><a href="#"><i class="fa fa-map-marker"></i> ${lang.getString('menu.places')}</a></li>
                             <li><a href="#"><i class="fa fa-picture-o"></i> ${lang.getString('menu.gallery')}</a></li>
                           <li><a href="#"><i class="fa fa-youtube-play"></i> ${lang.getString('menu.video')}</a></li>
-                          <li><a href="#"><i class="fa fa-users"></i> ${lang.getString('menu.about')}</a></li>
+                          <li><a href="#"><i class="fa fa-line-chart"></i> ${lang.getString('menu.about')}</a></li>
                           <c:if test="${sessionScope.user!=null}">
 	                          <li><a href="#"><i class="fa fa-home"></i> ${lang.getString('menu.userpage')}</a></li>
 	                          <li><a href="#"><i class="fa fa-suitcase"></i> ${lang.getString('menu.adminpanel')}</a></li>
