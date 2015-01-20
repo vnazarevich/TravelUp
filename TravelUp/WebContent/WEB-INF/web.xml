@@ -5,6 +5,10 @@
     <welcome-file>index</welcome-file>
   </welcome-file-list>
   <servlet>
+    <servlet-name>SearchUser</servlet-name>
+    <servlet-class>com.epam.travelup.admin.servlet.SearchUserServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>SignUp</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.SignUpStartServlet</servlet-class>
   </servlet>
@@ -16,7 +20,7 @@
     <servlet-name>Login</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.LoginStartServlet</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>Logout</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.LogoutServlet</servlet-class>
   </servlet>
@@ -48,7 +52,7 @@
     <servlet-name>ConfirmSignUp</servlet-name>
     <url-pattern>/confirmsignup</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>Logout</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
@@ -59,6 +63,10 @@
   <servlet-mapping>
     <servlet-name>Index</servlet-name>
     <url-pattern>/index</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>SearchUser</servlet-name>
+    <url-pattern>/search_user</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>

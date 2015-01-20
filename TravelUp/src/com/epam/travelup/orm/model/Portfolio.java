@@ -7,8 +7,6 @@ public class Portfolio {
 	@DBField(name = "id")
 	private int id;
 
-	@DBKey(name = "user_id")
-	private User userId;
 
 	@DBField(name = "description")
 	private String description;
@@ -26,26 +24,9 @@ public class Portfolio {
 
 	}
 
-	public Portfolio(User userId, String description, boolean isPhotographer,
-			boolean isCarrier, boolean isGuide) {
-		super();
-		this.userId = userId;
-		this.description = description;
-		this.isPhotographer = isPhotographer;
-		this.isCarrier = isCarrier;
-		this.isGuide = isGuide;
-	}
 
-	public Portfolio(int id, User userId, String description,
-			boolean isPhotographer, boolean isCarrier, boolean isGuide) {
-		super();
-		this.id = id;
-		this.userId = userId;
-		this.description = description;
-		this.isPhotographer = isPhotographer;
-		this.isCarrier = isCarrier;
-		this.isGuide = isGuide;
-	}
+
+
 
 	public int getId() {
 		return id;
@@ -55,13 +36,6 @@ public class Portfolio {
 		this.id = id;
 	}
 
-	public User getUserId() {
-		return userId;
-	}
-
-	public void setUserId(User userId) {
-		this.userId = userId;
-	}
 
 	public String getDescription() {
 		return description;
@@ -95,10 +69,16 @@ public class Portfolio {
 		this.isGuide = isGuide;
 	}
 
+
+
+
+
+	@Override
 	public String toString() {
-		return "User id: " + this.getUserId() + "\n" + "Description"
-				+ this.getDescription() + "\n" + "Is photographer: "
-				+ this.isPhotographer() + "\n" + "Is carrier: "
-				+ this.isCarrier() + "\n" + "Is guide: " + this.isGuide();
+		return "Portfolio [id=" + id + ", description=" + description
+				+ ", isPhotographer=" + isPhotographer + ", isCarrier="
+				+ isCarrier + ", isGuide=" + isGuide + "]";
 	}
+
+
 }

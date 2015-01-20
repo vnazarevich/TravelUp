@@ -24,7 +24,7 @@ public class Transformer <T>{
 		this.type=type;
 		this.language = language;
 	}
-	
+
 	public List<T> getModelList(ResultSet set){
 		T model = null;
 		List<T> modelList = new ArrayList<T>();
@@ -84,11 +84,11 @@ public class Transformer <T>{
 									List<?> list = dao.selectWhere("id", FKValue, "=");
 									field.set(model, list.get(0));
 								}
-								
+
 							}
 						}
 					}
-					
+
 				} catch (InstantiationException | IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | SecurityException  e) {
 
 					e.printStackTrace();
@@ -141,7 +141,7 @@ public class Transformer <T>{
 								| SecurityException e) {
 							e.printStackTrace();
 						}
-						
+
 					}else{
 						try {
 							tableInput.put(attrName, field.get(model));
@@ -151,13 +151,13 @@ public class Transformer <T>{
 						}
 					}
 				}
-				
+
 			}
 		}
 		return tableInput;
 	}
-	
-	public String fieldToAttribute(String fieldName){
+
+	public  String fieldToAttribute(String fieldName){
 		try {
 			Field field=type.getDeclaredField(fieldName);
 			field.setAccessible(true);
@@ -165,7 +165,7 @@ public class Transformer <T>{
 			if(annotation==null){
 				return null;
 			}
-			
+
 			String attribute=(String)annotation.annotationType().getMethod("name").invoke(annotation, null);
 			return attribute;
 		} catch (Exception e) {

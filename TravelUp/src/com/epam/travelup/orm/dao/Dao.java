@@ -96,6 +96,26 @@ public class Dao<T>{
 		}
 		return null;
 	}
+	public List<T> selectWhereOr(List<String> attrs, List<String> values, String equalitySign){
+		ResultSet set = null;
+		try(Connection connection=ConnectionManager.getConnection()) {
+			StringBuilder builder = new StringBuilder("Select * From "+tableName+" Where ");
+			for(int i=0;i<attrs.size();i++){
+				builder.append(attrs.get(i)+" "+equalitySign+" '"+values.get(i)+"'");
+				if(i!=attrs.size()-1){
+					builder.append(" OR ");
+				}
+			}
+			builder.append(" ; ");
+			PreparedStatement statement = connection.prepareStatement(builder.toString());
+			System.out.println(statement.toString());
+			set = statement.executeQuery();
+			return new Transformer<T>(type, language).getModelList(set);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public void delete(List<String> attrs, List<String> values){
 
 		try (Connection connection=ConnectionManager.getConnection()){
@@ -112,6 +132,7 @@ public class Dao<T>{
 		}
 
 	}
+
 	public boolean insert(T model){
 
 		Map<String,Object> inputs = new Transformer<T>(type, language).modelToTable(model);

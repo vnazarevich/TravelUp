@@ -1,9 +1,11 @@
 package com.epam.travelup.orm.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.epam.travelup.orm.dao.Dao;
 import com.epam.travelup.orm.model.User;
+import com.epam.travelup.orm.transformer.Transformer;
 
 public class UserService {
 	public static List<User> getUsersWhere(String attr, String value){
@@ -13,5 +15,19 @@ public class UserService {
 	}
 	public static void insertUser(User user){
 		new Dao<User>(User.class,"en").insert(user);
+	}
+	public static List<User> getUsersLike(String input){
+		List<String> attrs = new ArrayList<String>();
+		Transformer<User> transformer = new Transformer<User>(User.class, "en");
+		attrs.add(transformer.fieldToAttribute("login"));
+		attrs.add(transformer.fieldToAttribute("firstName"));
+		attrs.add(transformer.fieldToAttribute("lastName"));
+		List<String> values = new ArrayList<String>();
+		values.add("%"+input+"%");
+		values.add("%"+input+"%");
+		values.add("%"+input+"%");
+		Dao<User> dao = new Dao<User>(User.class, "en");
+		List<User> users = dao.selectWhereOr(attrs, values, "LIKE");
+		return users;
 	}
 }

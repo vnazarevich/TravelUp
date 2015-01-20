@@ -10,7 +10,7 @@ public class User {
 
 	@DBField(name = "first_name")
 	private String firstName;
-	
+
 	@DBField(name = "last_name")
 	private String lastName;
 
@@ -34,54 +34,35 @@ public class User {
 
 	@DBField(name = "paycard_no")
 	private int paycardNo;
-	
+
 	@DBField(name = "is_active")
 	private boolean isActive;
+
+	@DBField(name = "is_admin")
+	private boolean isAdmin;
+
+	@DBField(name = "is_banned")
+	private boolean isBanned;
+	@DBKey(name="portfolio_id")
+	private Portfolio portfolio;
+
+	public Portfolio getPortfolio() {
+		return portfolio;
+	}
+
+
+
+	public void setPortfolio(Portfolio portfolio) {
+		this.portfolio = portfolio;
+	}
+
+
 
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String firstName, String lastName, String login,
-			String password, String mail) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.login = login;
-		this.password = password;
-		this.mail = mail;
-	}
-	
-	public User(String firstName, String lastName, String login,
-			String password, String mail, Date dateOfRegistration,
-			String picture, Language languageId, int paycardNo) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.login = login;
-		this.password = password;
-		this.mail = mail;
-		this.dateOfRegistration = dateOfRegistration;
-		this.picture = picture;
-		this.languageId = languageId;
-		this.paycardNo = paycardNo;
-	}
 
-	public User(int id, String firstName, String lastName, String login,
-			String password, String mail, Date dateOfRegistration,
-			String picture, Language languageId, int paycardNo) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.login = login;
-		this.password = password;
-		this.mail = mail;
-		this.dateOfRegistration = dateOfRegistration;
-		this.picture = picture;
-		this.languageId = languageId;
-		this.paycardNo = paycardNo;
-	}
 
 	public int getId() {
 		return id;
@@ -171,6 +152,30 @@ public class User {
 		this.isActive = isActive;
 	}
 
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+
+
+	public boolean isBanned() {
+		return isBanned;
+	}
+
+
+
+	public void setBanned(boolean isBanned) {
+		this.isBanned = isBanned;
+	}
+
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof User) {
@@ -180,6 +185,8 @@ public class User {
 		return super.equals(obj);
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName="
@@ -187,9 +194,12 @@ public class User {
 				+ ", mail=" + mail + ", dateOfRegistration="
 				+ dateOfRegistration + ", picture=" + picture + ", languageId="
 				+ languageId + ", paycardNo=" + paycardNo + ", isActive="
-				+ isActive + "]";
+				+ isActive + ", isAdmin=" + isAdmin + ", isBanned=" + isBanned
+				+ "]";
 	}
 
-	
+
+
+
 
 }
