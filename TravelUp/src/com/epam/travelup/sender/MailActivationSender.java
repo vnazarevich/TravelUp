@@ -9,27 +9,41 @@ import javax.mail.internet.MimeMessage;
 public class MailActivationSender {
 	private final static String ADMIN_EMAIL = "travelup.ua@gmail.com";
 	private final static String ADMIN_EMAIL_PASS = "root1234";
-	private final static String SUBJECT = "This is Subject";
+	private final static String ACTIVATION_URL = "http://localhost:8080/TravelUp/activationaccount";
+	private final static String SIGNUP_URL = "http://localhost:8080/TravelUp/signup";
 
 	private String userName;
 	private String userEmail;
 	private String userLogin;
 	private Properties props;
 
-	public MailActivationSender (String userName, String userEmail, String userLogin) {
-		System.out.println("2.5");
+	public MailActivationSender(String userName, String userEmail,
+			String userLogin) {
 		this.userName = userName;
 		this.userEmail = userEmail;
+		this.userLogin = userLogin;
 
 		props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
-		System.out.println("3");
 	}
 
-	public void send () {
+	public void sendActivationAccount() {
+		send(getTextForActivationAccount(), getSubjectForActivationAccount());
+	}
+
+	public void sendRegistrationCompleted() {
+		send(getTextForRegistrationCompleted(),
+				getSubjectForRegistrationCompleted());
+	}
+
+	public void sendRegistrationFailed() {
+		send(getTextForRegistrationFailed(), getSubjectForRegistrationFailed());
+	}
+
+	private void send(String text, String subject) {
 		Session session = Session.getInstance(props, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(ADMIN_EMAIL, ADMIN_EMAIL_PASS);
@@ -42,11 +56,8 @@ public class MailActivationSender {
 			System.out.println("3.1");
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(userEmail));
-			System.out.println("3.2");
-			message.setSubject(SUBJECT);
-			System.out.println("3.3");
-			message.setText(getText());
-			System.out.println("3.4");
+			message.setSubject(subject);
+			message.setText(text);
 			Transport.send(message);
 			System.out.println("3.5");
 		} catch (Exception e) {
@@ -55,9 +66,37 @@ public class MailActivationSender {
 		}
 	}
 
-	private String getText() {
-		return "Hello dear " + userName + "! Now you have registrated on portal TravelUp. Your login is " + userLogin;
+	private String getTextForRegistrationCompleted() {
+		return "Hello "
+				+ userName
+				+ "Congratulations, your TravelUp account created with success and we are pleased to count you among our community."
+				+ "We recommend you keep this email to store your identifiers."
+				+"our identifiers:" + "	Username: " + userName
+				+ "Email address: " + userEmail
+				+ "Thank you for your trust in our solutions, "
+				+ "TravelUp Team ";
+	}
+
+	private String getSubjectForRegistrationCompleted() {
+		return "Genymotion Cloud - Registration completed";
+	}
+
+	private String getTextForActivationAccount() {
+		return "Hello "
+				+ userName
+				+ "! Please use the link below to activate your account on portal TravelUp:  "
+				+ (ACTIVATION_URL + "?" + "login=" + userLogin + "&" + "hash=" + userEmail); // .charAt(0)
+	}
+
+	private String getSubjectForActivationAccount() {
+		return "Welcome to TravelUp";
+	}
+
+	private String getSubjectForRegistrationFailed() {
+		return "Registration failed";
+	}
+
+	private String getTextForRegistrationFailed() {
+		return "Try to create an account on TrevelUp once more" + SIGNUP_URL;
 	}
 }
-
-
