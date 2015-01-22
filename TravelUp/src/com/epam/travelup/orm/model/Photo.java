@@ -4,8 +4,8 @@ package com.epam.travelup.orm.model;
 @DBTable(name = "photo")
 public class Photo {
 
-	@DBKey(name = "tour_id")
-	private Tour tourId;
+	@DBField(name = "place_id")
+	private int placeId;
 
 	@DBField(name = "photograph_id")
 	private int photographId;
@@ -23,19 +23,19 @@ public class Photo {
 		this.photolink = photolink;
 	}
 
-	public Photo(Tour tourId, int photographId, String photolink) {
+	public Photo(int placeId, int photographId, String photolink) {
 		super();
-		this.tourId = tourId;
+		this.placeId = placeId;
 		this.photographId = photographId;
 		this.photolink = photolink;
 	}
 
-	public Tour getTourId() {
-		return tourId;
+	public int getPlaceId() {
+		return placeId;
 	}
 
-	public void setTourId(Tour tourId) {
-		this.tourId = tourId;
+	public void setTourId(int placeId) {
+		this.placeId = placeId;
 	}
 
 	public int getPhotographId() {
@@ -56,7 +56,7 @@ public class Photo {
 
 	@Override
 	public String toString() {
-		return "Tour id: " + this.getTourId() + "\n" + "Photograph id: "
+		return "Tour id: " + this.getPlaceId() + "\n" + "Photograph id: "
 				+ this.getPhotographId() + "\n" + "Photo link: "
 				+ this.getPhotolink();
 	}

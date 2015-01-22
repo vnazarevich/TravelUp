@@ -21,19 +21,19 @@
         <div id="site">
 
             <jsp:include page="/pages/header.jsp" />
-
             <jsp:include page="/pages/loginBox.jsp" />
+            <jsp:include page="/pages/signupBox.jsp" />
 
             <section class="page-head-holder">
                 <div class="container">
                     <div class="col-xs-6">
-                      <h2>Tour list</h2>
+                      <h2>${lang.getString("tourpage.page.tourlist")}</h2>
                     </div>
                     <div class="col-xs-6">
                         <div class="breadcrumb-holder">
                             <ol class="breadcrumb">
-                                <li><a href="#">Home</a></li>
-                                <li class="active"><a href="#">Tour list</a></li>
+                                <li><a href="index">${lang.getString("tourpage.page.home")}</a></li>
+                                <li class="active"><a href="#">${lang.getString("tourpage.page.tourlist")}</a></li>
                             </ol>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                                         <div class="inner">
                                             <div class="col-md-5 col-lg-4 no-margin-left">
                                                 <a class="thumbnailz" href="#">
-                                                    <img src="images/content/post-thumb-1.png" alt="Your Hotel Title Here" class="responsive-image" />
+                                                    <img src="${tour.places[0].photos[0].photolink}" alt="Your Hotel Title Here" class="responsive-image" />
                                                     <span class="overlay">Details</span>
                                                 </a>
                                             </div>
@@ -164,15 +164,15 @@
                                                     <article class="entry-content">
                                                         <h2 class="post-title"><a href="#" title="Your Hotel Title Here">${tour.name.getName(lang.getLocale().getLanguage())}</a></h2>
 
-                                                        <p>Тривалість подорожі: ${tour.minDuration} днів.</p>
+                                                        <p>${lang.getString("tourpage.list.duration")} ${tour.minDuration} ${lang.getString("tourpage.list.days")}.</p>
                                                         
-                                                        <b>Дата:</b>
+                                                        <b>${lang.getString("tourpage.list.date")}:</b>
                                                         <p>${tour.startDate} - ${tour.endDate}</p>
                                                         
                                                     </article>
 
-                                                    <div class="entry-meta"> <span class="review"><a href="#">Коментарі</a></span>
-                                                        <span class="go-detail"><a href="#">More</a></span>
+                                                    <div class="entry-meta"> <span class="review"><a href="#">${lang.getString("tourpage.list.comments")}</a></span>
+                                                        <span class="go-detail"><a href="#">${lang.getString("tourpage.list.more")}</a></span>
                                                     </div>	
 
                                                 </div><!-- /.entry -->	
@@ -181,11 +181,11 @@
                                              <div class="col-md-2 right-column col-lg-3 no-margin">
                                                  <div class="right-area">
 <div class="book-holder">
-                         <span class="price">${tour.minCapacity} смертних</span>
-                        <span class="price"><span class="higlight emphasize value">${tour.minPrice} грн</span></span>
-                         <a href="#" class="button mini">маршрут</a>
+                         <span class="price">${tour.minCapacity} ${lang.getString("tourpage.list.people")}</span>
+                        <span class="price"><span class="higlight emphasize value">${tour.minPrice} ${lang.getString("tourpage.list.money")}</span></span>
+                         <a href="#" class="button mini">${lang.getString("tourpage.list.path")}</a>
                          <p>
-                         <a href="#" class="button mini">в кошик</a>
+                         <a href="#" class="button mini">${lang.getString("tourpage.list.cart")}</a>
                         </div>
                                                  </div>
                                              </div>

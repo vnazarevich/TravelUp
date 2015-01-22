@@ -1,5 +1,7 @@
 package com.epam.travelup.orm.model;
 
+import java.util.List;
+
 
 @DBTable(name = "place")
 public class Place {
@@ -7,27 +9,25 @@ public class Place {
 	@DBField(name = "id")
 	private int id;
 
-	@DBKey(name="name_id")
-	private PlaceInfo name;
-
 	@DBKey(name="info_id")
 	private PlaceInfo info;
+	
+	@DBField(name="type_id")
+	private int type;
 
-	@DBField(name = "wiki")
-	private String wiki;
-
-	@DBField(name = "picture")
-	private String picture;
+	@DBField(name="region_id")
+	private int region;
 
 	@DBField(name="x_coordinate")
 	private String xCoordinate;
-	@DBField(name="y_coordinates")
+	
+	@DBField(name="y_coordinate")
 	private String yCoordinate;
+	
+	List<Photo> photos;
 
 	public Place() {
-
 	}
-
 
 	public int getId() {
 		return id;
@@ -37,74 +37,61 @@ public class Place {
 		this.id = id;
 	}
 
-	public PlaceInfo getDescription() {
-		return info;
+	public int getType() {
+		return type;
 	}
 
-	public void setDescription(PlaceInfo description) {
-		this.info = description;
-	}
-
-	public String getWiki() {
-		return wiki;
-	}
-
-	public void setWiki(String wiki) {
-		this.wiki = wiki;
-	}
-
-	public String getPicture() {
-		return picture;
-	}
-
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
-
-	public PlaceInfo getName() {
-		return name;
-	}
-
-	public void setName(PlaceInfo name) {
-		this.name = name;
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public PlaceInfo getInfo() {
 		return info;
 	}
 
-
 	public void setInfo(PlaceInfo info) {
 		this.info = info;
 	}
 
+	public int getRegion() {
+		return region;
+	}
+
+	public void setRegion(int region) {
+		this.region = region;
+	}
 
 	public String getxCoordinate() {
 		return xCoordinate;
 	}
 
-
 	public void setxCoordinate(String xCoordinate) {
 		this.xCoordinate = xCoordinate;
 	}
-
 
 	public String getyCoordinate() {
 		return yCoordinate;
 	}
 
-
 	public void setyCoordinate(String yCoordinate) {
 		this.yCoordinate = yCoordinate;
 	}
+	
 
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
 
 	@Override
 	public String toString() {
-		return "Place [id=" + id + ", name=" + name + ", info=" + info
-				+ ", wiki=" + wiki + ", picture=" + picture + ", xCoordinate="
-				+ xCoordinate + ", yCoordinate=" + yCoordinate + "]";
+		return "Place [id=" + id + ", info=" + info + ", type=" + type
+				+ ", region=" + region + ", xCoordinate=" + xCoordinate
+				+ ", yCoordinate=" + yCoordinate + ", photos=" + photos + "]";
 	}
 
-
+	
 }

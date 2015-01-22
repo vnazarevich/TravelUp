@@ -10,6 +10,10 @@ public class TourService {
 	public static List<Tour> getTours(String lang){
 		Dao<Tour> dao = new Dao<Tour>(Tour.class, lang);
 		List<Tour> tours = dao.selectAll();
+		
+		for(Tour tour: tours){
+			tour.setPlaces(PlaceService.getPlacesForRoute(tour.getRoute_id().getId(), lang));
+		}
 		return tours;
 	}
 	

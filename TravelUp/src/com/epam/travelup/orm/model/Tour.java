@@ -1,6 +1,7 @@
 package com.epam.travelup.orm.model;
 
 import java.util.Date;
+import java.util.List;
 
 @DBTable(name = "tour")
 public class Tour {
@@ -44,10 +45,10 @@ public class Tour {
 	private int maxCapacity;
 
 	@DBField(name = "min_duration")
-	private double minDuration;
+	private int minDuration;
 
 	@DBField(name = "max_duration")
-	private double maxDuration;
+	private int maxDuration;
 
 	@DBDictionaryField(name = "trip_days")
 	@DBField(name = "trip_days_id")
@@ -65,6 +66,8 @@ public class Tour {
 	@DBField(name = "max_price")
 	private double maxPrice;
 
+	private List<Place> places;
+	
 	public Tour() {
 
 	}
@@ -78,6 +81,17 @@ public class Tour {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public List<Place> getPlaces() {
+		return places;
+	}
+
+
+	public void setPlaces(List<Place> places) {
+		this.places = places;
+	}
+
+
 
 	public User getGuideId() {
 		return guideId;
@@ -167,19 +181,19 @@ public class Tour {
 		this.maxCapacity = maxCapacity;
 	}
 
-	public double getMinDuration() {
+	public int getMinDuration() {
 		return minDuration;
 	}
 
-	public void setMinDuration(double minDuration) {
+	public void setMinDuration(int minDuration) {
 		this.minDuration = minDuration;
 	}
 
-	public double getMaxDuration() {
+	public int getMaxDuration() {
 		return maxDuration;
 	}
 
-	public void setMaxDuration(double maxDuration) {
+	public void setMaxDuration(int maxDuration) {
 		this.maxDuration = maxDuration;
 	}
 
@@ -236,6 +250,7 @@ public class Tour {
 				+ this.getMinCapacity() + "\n" + "Max capacity: "
 				+ this.getMaxCapacity() + "\n" + "Min duration: "
 				+ this.getMinDuration() + "\n" + "Max duration: "
-				+ this.getMaxDuration();
+				+ this.getMaxDuration() + "\n" + "Places: " 
+				+ this.getPlaces();
 	}
 }
