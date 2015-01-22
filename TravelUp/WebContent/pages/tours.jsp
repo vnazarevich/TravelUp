@@ -41,7 +41,7 @@
             </section>
 
             <section id="hotels" class="section wide-fat page">
-                <div class="container">	
+                <div class="container">
                     <div class="hotels-filter"> </div><!-- /.hotels-filter -->
                     <div class="contents-wrapper">
                         <div class="row">
@@ -74,35 +74,35 @@
                                                     <label for="check-out-date2">Check out date</label>
                                                     <br />
                                                     <input id="check-out-date2" class="traveline_date_input" type="text" value="d MM yy" />
-                                                </div>									
+                                                </div>
 
                                             </div><!-- /.search-field -->
-                                            <!-- /.search-field -->	
+                                            <!-- /.search-field -->
 
                                             <div class="search-field">
 
                                                 <input type="submit" class="button wide-fat" value="Search" />
 
-                                            </div><!-- /.search-field -->							
+                                            </div><!-- /.search-field -->
 
-                                        </form><!-- /form.location-search --> 
+                                        </form><!-- /form.location-search -->
 
                                     </div>
 
                                 </div><!-- /.widget -->
-                                <!-- /.widget -->	
+                                <!-- /.widget -->
 
 
                                 <div class="widget">
 
                                     <h3 class="widget-title">Price Filter</h3>
 
-                                    <div class="price-range-slider">	
+                                    <div class="price-range-slider">
 
                                         <div id="sliderz"></div>
 
                                     </div><!-- /.price-range-slider -->
-                                </div><!-- /.widget -->	
+                                </div><!-- /.widget -->
 
                                 <div class="widget hotel-type-filter-widget">
                                     <h3 class="widget-title">Type</h3>
@@ -115,9 +115,9 @@
                                             <li><input type="checkbox" /><label >Appartment</label></li>
                                             <li><input type="checkbox" /><label >Motel</label></li>
                                         </ul>
-                                    </form>								
+                                    </form>
 
-                                </div><!-- /.widget -->	
+                                </div><!-- /.widget -->
 
 						<div class="widget hotel-type-filter-widget">
 
@@ -137,7 +137,7 @@
                                             <li><input type="checkbox" /><label >The Dining Room (12)</label></li>
 
                                         </ul>
-                                    </form>								
+                                    </form>
 
                                 </div><!-- /.widget -->
                             </div><!-- /.sidebar -->
@@ -167,17 +167,18 @@
                                                         <p>${lang.getString("tourpage.list.duration")} ${tour.minDuration} ${lang.getString("tourpage.list.days")}.</p>
                                                         
                                                         <b>${lang.getString("tourpage.list.date")}:</b>
+
                                                         <p>${tour.startDate} - ${tour.endDate}</p>
-                                                        
+
                                                     </article>
 
                                                     <div class="entry-meta"> <span class="review"><a href="#">${lang.getString("tourpage.list.comments")}</a></span>
                                                         <span class="go-detail"><a href="#">${lang.getString("tourpage.list.more")}</a></span>
                                                     </div>	
 
-                                                </div><!-- /.entry -->	
+                                                </div><!-- /.entry -->
                                             </div>
-                                            
+
                                              <div class="col-md-2 right-column col-lg-3 no-margin">
                                                  <div class="right-area">
 <div class="book-holder">
@@ -194,10 +195,10 @@
                                     </div><!-- /.content -->
 
                                 </div><!-- /.row -->
-                                
-                          
+
+
                </c:forEach>
-                    
+
                             </div><!-- /.contents.grid-contents -->
 
                         </div><!-- /.row -->
@@ -207,7 +208,7 @@
                 </div>
 
 
-            </section><!-- /#hotels.section -->		
+            </section><!-- /#hotels.section -->
 
             <jsp:include page="/pages/footer.jsp" />
            <!-- /#footer -->
@@ -216,7 +217,7 @@
 
 
 <!-- Scripts -->
-	
+
 	<jsp:include page="/pages/scripts.jsp" />
 
     </body>

@@ -3,6 +3,7 @@ package com.epam.travelup.signup.servlet;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.Enumeration;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,6 +28,7 @@ import com.epam.travelup.signup.validation.VerificationCommand;
 @WebServlet("/ConfirmSignupServlet")
 public class ConfirmSignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final static Logger LOGGER = Logger.getLogger("ConfirmSignupServlet::"); 
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -63,8 +65,8 @@ public class ConfirmSignupServlet extends HttpServlet {
 			user.setFirstName(request.getParameter("name"));
 			user.setActive(false);
 			user.setLastName(request.getParameter("surname"));
-			MailActivationSender sender = new MailActivationSender(request.getParameter("name"), request.getParameter("email"), request.getParameter("login"));
-			sender.send();
+			MailActivationSender sender = new MailActivationSender(user.getFirstName(), user.getMail(), user.getLogin());
+			sender.sendActivationAccount();
 			try {
 				String password = PasswordCoder.getSecurePassword(request.getParameter("password"), user.getMail());
 				user.setPassword(password);

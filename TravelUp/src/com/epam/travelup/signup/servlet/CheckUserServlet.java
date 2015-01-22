@@ -54,6 +54,7 @@ public class CheckUserServlet extends HttpServlet {
 	    }else{
 	    	response.getWriter().write("ok");
 	    }
+
 	}
 
 }

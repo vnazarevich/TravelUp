@@ -83,6 +83,20 @@ public class Dao<T>{
 		return null;
 	}
 
+	public List<T> selectAll(int offset, int rowCount){
+		ResultSet set = null;
+		System.out.println("Tablename: "+tableName);
+		try (Connection connection=ConnectionManager.getConnection()){
+			PreparedStatement statement = connection.prepareStatement("Select * From "+tableName+" LIMIT "+offset+","+rowCount+";");
+
+			set = statement.executeQuery();
+			return new Transformer<T>(type, language).getModelList(set);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public List<T> selectWhere(String attr, String value, String equalitySign){
 		ResultSet set = null;
 		try(Connection connection=ConnectionManager.getConnection()) {
@@ -109,6 +123,27 @@ public class Dao<T>{
 			builder.append(" ; ");
 			PreparedStatement statement = connection.prepareStatement(builder.toString());
 			System.out.println(statement.toString());
+			set = statement.executeQuery();
+			return new Transformer<T>(type, language).getModelList(set);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public List<T> selectWhereOr(List<String> attrs, List<String> values, String equalitySign, int offset, int rowCount){
+		ResultSet set = null;
+		try(Connection connection=ConnectionManager.getConnection()) {
+			StringBuilder builder = new StringBuilder("Select * From "+tableName+" Where ");
+			for(int i=0;i<attrs.size();i++){
+				builder.append(attrs.get(i)+" "+equalitySign+" '"+values.get(i)+"'");
+				if(i!=attrs.size()-1){
+					builder.append(" OR ");
+				}
+			}
+			builder.append(" LIMIT "+offset+","+rowCount+"; ");
+			PreparedStatement statement = connection.prepareStatement(builder.toString());
+			System.out.println(builder);
 			set = statement.executeQuery();
 			return new Transformer<T>(type, language).getModelList(set);
 		} catch (SQLException e) {

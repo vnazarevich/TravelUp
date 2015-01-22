@@ -25,8 +25,6 @@
 </div>
         <div id="site">
 
-        <div class="overlayup"></div>
-
         <!-- VideoBG -->
 <video class="video-on-bg" autoplay loop poster="images/karpaty.jpg" id="video-on-bg">
     <source src="video/UkrainianCarpathians.mp4" type="video/mp4">
