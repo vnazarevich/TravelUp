@@ -1,4 +1,6 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ 
 <header id="header" class="wide-fat">
 
                 <div class="container">
@@ -68,6 +70,10 @@
                     <c:if test="${sessionScope.user!=null}">
 					   <p align="center">${lang.getString('login.hello')} ${sessionScope.user.getFirstName()}!</p>
 					</c:if>
+					<center> 
+			        <a href="language?locale=ua" ><img src="images/Ukraine.png"></a>
+					<a href="language?locale=en" ><img src="images/United-Kingdom.png"></a> 
+					</center>
 					</div>
 
                 </div>

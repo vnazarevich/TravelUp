@@ -48,6 +48,10 @@
     <servlet-name>Tours</servlet-name>
     <servlet-class>com.epam.travelup.tour.servlet.TourServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>LanguageChange</servlet-name>
+    <servlet-class>com.epam.travelup.locaization.servlet.LanguageChangeServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>SignUp</servlet-name>
     <url-pattern>/signup</url-pattern>
@@ -91,6 +95,10 @@
    <servlet-mapping>
     <servlet-name>ActivationAccount</servlet-name>
     <url-pattern>/activationaccount</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LanguageChange</servlet-name>
+    <url-pattern>/language</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>

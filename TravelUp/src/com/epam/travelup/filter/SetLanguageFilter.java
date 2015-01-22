@@ -43,8 +43,11 @@ public class SetLanguageFilter implements Filter {
 	public void doFilter(ServletRequest request,ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		ResourceBundle lang = (ResourceBundle) session.getAttribute("lang");
+		String locale = (String) session.getAttribute("langChange");
 		if(lang==null){
-			LanguageContainer.SetLanguage("ua");
+			if(locale != null){
+			LanguageContainer.SetLanguage(locale);
+			}
 			session.setAttribute("lang", LanguageContainer.getBundle());
 		}
 		chain.doFilter(request, response);
