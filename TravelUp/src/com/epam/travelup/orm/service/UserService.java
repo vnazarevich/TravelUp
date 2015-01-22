@@ -30,4 +30,23 @@ public class UserService {
 		List<User> users = dao.selectWhereOr(attrs, values, "LIKE");
 		return users;
 	}
+
+	public static void banUser(String id){
+		Dao<User> dao = new Dao<User>(User.class,"en");
+		dao.update("id", id	, "is_banned", "1");
+	}
+
+	public static void unbanUser(String id){
+		Dao<User> dao = new Dao<User>(User.class,"en");
+		dao.update("id", id	, "is_banned", "0");
+	}
+
+	public static void setAdmin(String id){
+		Dao<User> dao = new Dao<User>(User.class,"en");
+		dao.update("id", id	, "is_admin", "1");
+	}
+
+	public static void main(String[] args) {
+		banUser("1");
+	}
 }

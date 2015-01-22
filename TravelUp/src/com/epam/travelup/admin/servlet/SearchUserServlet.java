@@ -52,6 +52,7 @@ public class SearchUserServlet extends HttpServlet {
 		}
 		String key = request.getParameter("key");
 		List<User> users = UserSearcher.search(key, isPhoto, isTransporter, isGuide);
+		User.sortByDate(users);
 		System.out.println(users);
 		request.setAttribute("users", users);
 		request.getRequestDispatcher("pages/admin_users.jsp").forward(request, response);
