@@ -5,6 +5,10 @@
     <welcome-file>index</welcome-file>
   </welcome-file-list>
    <servlet>
+    <servlet-name>ActivationAccount</servlet-name>
+    <servlet-class>com.epam.travelup.signup.servlet.ActivationAccountServlet</servlet-class>
+  </servlet>
+   <servlet>
     <servlet-name>UpdateUser</servlet-name>
     <servlet-class>com.epam.travelup.admin.servlet.UpdateUserServlet</servlet-class>
   </servlet>
@@ -84,6 +88,10 @@
     <servlet-name>Tours</servlet-name>
     <url-pattern>/tours</url-pattern>
   </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>ActivationAccount</servlet-name>
+    <url-pattern>/activationaccount</url-pattern>
+  </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
@@ -114,4 +122,6 @@
     <filter-name>LangFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+ 
+ 
 </web-app>
