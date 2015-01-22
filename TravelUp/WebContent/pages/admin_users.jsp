@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
    <jsp:include page="/pages/styles.jsp" />
+  <script type="text/javascript" src="inc/js/jquery.object.js"></script>
 <title>Users</title>
 </head>
 <body>
@@ -56,7 +57,7 @@
 			     <li> <input type="checkbox" name="photographers" ><label>photographer</label></li>
 
 			      <li><input type="checkbox" name="guides" ><label>guide</label></li>
-
+				<li><input type="hidden" name="pageNo" /></li>
 			 </ul>
 			 <div class="search-field">
 				 <button type="submit" class="button wide-fat">Search</button>
@@ -74,13 +75,46 @@
 	  <c:forEach items="${users}" var="item">
 		<ex:user user="${item}"/>
 	  </c:forEach>
+	  <div>
+	    <ul class="pager">
+	     <c:if test="${users!=null&&users.size()>0}">
+	          <li class="next"><a  href="javascript: void(0)">Next &rarr;</a></li>
+         </c:if>
+         <c:if test="${pageNo>0}">
+	           <li class="previous"><a  href="javascript: void(0)">&larr; Previous</a></li>
+         </c:if>
+
+
+	    </ul>
+	</div>
 	  </div>
-	  </div>
-</section><!--container-->
+
+	  </div><!--container-->
+</section>
+ 			<!-- Footer -->
+           <jsp:include page="/pages/footer.jsp" />
 	</div> <!--site-->
 <!-- Scripts -->
 <script>
 $(function(){
+	$(".next").click(function(e){
+	"<c:set var='pageNo' value='${pageNo+1}' scope='request'/>";
+		var pageNo="${pageNo}";
+		//window.location.search = $.query.set("pageNo", pageNo+1);
+		console.log("page changed "+pageNo);
+		$("input[name='pageNo']").attr("value",pageNo);
+		$("#search-form").submit();
+	});
+
+	$(".previous").click(function(e){
+		"<c:set var='pageNo' value='${pageNo-2}' scope='request'/>";
+			var pageNo="${pageNo}";
+			//window.location.search = $.query.set("pageNo", pageNo+1);
+			console.log("page changed "+pageNo);
+			$("input[name='pageNo']").attr("value",pageNo);
+			$("#search-form").submit();
+		});
+
 	$("input[name='key']").val("${param.key}");
 	var guides = "${param.guides}";
 	if(guides=="on"){

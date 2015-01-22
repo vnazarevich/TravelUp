@@ -16,7 +16,7 @@ public class UserService {
 	public static void insertUser(User user){
 		new Dao<User>(User.class,"en").insert(user);
 	}
-	public static List<User> getUsersLike(String input){
+	public static List<User> getUsersLike(String input, int offset, int rowCount){
 		List<String> attrs = new ArrayList<String>();
 		Transformer<User> transformer = new Transformer<User>(User.class, "en");
 		attrs.add(transformer.fieldToAttribute("login"));
@@ -27,7 +27,7 @@ public class UserService {
 		values.add("%"+input+"%");
 		values.add("%"+input+"%");
 		Dao<User> dao = new Dao<User>(User.class, "en");
-		List<User> users = dao.selectWhereOr(attrs, values, "LIKE");
+		List<User> users = dao.selectWhereOr(attrs, values, "LIKE", offset, rowCount);
 		return users;
 	}
 

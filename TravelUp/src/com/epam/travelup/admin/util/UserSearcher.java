@@ -6,8 +6,8 @@ import com.epam.travelup.orm.model.User;
 import com.epam.travelup.orm.service.UserService;
 
 public class UserSearcher {
-	public static List<User> search(String input, boolean isPhoto, boolean isTransport, boolean isGuide){
-		List<User> users = UserService.getUsersLike(input);
+	public static List<User> search(String input, boolean isPhoto, boolean isTransport, boolean isGuide, int offset, int rowCount){
+		List<User> users = UserService.getUsersLike(input, offset, rowCount);
 		if(isGuide){
 			users=filterGuide(users);
 		}
