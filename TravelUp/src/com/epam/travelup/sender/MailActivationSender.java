@@ -27,7 +27,7 @@ public class MailActivationSender {
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "465");
 	}
 
 	public void sendActivationAccount() {
@@ -58,6 +58,7 @@ public class MailActivationSender {
 					InternetAddress.parse(userEmail));
 			message.setSubject(subject);
 			message.setText(text);
+			System.out.println("3.4");
 			Transport.send(message);
 			System.out.println("3.5");
 		} catch (Exception e) {

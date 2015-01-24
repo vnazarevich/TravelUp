@@ -46,7 +46,13 @@ public class UserService {
 		dao.update("id", id	, "is_admin", "1");
 	}
 
+	public static void activateUser(String id){
+		Dao<User> dao = new Dao<User>(User.class,"en");
+		dao.update("id", id	, "is_active", "1");
+	}
+
 	public static void main(String[] args) {
 		banUser("1");
 	}
+
 }

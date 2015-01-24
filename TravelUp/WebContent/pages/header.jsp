@@ -1,6 +1,6 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
- 
+
 <header id="header" class="wide-fat">
 
                 <div class="container">
@@ -67,13 +67,29 @@
 
                     </div>
                      <div class="col-xs-12 col-sm-1 no-margin">
-                    <c:if test="${sessionScope.user!=null}">
+
+					<center>
+			        <!-- <a href="language?locale=ua" ><img src="images/Ukraine.png"></a> -->
+					<!-- <a href="language?locale=en" ><img src="images/United-Kingdom.png"></a> -->
+					<ul align="center" class="nav nav-pills green">
+
+
+					<c:choose>
+						 <c:when test="${sessionScope.lang.getLocale().getLanguage().equals('ua')}">
+						    <li class="active"><a href="language?locale=ua" >Ua</a></li>
+					    	<li><a href="language?locale=en" >En</a></li>
+						 </c:when>
+
+						 <c:otherwise>
+						     <li ><a href="language?locale=ua" >Ua</a></li>
+					    	<li class="active"><a href="language?locale=en" >En</a></li>
+						 </c:otherwise>
+					</c:choose>
+					</ul>
+					</center>
+					 <c:if test="${sessionScope.user!=null}">
 					   <p align="center">${lang.getString('login.hello')} ${sessionScope.user.getFirstName()}!</p>
 					</c:if>
-					<center> 
-			        <a href="language?locale=ua" ><img src="images/Ukraine.png"></a>
-					<a href="language?locale=en" ><img src="images/United-Kingdom.png"></a> 
-					</center>
 					</div>
 
                 </div>
@@ -100,7 +116,7 @@
                           <li><a href="#"><i class="fa fa-youtube-play"></i> ${lang.getString('menu.video')}</a></li>
                           <li><a href="#"><i class="fa fa-line-chart"></i> ${lang.getString('menu.about')}</a></li>
                           <c:if test="${sessionScope.user!=null}">
-	                          <li><a href="#"><i class="fa fa-home"></i> ${lang.getString('menu.userpage')}</a></li>
+	                          <li><a href="userpage"><i class="fa fa-home"></i> ${lang.getString('menu.userpage')}</a></li>
 	                          <li><a href="#"><i class="fa fa-suitcase"></i> ${lang.getString('menu.adminpanel')}</a></li>
                           </c:if>
                         </ul>

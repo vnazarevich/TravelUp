@@ -1,5 +1,5 @@
-        <!-- Styles -->
-        <link rel="stylesheet" href="inc/bootstrap/css/bootstrap.min.css" />
+        <!-- Styles <link rel="stylesheet" href="inc/bootstrap/css/bootstrap.min.css" /> -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles/stylesheet.css" />
 
         <!-- Flexslider -->
@@ -22,5 +22,8 @@
 
         <!-- Elegant Font -->
         <link rel="stylesheet" href="inc/elegant-font/style.css" />
+
+        <!-- Language toggle -->
+        <link rel="stylesheet" href="styles/headerpills.css" />
         <!--[if lte IE 7]><script src="inc/elegant-font/lte-ie7.js"></script><![endif]-->
 

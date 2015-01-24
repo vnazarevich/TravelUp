@@ -4,11 +4,15 @@
   <welcome-file-list>
     <welcome-file>index</welcome-file>
   </welcome-file-list>
-   <servlet>
+  <servlet>
     <servlet-name>ActivationAccount</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.ActivationAccountServlet</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
+    <servlet-name>UserPage</servlet-name>
+    <servlet-class>com.epam.travelup.user.servlet.StartUserServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>UpdateUser</servlet-name>
     <servlet-class>com.epam.travelup.admin.servlet.UpdateUserServlet</servlet-class>
   </servlet>
@@ -92,13 +96,17 @@
     <servlet-name>Tours</servlet-name>
     <url-pattern>/tours</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>ActivationAccount</servlet-name>
     <url-pattern>/activationaccount</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>LanguageChange</servlet-name>
     <url-pattern>/language</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserPage</servlet-name>
+    <url-pattern>/userpage</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
@@ -130,6 +138,4 @@
     <filter-name>LangFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
- 
- 
 </web-app>

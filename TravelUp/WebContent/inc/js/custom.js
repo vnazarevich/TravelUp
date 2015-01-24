@@ -13,7 +13,7 @@ jQuery(window).ready(function($) {
     // Resize window
 
 
-    /** 
+    /**
      * Handle window resizieng on the fly
      * ======================================= */
 
@@ -22,7 +22,7 @@ jQuery(window).ready(function($) {
 
     $(window).resize(function() {
          $('#mi-nav').height(($('#mi-nav a').length - 1) * ($('#mi-nav a').outerHeight() + parseInt($('#mi-nav a').css('margin-bottom'))));
-  
+
 //        var wi = $(window).width();
 //
 //        var first = '#special-offers';
@@ -137,7 +137,7 @@ jQuery(window).ready(function($) {
     if ($('.single-slider-thumb-gallery').length > 0) {
         $('.single-slider-thumb-gallery ul').carouFredSel({
             auto: false,
-        
+
             circular: true
         });
 
@@ -185,15 +185,15 @@ jQuery(window).ready(function($) {
     if ($('#Grid').length > 0) {
         $('#Grid').mixitup();
     }
-      
+
     if ($('.destination-lists').length > 0 &&  $(window).width()>779) {
-       
+
       var $container = $('.destination-lists');
         // initialize
         $container.masonry({
             itemSelector: '.destination'
         });
-        
+
         setTimeout(function(){
             $container.masonry('reloadItems');
         },500);
@@ -407,14 +407,14 @@ $('.top-drop-menu').change(function() {
             $('.toggle-menu-holder .menu-body').removeClass('opened').addClass('closed');
         }
     });
-    
-  
-			
+
+
+
 });
 
 $(window).bind("load", function() {
   $('#status').fadeOut(); // will first fade out the loading animation
-			$('#preloader').delay(1000).fadeOut('slow'); // will fade out the white DIV that covers the website.
+			$('#preloader').delay(100).fadeOut('slow'); // will fade out the white DIV that covers the website.
 			$('body').delay(1000).css({'overflow-x':'hidden'}).css({'overflow-y':'auto'});
 });
 

@@ -64,8 +64,13 @@ public class ConfirmLoginServlet extends HttpServlet {
 		}
 		if(logined){
 
-			//request.setAttribute("status", LanguageContainer.getBundle().getString("login.success"));
-			request.getSession().setAttribute("user", user);
+			if(user.isBanned()){
+				request.setAttribute("status", "banned");
+			}else if(!user.isActive()){
+				request.setAttribute("status", "disapproved");
+			}else{
+				request.getSession().setAttribute("user", user);
+			}
 			response.sendRedirect("");
 		}else{
 			response.getWriter().write("error");
