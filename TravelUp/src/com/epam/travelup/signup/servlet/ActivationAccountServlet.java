@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.epam.travelup.locaization.LanguageContainer;
 import com.epam.travelup.orm.dao.Dao;
 import com.epam.travelup.orm.model.User;
 import com.epam.travelup.orm.service.UserService;
@@ -64,7 +65,7 @@ public class ActivationAccountServlet extends HttpServlet {
 			new MailActivationSender(null, request.getParameter(HASH), null);
 			//Page Error
 		}
-
+		request.setAttribute("status", LanguageContainer.getBundle().getString("auth.approved"));
 		request.getRequestDispatcher("pages/index.jsp").forward(request, response);
 	}
 

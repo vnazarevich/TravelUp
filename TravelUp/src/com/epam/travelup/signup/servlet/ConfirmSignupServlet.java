@@ -80,7 +80,7 @@ public class ConfirmSignupServlet extends HttpServlet {
 		}else{
 			request.setAttribute("status", LanguageContainer.getBundle().getString("auth.fail"));
 		}
-		request.getRequestDispatcher("pages/signup.jsp").forward(request, response);
+		request.getRequestDispatcher("pages/index.jsp").forward(request, response);
 
 	}
 
