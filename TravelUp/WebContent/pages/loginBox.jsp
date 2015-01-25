@@ -35,6 +35,17 @@
 	  		$("#login-status").html("${lang.getString('login.fail')}");
 	  		return false;
 	  	}
+	  	else
+  			if(answer=="disapproved"){
+  		  		$("#login-status").html("${lang.getString('login.disapproved')}");
+  		  		return false;
+  			}
+  			else
+  	  			if(answer=="banned"){
+  	  		  		$("#login-status").html("${lang.getString('login.banned')}");
+  	  		  		return false;
+  	  			}
+	  	
 	  	return true;
 	});
 	$('#user-name, #pass').focus(function(e){
