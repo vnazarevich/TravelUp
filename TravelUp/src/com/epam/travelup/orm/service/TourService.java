@@ -16,7 +16,15 @@ public class TourService {
 		}
 		return tours;
 	}
-	
+	public static List<Tour> getTourRequests(){
+		Dao<Tour> dao = new Dao<>(Tour.class, "en");
+		List<Tour> tours = dao.selectWhere("status_id", "4", "=");
+		for(Tour tour: tours){
+			tour.setPlaces(PlaceService.getPlacesForRoute(tour.getRoute_id().getId(), "en"));
+		}
+		return tours;
+		
+	}
 	public static List<Tour> getToursWhere(String attr, String value, String lang){
 		Dao<Tour> dao = new Dao<Tour>(Tour.class, lang);
 		List<Tour> tours = dao.selectWhere(attr, value, "=");

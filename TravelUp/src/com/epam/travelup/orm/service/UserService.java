@@ -51,11 +51,6 @@ public class UserService {
 		dao.update("id", id	, "is_active", "1");
 	}
 
-	public static void updateUserInfo(String id, String attr, String value){
-		Dao<User> dao = new Dao<User>(User.class,"en");
-		dao.update("id", id	, attr, value);
-	}
-
 	public static void main(String[] args) {
 		banUser("1");
 	}

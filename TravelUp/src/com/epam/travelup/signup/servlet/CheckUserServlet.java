@@ -11,9 +11,6 @@ import com.epam.travelup.signup.validation.UserVerification;
 import com.epam.travelup.signup.validation.VerificationCommand;
 
 
-
-
-
 /**
  * Servlet implementation class VerificationServlet
  */

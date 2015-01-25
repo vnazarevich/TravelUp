@@ -1,7 +1,6 @@
 package com.epam.travelup.sender;
 
 import java.util.Properties;
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -70,7 +69,7 @@ public class MailActivationSender {
 	private String getTextForRegistrationCompleted() {
 		return "Hello "
 				+ userName
-				+ "Congratulations, your TravelUp account created with success and we are pleased to count you among our community."
+				+ "!!! Congratulations, your TravelUp account created with success and we are pleased to count you among our community."
 				+ "We recommend you keep this email to store your identifiers."
 				+"our identifiers:" + "	Username: " + userName
 				+ "Email address: " + userEmail
@@ -79,7 +78,7 @@ public class MailActivationSender {
 	}
 
 	private String getSubjectForRegistrationCompleted() {
-		return "Genymotion Cloud - Registration completed";
+		return "Registration completed ! ";
 	}
 
 	private String getTextForActivationAccount() {

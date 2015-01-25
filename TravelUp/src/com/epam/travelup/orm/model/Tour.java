@@ -65,11 +65,27 @@ public class Tour {
 
 	@DBField(name = "max_price")
 	private double maxPrice;
+	
+	@DBField(name = "trip_days_id")
+	private int tripId;
 
-	private List<Place> places;
+	private List<Place> places;	
+	
+	//count of similar users requests, which used for creating model
+	private int countRequests;
 	
 	public Tour() {
 
+	}
+
+	public int getCountRequests() {
+		return countRequests;
+	}
+
+
+
+	public void setCountRequests(int countRequests) {
+		this.countRequests = countRequests;
 	}
 
 
@@ -217,6 +233,14 @@ public class Tour {
 		return endDate;
 	}
 
+	public int getTripId() {
+		return tripId;
+	}
+	
+	public void setTripId(int tripId) {
+		this.tripId = tripId;
+	}
+
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
@@ -253,4 +277,31 @@ public class Tour {
 				+ this.getMaxDuration() + "\n" + "Places: " 
 				+ this.getPlaces();
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tour other = (Tour) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	
+	
+	
+	
+	
 }
