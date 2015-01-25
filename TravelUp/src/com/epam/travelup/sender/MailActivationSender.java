@@ -27,7 +27,7 @@ public class MailActivationSender {
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "465");
+		props.put("mail.smtp.port", "587");
 	}
 
 	public void sendActivationAccount() {
@@ -44,7 +44,7 @@ public class MailActivationSender {
 	}
 
 	private void send(String text, String subject) {
-		Session session = Session.getInstance(props, new Authenticator() {
+		Session session = Session.getDefaultInstance(props, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(ADMIN_EMAIL, ADMIN_EMAIL_PASS);
 			}

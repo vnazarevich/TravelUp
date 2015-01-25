@@ -9,6 +9,14 @@
     <servlet-class>com.epam.travelup.signup.servlet.ActivationAccountServlet</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>EditUser</servlet-name>
+    <servlet-class>com.epam.travelup.user.servlet.EditUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditPassword</servlet-name>
+    <servlet-class>com.epam.travelup.user.servlet.EditPasswordServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>UserPage</servlet-name>
     <servlet-class>com.epam.travelup.user.servlet.StartUserServlet</servlet-class>
   </servlet>
@@ -105,8 +113,16 @@
     <url-pattern>/language</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+    <servlet-name>EditUser</servlet-name>
+    <url-pattern>/edituser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>UserPage</servlet-name>
     <url-pattern>/userpage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditPassword</servlet-name>
+    <url-pattern>/editpassword</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>

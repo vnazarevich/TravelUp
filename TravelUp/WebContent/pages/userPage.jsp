@@ -39,7 +39,7 @@
                 </div>
             </section>
 
-<section id="users" class="section wide-fat page">
+<section id="user-info" class="section wide-fat page">
  <div class="container">
 	    <div class="sidebar col-md-3  col-xs-12">
 
@@ -48,19 +48,73 @@
 		      <div class="caption">
 		      <div class="row editable">
 		      <div class="row-same-height">
+		      <label class="error-label" style="color:#b94a48">${sessionScope.lang.getString('auth.message.wrong-name')}</label>
 		      <div class="col-md-9 col-md-height col-top">
-		        <h3 class="target">Sergiy Dakhniy</h3>
+		        <h4 class="target">${user.getFirstName()}</h4>
+		        <input type="text" class="changer form-control" name="first_name">
 		        </div>
-		        <input type="text" class="changer form-control">
+
 		        <div class="col-md-3 col-md-height col-middle">
-		        	<button type="button" class="btn btn-default btn-edit" aria-label="Left Align">
+		        <button type="button" class="btn btn-default btn-edit" aria-label="Left Align">
 				  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default btn-confirm" aria-label="Left Align">
+				  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 				</button>
 				</div>
 				</div>
+				</div><!-- editable -->
+
+				<div class="row editable">
+		      <div class="row-same-height">
+		      <div class="col-md-9 col-md-height col-top">
+		      <label class="error-label" style="color:#b94a48">${sessionScope.lang.getString('auth.message.wrong-surname')}</label>
+		        <h4 class="target">${user.getLastName()}</h4>
+		        <input type="text" class="changer form-control" name="last_name">
+		        </div>
+
+		        <div class="col-md-3 col-md-height col-middle">
+		        <button type="button" class="btn btn-default btn-edit" aria-label="Left Align">
+				  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default btn-confirm" aria-label="Left Align">
+				  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+				</button>
 				</div>
 				</div>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+				</div><!-- editable -->
+
+				<div class="row editable">
+		      <div class="row-same-height">
+		      <div class="col-md-12 col-md-height col-top">
+		      <div class="form-group">
+			      <button type="button" class="btn btn-xs btn-block btn-show-password">
+						Change password
+						 <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+					</button>
+				</div>
+				<form id="password-form" accept-charset="UTF-8">
+					<div class="form-group" >
+						<input type="password" class="password form-control old-password" placeholder="Currnet password" required>
+					</div>
+					<div class="form-group" >
+						<input type="password" class="password form-control new-password" placeholder="New password" required>
+					</div>
+					<div class="form-group" >
+						<input type="password" class="password form-control confirmed-password" placeholder="Confirm password" required>
+					</div>
+					<div class="form-group" >
+						<input type="submit" class="btn btn-block btn-sm btn-success change-password" value="Change">
+						<label class="error-label" style="color:#b94a48"></label>
+					</div>
+				</form>
+				<div id="changedAlert" class="alert alert-success fade" data-alert="alert">Successfully changed</div>
+				</div>
+				</div>
+				</div><!-- editable -->
+
+				</div>
+
 		      </div>
 		    </div>
 
@@ -82,8 +136,103 @@
 	</div> <!--site-->
 <!-- Scripts -->
 <script>
+
+function editUser(attr, value){
+	var answer="";
+	$.ajaxSetup({async: false});
+	  $.post('edituser',{attr:attr,value:value} ,function(responseText) {
+          answer=responseText;
+          console.log("Answer: "+answer);
+      });
+	  return answer;
+}
+
+
 $(document).ready(function() {
-	$(".changer").hide();
+	function hideAlert() {
+	    $("#changedAlert").removeClass("in");
+	}
+	function showAlert() {
+	    $("#changedAlert").show().addClass("in");
+	}
+	$("#user-info").find(".changer, .btn-confirm, .error-label, #password-form, #changedAlert").hide();
+	$(".btn-show-password").click(function(e){
+		$("#password-form").toggle();
+	});
+
+	$("#password-form").submit(function(){
+		var oldPassword=$(".old-password").val();
+		var newPassword=$(".new-password").val();
+		var confirmedPassword=$(".confirmed-password").val();
+		var error=$(this).find(".error-label");
+		//error.show();
+		if(confirmedPassword!=newPassword){
+			console.log(confirmedPassword);
+			console.log(newPassword);
+			error.html("${sessionScope.lang.getString('auth.message.wrong-password')}");
+			error.show();
+		}else{
+			var answer="";
+			$.ajaxSetup({async: false});
+			  $.post('editpassword',{oldPassword:oldPassword,newPassword:newPassword} ,function(responseText) {
+		          answer=responseText;
+		          console.log("Answer: "+answer);
+		      });
+			if(answer!="ok"){
+				error.html("Wrong current password");
+				error.show();
+			}else{
+				$(this).hide();
+				showAlert();
+				window.setTimeout(function () {
+				    hideAlert();
+				    window.setTimeout(function () {
+				    	$("#changedAlert").hide();
+				    },500);
+				}, 2000);
+			}
+		}
+		return false;
+	});
+	$(".password").focus(function(e){
+		$("#password-form").find(".error-label").hide();
+	});
+
+	$(".btn-edit").click(function(e){
+		var parent = $(this).parents(".editable");
+		var changer=parent.find(".changer");
+		var target=parent.find(".target");
+		changer.val(target.html());
+		target.hide();
+		changer.show();
+		console.log(changer);
+		$(this).hide();
+		var confirmBtn=parent.find(".btn-confirm");
+		confirmBtn.show();
+	});
+
+	$(".btn-confirm").click(function(e){
+		var parent = $(this).parents(".editable");
+		var changer=parent.find(".changer");
+		var target=parent.find(".target");
+		console.log("Attr: "+changer.attr("name"));
+		var answer=editUser(changer.attr("name"),changer.val());
+		var error=parent.find(".error-label");
+		if(answer=="error"){
+			error.show();
+		}else{
+			error.hide();
+			target.show();
+			console.log(changer);
+			$(this).hide();
+			changer.hide();
+			var editBtn=parent.find(".btn-edit");
+			editBtn.show();
+			target.html(changer.val());
+
+		}
+	});
+
 });
 </script>
 	<jsp:include page="/pages/scripts.jsp" />
