@@ -44,6 +44,10 @@
 	    <div class="sidebar col-md-3  col-xs-12">
 
 		    <div class="thumbnail">
+		     <form class="form-horizontal" action="userimage" method="post" enctype="multipart/form-data">
+				<input type="file" id="fileBrowser" class="form-control" name="image" />
+				<input type="submit" value="*баш!!!">
+				</form>
 		      <img src="http://static.comicvine.com/uploads/original/11111/111116692/3213841-7948839370-yoda..jpg" alt="..." class="img-rounded" >
 		      <div class="caption">
 		      <div class="row editable">
@@ -84,6 +88,8 @@
 				</div>
 				</div><!-- editable -->
 
+
+
 				<div class="row editable">
 		      <div class="row-same-height">
 		      <div class="col-md-12 col-md-height col-top">
@@ -116,24 +122,35 @@
 				</div>
 
 		      </div>
-		    </div>
-
-
-	    </div><!-- sidebar -->
-
-
-	  <div class="contents grid-contents col-sm-9">
-
-
-
-	</div>
-	  </div>
-
-	  </div><!--container-->
-</section>
- 			<!-- Footer -->
+		    </div><!-- sidebar -->
+		     <div class="contents grid-contents col-sm-9"><!--page-->
+					<ul class="nav nav-tabs" id="tabs">
+                    <li class="active"><a href="#portfolio-tab" data-toggle="tab">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    Portfolio</a></li>
+                    <li><a href="#cart-tab" data-toggle="tab">
+                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                    Cart</a></li>
+                  </ul>
+                  <br/>
+                  <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane active" id="portfolio-tab">
+						<jsp:include page="/pages/portfolio.jsp"/>
+                    </div>
+                    <div class="tab-pane fade" id="cart-tab">
+						Still under construct...
+                    </div>
+                </div>
+			</div>
+		</div><!--container-->
+		</section>
+		<!-- Footer -->
            <jsp:include page="/pages/footer.jsp" />
-	</div> <!--site-->
+	    </div><!--site-->
+
+
+
+
 <!-- Scripts -->
 <script>
 

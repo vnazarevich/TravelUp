@@ -8,6 +8,10 @@
     <servlet-name>ActivationAccount</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.ActivationAccountServlet</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>UserImage</servlet-name>
+    <servlet-class>com.epam.travelup.user.servlet.UserImageServlet</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>EditUser</servlet-name>
     <servlet-class>com.epam.travelup.user.servlet.EditUserServlet</servlet-class>
@@ -124,6 +128,10 @@
     <servlet-name>EditPassword</servlet-name>
     <url-pattern>/editpassword</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserImage</servlet-name>
+    <url-pattern>/userimage</url-pattern>
+  </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
@@ -154,4 +162,11 @@
     <filter-name>LangFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <context-param>
+    <description>Location to store uploaded avatars</description>
+    <param-name>file-upload</param-name>
+    <param-value>
+        /images/user-pictures
+     </param-value>
+  </context-param>
 </web-app>
