@@ -26,4 +26,6 @@
         <!-- Language toggle -->
         <link rel="stylesheet" href="styles/headerpills.css" />
         <!--[if lte IE 7]><script src="inc/elegant-font/lte-ie7.js"></script><![endif]-->
+        
+        <link rel="shortcut icon" href="images/logo.ico">
 
