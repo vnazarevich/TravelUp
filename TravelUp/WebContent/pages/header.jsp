@@ -67,13 +67,9 @@
 
                     </div>
                      <div class="col-xs-12 col-sm-1 no-margin">
-
-					<center>
-			        <!-- <a href="language?locale=ua" ><img src="images/Ukraine.png"></a> -->
-					<!-- <a href="language?locale=en" ><img src="images/United-Kingdom.png"></a> -->
-					<ul align="center" class="nav nav-pills green">
-
-
+                     
+                    <div align="center">
+					<ul class="nav nav-pills green" style="display: inline-block;">
 					<c:choose>
 						 <c:when test="${sessionScope.lang.getLocale().getLanguage().equals('ua')}">
 						    <li class="active"><a href="language?locale=ua" >Ua</a></li>
@@ -86,7 +82,8 @@
 						 </c:otherwise>
 					</c:choose>
 					</ul>
-					</center>
+					</div>
+					
 					 <c:if test="${sessionScope.user!=null}">
 					   <p align="center">${lang.getString('login.hello')} ${sessionScope.user.getFirstName()}!</p>
 					</c:if>
