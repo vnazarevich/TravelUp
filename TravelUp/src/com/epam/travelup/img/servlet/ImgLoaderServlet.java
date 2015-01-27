@@ -42,34 +42,20 @@ public class ImgLoaderServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		User sessionUser = (User) session.getAttribute("user");
-
 		Part image = request.getPart("image");
+		String savePath = (String) getServletContext().getAttribute("FILES_DIR");
+		String link = ImgUtil.saveImage(sessionUser.getLogin(), image, savePath);
+		if(link!=null){
 
-		if (image.getSize() > 0) {
-			if (ImgUtil.checkFileIsImage(image)){
-				
-			String fileName = sessionUser.getLogin() + "_"
-					+ image.getSubmittedFileName();
-			String savePath = (String) getServletContext().getAttribute(
-					"FILES_DIR");
+		request.setAttribute("loadimage", link);
+		request.getRequestDispatcher("pages/imgShow.jsp").forward(request,
+				response);
 
-			image.write(savePath + File.separator + fileName);
-			System.out.println(savePath);
-			request.setAttribute("loadimage", fileName);
-
-			}else{
-				System.out.println("File is not an image");
-				request.getRequestDispatcher("pages/imgLoader.jsp").forward(request,
-						response);
-			}
-				
 		}else{
-			System.out.println("File not found");
 			request.getRequestDispatcher("pages/imgLoader.jsp").forward(request,
 					response);
 		}
-		request.getRequestDispatcher("pages/imgShow.jsp").forward(request,
-				response);
+
 
 	}
 }
