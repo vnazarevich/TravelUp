@@ -68,6 +68,10 @@
     <servlet-name>LanguageChange</servlet-name>
     <servlet-class>com.epam.travelup.locaization.servlet.LanguageChangeServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>SearchTour</servlet-name>
+    <servlet-class>com.epam.travelup.tour.servlet.SearchTourServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>SignUp</servlet-name>
     <url-pattern>/signup</url-pattern>
@@ -131,6 +135,10 @@
   <servlet-mapping>
     <servlet-name>UserImage</servlet-name>
     <url-pattern>/userimage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SearchTour</servlet-name>
+    <url-pattern>/search_tour</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
