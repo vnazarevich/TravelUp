@@ -1,0 +1,61 @@
+.view {
+   height: 140px;
+   float: left;
+   border: 5px solid #fff;
+   overflow: hidden;
+   position: relative;
+   text-align: center;
+   box-shadow: 0px 0px 5px #aaa;
+   cursor: pointer;
+   margin-right: 10px;
+}
+
+.view .mask, .view .content {
+   height: 140px;
+   position: absolute;
+   overflow: hidden;
+   top: 0;
+   left: 0;
+}
+
+.view img {
+   display: block;
+   position: relative;
+}
+
+.view a.info {
+   background:url(images/close.png) no-repeat;
+   background-size: contain;
+   display: inline-block;
+   text-decoration: none;
+   padding:0;
+   text-indent:-9999px;
+   width:40px;
+   height:40px;
+}
+.third-effect .mask {
+   opacity: 0;
+   overflow:visible;
+   box-sizing:border-box;
+   transition: all 0.4s ease-in-out;
+   background-color: #FFFFFF;
+   width:1000px;
+}
+
+.third-effect a.info {
+   position:absolute;
+   left: 0px;
+   top:  0px; /* Center the link */
+   opacity: 0;
+   transition: opacity 0.5s 0s ease-in-out;
+}
+
+.third-effect:hover .mask {
+   opacity: 0.7;
+ 	background-color: #000000;
+}
+
+.third-effect:hover a.info {
+   opacity:1;
+   transition-delay: 0.3s;
+}

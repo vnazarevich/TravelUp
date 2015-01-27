@@ -42,7 +42,6 @@
 <section id="user-info" class="section wide-fat page">
  <div class="container">
 	    <div class="sidebar col-md-3  col-xs-12">
-
 		    <div class="thumbnail">
 		     <form class="form-horizontal" action="userimage" method="post" enctype="multipart/form-data">
 				<input type="file" id="fileBrowser" class="form-control" name="image" />
