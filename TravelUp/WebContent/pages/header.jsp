@@ -89,6 +89,11 @@
                      
 					 <c:if test="${sessionScope.user!=null}">
 					   <p align="center">${lang.getString('login.hello')} ${sessionScope.user.getFirstName()}!</p>
+					<div align="center" class="hidden-xs hidden-sm">
+					<img
+     					 src="images/36104448780803085584.jpg"
+   					     alt="image" class="img-thumbnail" style="width: 40px; height: 40px;">
+					</div>
 					</c:if>
 					</div>
 
