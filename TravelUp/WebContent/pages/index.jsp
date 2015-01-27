@@ -38,10 +38,7 @@
          <!-- / VideoBG -->
 
           <jsp:include page="/pages/header.jsp" />
-          <jsp:include page="/pages/loginBox.jsp" />
-          <jsp:include page="/pages/signupBox.jsp" />
-          <jsp:include page="/pages/statusBox.jsp" />
-
+          
  <c:if test="${status!=null}">
  <script type="text/javascript">$("#statusBox").modal('show') </script>
 </c:if> 

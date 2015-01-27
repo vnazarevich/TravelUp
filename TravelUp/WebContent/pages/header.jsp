@@ -129,3 +129,8 @@
 
 
             </header>
+            
+		  <jsp:include page="/pages/loginBox.jsp" />
+          <jsp:include page="/pages/signupBox.jsp" />
+          <jsp:include page="/pages/statusBox.jsp" />
+            
