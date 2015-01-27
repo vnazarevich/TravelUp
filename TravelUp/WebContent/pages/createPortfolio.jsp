@@ -7,7 +7,7 @@
 				<li><h3>Who can you be:</h3><li>
 				<li><input type="checkbox" name="photorgapher"><label>photographrer</label></li>
 				<li><input type="checkbox" name="guide"><label>guide</label></li>
-				<li><input type="checkbox" name="guide"><label>transporter</label></li>
+				<li><input type="checkbox" name="transporter"><label>transporter</label></li>
 			</ul>
 			<h3>Describe your abilities, leave contacts:</h3>
 			<textarea class="form-control" form="cteate-portfolio-form" name="description" rows="5" style="resize:vertical;"></textarea>
