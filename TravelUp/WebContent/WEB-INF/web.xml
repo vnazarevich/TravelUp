@@ -8,7 +8,7 @@
     <servlet-name>ActivationAccount</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.ActivationAccountServlet</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>SubmitPortfolio</servlet-name>
     <servlet-class>com.epam.travelup.user.servlet.SubmitPortfolioServlet</servlet-class>
   </servlet>
@@ -75,6 +75,10 @@
   <servlet>
     <servlet-name>SearchTour</servlet-name>
     <servlet-class>com.epam.travelup.tour.servlet.SearchTourServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ImgLoader</servlet-name>
+    <servlet-class>com.epam.travelup.img.servlet.ImgLoaderServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SignUp</servlet-name>
@@ -148,6 +152,10 @@
     <servlet-name>SearchTour</servlet-name>
     <url-pattern>/search_tour</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ImgLoader</servlet-name>
+    <url-pattern>/loader</url-pattern>
+  </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
@@ -184,5 +192,12 @@
     <param-value>
         /images/user-pictures
      </param-value>
+  </context-param>
+  <listener>
+  	<listener-class>com.epam.travelup.img.listener.ImgLocationContextListener</listener-class>
+  </listener>
+  <context-param>
+ 	 <param-name>imagesPath</param-name>
+     <param-value>images/upload/</param-value>
   </context-param>
 </web-app>
