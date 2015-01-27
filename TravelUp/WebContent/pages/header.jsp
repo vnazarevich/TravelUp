@@ -5,7 +5,7 @@
 
                 <div class="container">
 
-                    <div class="col-xs-12 col-sm-2 no-margin">
+                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2 no-margin">
                     <div class="branding">
 
                         <h1 class="site-title">
@@ -16,7 +16,26 @@
 
                     </div>
                     </div>
-                    <div class="col-xs-12 col-sm-8 no-margin">
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 no-margin">
+                    
+                    <div align="center">
+					<ul class="nav nav-pills green" style="display: inline-block;">
+					<c:choose>
+						 <c:when test="${sessionScope.lang.getLocale().getLanguage().equals('ua')}">
+						    <li class="active"><a href="language?locale=ua" >Ua</a></li>
+					    	<li><a href="language?locale=en" >En</a></li>
+						 </c:when>
+
+						 <c:otherwise>
+						     <li ><a href="language?locale=ua" >Ua</a></li>
+					    	<li class="active"><a href="language?locale=en" >En</a></li>
+						 </c:otherwise>
+					</c:choose>
+					</ul>
+					</div>
+                    
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-margin">
 					<c:if test="${user.isAdmin()==true}">
                      <div id="main-menu">
 
@@ -66,24 +85,8 @@
 					</c:if>
 
                     </div>
-                     <div class="col-xs-12 col-sm-1 no-margin">
+                     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3 no-margin">
                      
-                    <div align="center">
-					<ul class="nav nav-pills green" style="display: inline-block;">
-					<c:choose>
-						 <c:when test="${sessionScope.lang.getLocale().getLanguage().equals('ua')}">
-						    <li class="active"><a href="language?locale=ua" >Ua</a></li>
-					    	<li><a href="language?locale=en" >En</a></li>
-						 </c:when>
-
-						 <c:otherwise>
-						     <li ><a href="language?locale=ua" >Ua</a></li>
-					    	<li class="active"><a href="language?locale=en" >En</a></li>
-						 </c:otherwise>
-					</c:choose>
-					</ul>
-					</div>
-					
 					 <c:if test="${sessionScope.user!=null}">
 					   <p align="center">${lang.getString('login.hello')} ${sessionScope.user.getFirstName()}!</p>
 					</c:if>
