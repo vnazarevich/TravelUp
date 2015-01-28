@@ -3567,7 +3567,7 @@ textarea {
 }
 /*Responsive layout*/
 select.top-drop-menu {
-  margin: 23px 0 0 0;
+  margin: 20px 0 0 -55px;
   padding: 13px;
   /*    width: 100%;*/
 }
@@ -3603,7 +3603,7 @@ select.top-drop-menu {
     /*            width:850px;*/
   }
   .top-drop-menu {
-    min-width: 600px;
+    min-width: 450px;
   }
 }
 @media all and (max-width: 991px) {
@@ -3669,7 +3669,7 @@ select.top-drop-menu {
     height: 30px;
   }
   .top-drop-menu {
-    min-width: 300px;
+    min-width: 260px;
   }
 }
 @media (max-width: 370px) {

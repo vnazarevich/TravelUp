@@ -41,24 +41,45 @@
 
 <section id="user-info" class="section wide-fat page">
  <div class="container">
-	    <div class="sidebar col-md-3  col-xs-12">
-
+	    <div class="sidebar col-md-3 col-sm-6 col-xs-12">
 		    <div class="thumbnail">
-		     <form class="form-horizontal" action="userimage" method="post" enctype="multipart/form-data">
-				<input type="file" id="fileBrowser" class="form-control" name="image" />
-				<input type="submit" value="*баш!!!">
-				</form>
-		      <img src="http://static.comicvine.com/uploads/original/11111/111116692/3213841-7948839370-yoda..jpg" alt="..." class="img-rounded" >
+		    <form id="avatar-form">
+			<input type="file" id="avatarInput" class="form-control" name="image" onchange="readImage(this);" style="display:none"/>
+			</form>
+				<c:choose>
+				<c:when test="${user.getPicture()=='null'}">
+			      <img id="avatar-main" src="images/avatar_default.jpg" alt="..." class="img-rounded" >
+			     </c:when>
+			     <c:otherwise>
+			     	<img id="avatar-main" src="${initParam['imagesPath']}${user.getPicture()}" alt="Cannot load image" class="img-rounded" >
+			     </c:otherwise>
+			     </c:choose>
+			     <h5></h5>
+				     <button id="change-image" class="btn btn-block btn-sm">
+				     <span class="glyphicon glyphicon-download-alt" ></span> Change image
+				     </button>
+			     <div id="image-prompt" style="display:none">
+				     <h4>Save image?</h4>
+				     <div class="row">
+					     <div class="col-md-6 col-sm-3 col-xs-3">
+					     	<button id="confirm-image"  type="button" class="btn btn-block">Yes</button>
+					     </div>
+					      <div class="col-md-6 col-sm-3 col-xs-3">
+					     	<button id="decline-image" type="button" class="btn btn-block">No</button>
+					     </div>
+					 </div>
+				 </div>
+
 		      <div class="caption">
 		      <div class="row editable">
 		      <div class="row-same-height">
 		      <label class="error-label" style="color:#b94a48">${sessionScope.lang.getString('auth.message.wrong-name')}</label>
-		      <div class="col-md-9 col-md-height col-top">
+		      <div class="col-md-9 col-sm-9 col-xs-9 col-md-height col-top">
 		        <h4 class="target">${user.getFirstName()}</h4>
 		        <input type="text" class="changer form-control" name="first_name">
 		        </div>
 
-		        <div class="col-md-3 col-md-height col-middle">
+		        <div class="col-md-3 col-sm-3 col-xs-3 col-md-height col-middle">
 		        <button type="button" class="btn btn-default btn-edit" aria-label="Left Align">
 				  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 				</button>
@@ -71,13 +92,13 @@
 
 				<div class="row editable">
 		      <div class="row-same-height">
-		      <div class="col-md-9 col-md-height col-top">
+		      <div class="col-md-9 col-sm-9 col-xs-9 col-md-height col-top">
 		      <label class="error-label" style="color:#b94a48">${sessionScope.lang.getString('auth.message.wrong-surname')}</label>
 		        <h4 class="target">${user.getLastName()}</h4>
 		        <input type="text" class="changer form-control" name="last_name">
 		        </div>
 
-		        <div class="col-md-3 col-md-height col-middle">
+		        <div class="col-md-3 col-sm-3 col-xs-3 col-md-height col-middle">
 		        <button type="button" class="btn btn-default btn-edit" aria-label="Left Align">
 				  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 				</button>
@@ -123,7 +144,7 @@
 
 		      </div>
 		    </div><!-- sidebar -->
-		     <div class="contents grid-contents col-sm-9"><!--page-->
+		     <div class="contents grid-contents col-lg-9 col-sm-6 col-xs-12"><!--page-->
 					<ul class="nav nav-tabs" id="tabs">
                     <li class="active"><a href="#portfolio-tab" data-toggle="tab">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -164,8 +185,54 @@ function editUser(attr, value){
 	  return answer;
 }
 
+function readImage(input) {
+	console.log('changed');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        	var file=$(input).val();
+        	var extension=file.split('.').pop().toLowerCase();
+        	console.log($("#avatar-form"));
+        	if(extension.match(/(jpg|jpeg|png|gif|bmp)$/)){
+	            $('#avatar-main').attr('src', e.target.result);
+	            $("#image-prompt").show();
+	            $('#change-image').hide();
+        	}
 
+        }
+        reader.readAsDataURL(input.files[0]);
+
+    }
+
+}
+var oldImage="";
 $(document).ready(function() {
+
+	oldImage=$('#avatar-main').attr("src");
+
+	$("#confirm-image").click(function(e){
+		 $.ajax( {
+ 		      url: 'userimage',
+ 		      type: 'POST',
+ 		      data: new FormData($("#avatar-form")[0]),
+ 		      processData: false,
+ 		      contentType: false
+ 		    } );
+		 oldImage= $('#avatar-main').attr('src');
+		 $("#image-prompt").hide();
+         $('#change-image').show();
+	});
+
+	$("#decline-image").click(function(e){
+		$('#avatar-main').attr('src', oldImage);
+		 $("#image-prompt").hide();
+         $('#change-image').show();
+	});
+
+	$("#change-image").click(function(e){
+		$("#avatarInput").trigger('click');
+	});
+
 	function hideAlert() {
 	    $("#changedAlert").removeClass("in");
 	}

@@ -2,9 +2,10 @@
 	<div id="portfolio">
 		<c:choose>
 			<c:when test="${sessionScope.user.getPortfolio()!=null}">
-				dklajf
+				There will be portfolio. We just know that it is exist...
 			</c:when>
 			<c:otherwise>
+				<jsp:include page="/pages/createPortfolio.jsp"/>
 				<button id=createBtn class="btn btn-lg btn-success center-block">
 
 				<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
@@ -16,9 +17,10 @@
 	</div>
 	<script>
 		$(function(){
+			$("#create-portfolio").hide();
 			$("#createBtn").click(function(e){
 				$(this).remove();
-				$("#portfolio").load('pages/createPortfolio.jsp');
+				$("#create-portfolio").show();
 			});
 		});
 	</script>

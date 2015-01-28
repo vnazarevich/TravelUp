@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -167,8 +168,8 @@ public class Dao<T>{
 		}
 
 	}
-
-	public boolean insert(T model){
+	//returns generated key
+	public int insert(T model){
 
 		Map<String,Object> inputs = new Transformer<T>(type, language).modelToTable(model);
 		List<String> attrs=new ArrayList<String>();
@@ -199,16 +200,23 @@ public class Dao<T>{
 			builder.append(value);
 			builder.append("', '");
 		}
-		builder.append(values.get(size-1)+"');");
+		Object value=values.get(size-1);
+		if(value.getClass().getTypeName().equals(Boolean.class.getName())){
+			value=((boolean) value)?1:0;
+		}
+		builder.append(value+"');");
 		System.out.println(builder);
 		try (Connection connection=ConnectionManager.getConnection()){
-			PreparedStatement statement = connection.prepareStatement(builder.toString());
+			PreparedStatement statement = connection.prepareStatement(builder.toString(),Statement.RETURN_GENERATED_KEYS);
 			statement.executeUpdate();
+			ResultSet generatedKeys = statement.getGeneratedKeys();
+			if (generatedKeys.next()) {
+               return generatedKeys.getInt(1);
+            }
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
 		}
-		return true;
+		return 0;
 	}
 
 	public void update(String conditionAttr, String conditionValue, String updateAttr, String updateValue){
@@ -216,7 +224,6 @@ public class Dao<T>{
 		try (Connection connection=ConnectionManager.getConnection()){
 			PreparedStatement statement = connection.prepareStatement("Update "+tableName+" Set "+updateAttr+"=? Where "+conditionAttr+"=?");
 			statement.setString(2, conditionValue);
-			//�������:(
 			if(updateValue.equals("true")||updateValue.equals("false")){
 				statement.setBoolean(1, Boolean.parseBoolean(updateValue));
 			}else{

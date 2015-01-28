@@ -264,7 +264,7 @@
 						<div class="book-holder">
                          <span class="price">/ ${tour.minCapacity} ${lang.getString("tourpage.list.people")}</span>
                          <span class="price"><span class="higlight emphasize value">${tour.minPrice} ${lang.getString("tourpage.list.money")}</span></span>
-                         <a data-toggle="modal" data-target="#placeBox" value="${tour}" class="button mini btn-block path-button">${lang.getString("tourpage.list.path")}</a>
+                         <a data-toggle="modal" data-target="#placeBox" value="${tour.id}" class="button mini btn-block path-button">${lang.getString("tourpage.list.path")}</a>
                          
                          <c:set var="test1" value="${lang.getString('tourpage.list.close')}"/>
                          <c:set var="test2" value="${tour.status}"/>
