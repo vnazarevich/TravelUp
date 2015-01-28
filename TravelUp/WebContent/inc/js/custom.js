@@ -201,7 +201,7 @@ jQuery(window).ready(function($) {
 
     if ($('.traveline_date_input').length > 0) {
         jQuery('.traveline_date_input').datepicker({
-            dateFormat: 'd MM yy' // Date format http://jqueryui.com/datepicker/#date-formats
+            dateFormat: 'mm/dd/yy' // Date format http://jqueryui.com/datepicker/#date-formats
         });
     }
     if ($('#mi-slider').length > 0) {

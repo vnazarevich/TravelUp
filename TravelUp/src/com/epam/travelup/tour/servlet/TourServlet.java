@@ -7,8 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.epam.travelup.locaization.LanguageContainer;
 import com.epam.travelup.orm.model.Tour;
+import com.epam.travelup.orm.model.User;
 import com.epam.travelup.orm.service.TourService;
 
 /**
@@ -30,7 +33,14 @@ public class TourServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Tour> tours = TourService.getTours("en");
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		List<Tour> tours;
+		if(user == null || !user.isAdmin()){
+			tours = TourService.getSimpleTours(LanguageContainer.getBundle().getLocale().getLanguage());
+		} else {
+			tours = TourService.getAllTours(LanguageContainer.getBundle().getLocale().getLanguage());
+		}
 		request.setAttribute("tourList", tours);
 		System.out.println(tours);
 		request.getRequestDispatcher("pages/tours.jsp").forward(request, response);
