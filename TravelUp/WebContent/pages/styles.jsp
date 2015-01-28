@@ -1,5 +1,5 @@
         <!-- Styles -->
-        <link rel="stylesheet" href="inc/bootstrap/css/bootstrap.min.css" /> 
+        <link rel="stylesheet" href="inc/bootstrap_new/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles/stylesheet.css" />
 
         <!-- Flexslider -->
@@ -30,6 +30,6 @@
         <!--[if lte IE 7]><script src="inc/elegant-font/lte-ie7.js"></script><![endif]-->
 
         <link rel="shortcut icon" href="images/logo.ico">
-        
+
          <link rel="stylesheet" href="styles/dropdown.css" />
 
