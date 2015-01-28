@@ -34,8 +34,8 @@ public class Place {
 	@DBKey(name="info_id")
 	private PlaceInfo info;
 	
-	@DBField(name="type_id")
-	private int type;
+	@DBKey(name="type_id")
+	private PlaceType type;
 
 	@DBField(name="region_id")
 	private int region;
@@ -51,6 +51,14 @@ public class Place {
 	public Place() {
 	}
 
+	public PlaceType getType() {
+		return type;
+	}
+
+	public void setType(PlaceType type) {
+		this.type = type;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -59,13 +67,7 @@ public class Place {
 		this.id = id;
 	}
 
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
+	
 
 	public PlaceInfo getInfo() {
 		return info;
