@@ -18,6 +18,15 @@ public class TourService {
 		return tours;
 	}
 	
+	public static List<Tour> getTourRequests(){
+		Dao<Tour> dao = new Dao<>(Tour.class, "en");
+		List<Tour> tours = dao.selectWhere("status_id", "4", "=");
+		for(Tour tour: tours){
+			tour.setPlaces(PlaceService.getPlacesForRoute(tour.getRoute_id().getId(), "en"));
+		}
+		return tours;
+		
+	}
 	public static List<Tour> getSimpleTours(String lang){
 		List<String> attrs = new ArrayList<String>();
 		attrs.add("status_id");
