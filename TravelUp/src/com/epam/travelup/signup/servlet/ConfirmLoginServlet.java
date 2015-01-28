@@ -70,9 +70,10 @@ public class ConfirmLoginServlet extends HttpServlet {
 				response.getWriter().write("disapproved");
 			}else{
 				request.getSession().setAttribute("user", user);
+				System.out.println(user);
 				response.sendRedirect("");
 			}
-			
+
 		}else{
 			response.getWriter().write("error");
 		}

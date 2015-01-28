@@ -10,7 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import com.epam.travelup.img.util.ImgUtil;
+import com.epam.travelup.orm.model.User;
+import com.epam.travelup.orm.service.UserService;
 
 /**
  * Servlet implementation class UserImageServlet
@@ -41,34 +46,19 @@ public class UserImageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 // gets absolute path of the web application
-        String appPath = request.getServletContext().getRealPath("");
-        // constructs path of the directory to save uploaded file
-        String savePath = appPath + File.separator + SAVE_DIR;
+		HttpSession session = request.getSession();
+		User sessionUser = (User) session.getAttribute("user");
+		Part image = request.getPart("image");
+		String savePath = (String) getServletContext().getAttribute("FILES_DIR");
+		String link = ImgUtil.saveImage(sessionUser.getLogin(), image, savePath);
+		if(link!=null){
 
-        // creates the save directory if it does not exists
-        File fileSaveDir = new File(savePath);
-        if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
-        }
-
-        for (Part part : request.getParts()) {
-            String fileName = extractFileName(part);
-            part.write(savePath + File.separator + fileName);
-            System.out.println(savePath + File.separator + fileName);
-        }
+			sessionUser.setPicture(link);
+			UserService.updateUserInfo(sessionUser.getId()+"", "picture", link);
+		}
 
 	}
 
-	private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length()-1);
-            }
-        }
-        return "";
-    }
+
 
 }

@@ -17,7 +17,7 @@
                     </div>
                     </div>
                     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 no-margin">
-                    
+
                     <div align="center">
 					<ul class="nav nav-pills green" style="display: inline-block;">
 					<c:choose>
@@ -33,7 +33,7 @@
 					</c:choose>
 					</ul>
 					</div>
-                    
+
                     </div>
                     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-margin">
 					<c:if test="${user.isAdmin()==true}">
@@ -86,14 +86,26 @@
 
                     </div>
                      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3 no-margin">
-                     
+
 					 <c:if test="${sessionScope.user!=null}">
-					   <p align="center">${lang.getString('login.hello')} ${sessionScope.user.getFirstName()}!</p>
-					<div align="center" class="hidden-xs hidden-sm">
-					<img
-     					 src="images/36104448780803085584.jpg"
-   					     alt="image" class="img-thumbnail" style="width: 40px; height: 40px;">
+
+					<div align="center" class="hidden-xs hidden-sm " style="margin-top:25px;">
+					<a href="userpage">
+					<c:choose>
+						<c:when test="${user.getPicture()=='null'}">
+					      <img
+	     					 src="images/avatar_default.jpg"
+	   					     alt="image" class="img-thumbnail" style="width: 40px; height: 40px;"/>
+					     </c:when>
+					     <c:otherwise>
+					     	<img
+	     					 src="${initParam['imagesPath']}${user.getPicture()}"
+	   					     alt="image" class="img-thumbnail" style="width: 40px; height: 40px;"/>
+					     </c:otherwise>
+			    	 </c:choose>
+			    	 </a>
 					</div>
+					<p align="center"><a href="userpage">${lang.getString('login.hello')} ${sessionScope.user.getFirstName()}!</a></p>
 					</c:if>
 					</div>
 
@@ -134,8 +146,7 @@
 
 
             </header>
-            
+
 		  <jsp:include page="/pages/loginBox.jsp" />
           <jsp:include page="/pages/signupBox.jsp" />
           <jsp:include page="/pages/statusBox.jsp" />
-            
