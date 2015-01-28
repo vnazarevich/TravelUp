@@ -4,13 +4,56 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Tour list</title>
+        <title>${lang.getString("tourpage.page.tourlist")}</title>
 
         <jsp:include page="/pages/styles.jsp" />
-
+	<script type="text/javascript">
+		// click handler
+		$(function(){
+			var list1, list2;
+			function onClick(event) {
+		
+				$('#search-form').submit(function(e){
+					var basicSliderBounds = $("#sliderz").rangeSlider("values");
+					$("input[name='minprice']").val(basicSliderBounds.min);
+					$("input[name='maxprice']").val(basicSliderBounds.max);
+					$("input[name='durbox']").val(list1);
+					$("input[name='daybox']").val(list2);
+					$("input[name='check1']").val($('#check1').is(':checked'));
+					$("input[name='check2']").val($('#check2').is(':checked'));
+				});
+			
+				console.log($("input[name='key']").val());
+				console.log($("input[name='start-date']").val());	
+				console.log($("input[name='end-date']").val());	
+				var basicSliderBounds = $("#sliderz").rangeSlider("values");
+				console.log(basicSliderBounds.min + " " + basicSliderBounds.max);	
+				console.log(list1);	
+				console.log(list2);	
+				console.log($('#check1').is(':checked'));	
+				console.log($('#check2').is(':checked'));
+			}
+			
+			$('#durlist a').click(function(e){    
+				list1 = $(this).html();
+				$('#durbutton').html($(this).html() + '<span class="caret"></span>');    
+			})
+			
+			$('#daylist a').click(function(e){    
+				list2 = $(this).html();
+				$('#daybutton').html($(this).html() + '<span class="caret"></span>');    
+			})
+		
+		// attach button click listener on dom ready
+			$(function() {
+			  $('#but').click(onClick);
+			});
+			
+		});
+    </script>
     </head>
     <body>
 <div id="preloader">
@@ -23,6 +66,18 @@
             <jsp:include page="/pages/header.jsp" />
             <jsp:include page="/pages/loginBox.jsp" />
             <jsp:include page="/pages/signupBox.jsp" />
+			<jsp:include page="/pages/placeBox.jsp" />
+
+			<div id="dialog-message" title="Download complete">
+			<p>
+			<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+			Your files have downloaded successfully into the My Downloads folder.
+			</p>
+			<p>
+			Currently using <b>36% of your storage space</b>.
+			</p>
+			</div>
+			
 
             <section class="page-head-holder">
                 <div class="container">
@@ -47,33 +102,34 @@
                         <div class="row">
                             <div class="sidebar col-md-3  col-xs-12">
 
-
+						
                                 <div class="widget">
 
-                                    <h3 class="widget-title">Tour Search</h3>
+								
+                                    <h3 class="widget-title">${lang.getString("tourpage.page.search")}</h3>
 
                                     <div class="location-search-widget">
+										<form action="search_tour" class="location-search"  method="get"  id="search-form" accept-charset="UTF-8">
 
-                                        <form class="location-search"  method="get">
-
+                                        
                                             <div class="search-field">
                                                 <div class="destination-field">
-                                                    <input id="destination" type="text" />
+                                                    <input id="destination" type="text" placeholder="search" name="key" />
                                                 </div>
                                             </div><!-- /.search-field -->
 
                                             <div class="search-field">
 
                                                 <div class="col-field-left">
-                                                    <label for="check-in-date2">Check in date</label>
+                                                    <label for="check-in-date2">${lang.getString("tourpage.filters.in-date")}</label>
                                                     <br />
-                                                    <input id="check-in-date2" class="traveline_date_input" type="text" value="d MM yy" />
+                                                    <input id="check-in-date2" class="traveline_date_input" type="text" name="start-date" value="${lang.getString('tourpage.filters.date.value')}" />
                                                 </div>
 
                                                 <div class="col-field-right">
-                                                    <label for="check-out-date2">Check out date</label>
+                                                    <label for="check-out-date2">${lang.getString("tourpage.filters.out-date")}</label>
                                                     <br />
-                                                    <input id="check-out-date2" class="traveline_date_input" type="text" value="d MM yy" />
+                                                    <input id="check-out-date2" class="traveline_date_input" type="text" name="end-date" value="${lang.getString('tourpage.filters.date.value')}" />
                                                 </div>
 
                                             </div><!-- /.search-field -->
@@ -81,21 +137,29 @@
 
                                             <div class="search-field">
 
-                                                <input type="submit" class="button wide-fat" value="Search" />
+                                                <input type="submit" class="button wide-fat" value="Search" name="button" id="but" />
 
                                             </div><!-- /.search-field -->
 
-                                        </form><!-- /form.location-search -->
+										<INPUT TYPE="HIDDEN" NAME="minprice" VaLUE="">
+										<INPUT TYPE="HIDDEN" NAME="maxprice" VaLUE="">
+										<INPUT TYPE="HIDDEN" NAME="durbox" VaLUE="">
+										<INPUT TYPE="HIDDEN" NAME="daybox" VaLUE="">
+										<INPUT TYPE="HIDDEN" NAME="check1" VaLUE="">
+										<INPUT TYPE="HIDDEN" NAME="check2" VaLUE="">
+
+                                      </form>
 
                                     </div>
-
+								
+								
                                 </div><!-- /.widget -->
                                 <!-- /.widget -->
 
 
                                 <div class="widget">
 
-                                    <h3 class="widget-title">Price Filter</h3>
+                                    <h3 class="widget-title">${lang.getString("tourpage.page.search.filters")}</h3>
 
                                     <div class="price-range-slider">
 
@@ -103,43 +167,55 @@
 
                                     </div><!-- /.price-range-slider -->
                                 </div><!-- /.widget -->
+                                
+                                <div class="widget hotel-type-filter-widget">
+                                    <h3 class="widget-title">${lang.getString("tourpage.filters.duration")}</h3>
+                                    
+                                    <div class="btn-group btn-input clearfix">
+									  <button type="button" id="durbutton" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
+									    <span data-bind="label">${lang.getString("tourpage.page.search.choose")}</span> <span class="caret"></span>
+									  </button>
+									  <ul class="dropdown-menu" id="durlist" role="menu">
+									 		  <li><a>1</a></li>
+											 <li><a>2</a></li>
+											 <li><a>3</a></li>
+											 <li><a>4 - 6</a></li>
+											 <li><a>7 - 10</a></li>
+											 <li><a>11 - 14</a></li>
+									  </ul>
+									</div>
+                                    
+                                </div><!-- /.widget -->
+                                
+                                <div class="widget hotel-type-filter-widget">
+
+                                    <h3 class="widget-title">${lang.getString("tourpage.filters.tourdays")}</h3>
+									
+									<div class="btn-group btn-input clearfix">
+									  <button type="button" id="daybutton" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
+									    <span data-bind="label">${lang.getString("tourpage.page.search.choose")}</span> <span class="caret"></span>
+									  </button>
+									  <ul class="dropdown-menu" id="daylist" role="menu">
+									 		  <li><a>${lang.getString("tourpage.filters.tourdays.weekdays")}</a></li>
+											 <li><a>${lang.getString("tourpage.filters.tourdays.weekend")}</a></li>
+											 <li><a>${lang.getString("tourpage.filters.tourdays.no-matter")}</a></li>							 
+									  </ul>
+									</div>
+									            
+                                </div><!-- /.widget -->
 
                                 <div class="widget hotel-type-filter-widget">
-                                    <h3 class="widget-title">Type</h3>
+                                    <h3 class="widget-title">${lang.getString("tourpage.filters.region")}</h3>
                                     <form >
                                         <ul>
-                                            <li><input type="checkbox" /><label >All</label></li>
-                                            <li><input type="checkbox" /><label >Hotel</label></li>
-                                            <li><input type="checkbox" /><label >Resort</label></li>
-                                            <li><input type="checkbox" /><label >Bed and Breakfast</label></li>
-                                            <li><input type="checkbox" /><label >Appartment</label></li>
-                                            <li><input type="checkbox" /><label >Motel</label></li>
+                                            <li><input id="check1" type="checkbox" /><label>Карпати</label></li>
+                                            <li><input id="check2" type="checkbox" /><label>Крим наш</label></li>
                                         </ul>
                                     </form>
 
                                 </div><!-- /.widget -->
 
-						<div class="widget hotel-type-filter-widget">
-
-                                    <h3 class="widget-title">Tour Amenities</h3>
-
-                                    <form >
-                                        <ul>
-                                            <li><input type="checkbox" /><label >Free Parking (16)</label></li>
-                                            <li><input type="checkbox" /><label >Pets Accepted (12)</label></li>
-                                            <li><input type="checkbox" /><label >Free Pool (25)</label></li>
-                                            <li><input type="checkbox" /><label >Free Breakfast (12)</label></li>
-                                            <li><input type="checkbox" /><label >Massage Services (01)</label></li>
-                                            <li><input type="checkbox" /><label >Public Bathroom (12)</label></li>
-                                            <li><input type="checkbox" /><label >Pay Later (03)</label></li>
-                                            <li><input type="checkbox" /><label >Double Bedrooms (13)</label></li>
-                                            <li><input type="checkbox" /><label >The Room Gym (14)</label></li>
-                                            <li><input type="checkbox" /><label >The Dining Room (12)</label></li>
-
-                                        </ul>
-                                    </form>
-
-                                </div><!-- /.widget -->
+						
                             </div><!-- /.sidebar -->
 
                             <div class="contents grid-contents col-md-9 col-xs-12">
@@ -153,7 +229,7 @@
                                         <div class="inner">
                                             <div class="col-md-5 col-lg-4 no-margin-left">
                                                 <a class="thumbnailz" href="#">
-                                                    <img src="${tour.places[0].photos[0].photolink}" alt="Your Hotel Title Here" class="responsive-image" />
+                                                    <img src=${tour.places[0].photos[0].photolink} alt="Your Hotel Title Here" class="responsive-image" />
                                                     <span class="overlay">Details</span>
                                                 </a>
                                             </div>
@@ -162,9 +238,13 @@
                                                 <div class="entry">
 
                                                     <article class="entry-content">
-                                                        <h2 class="post-title"><a href="#" title="Your Hotel Title Here">${tour.name.getName(lang.getLocale().getLanguage())}</a></h2>
-
-                                                        <p>${lang.getString("tourpage.list.duration")} ${tour.minDuration} ${lang.getString("tourpage.list.days")}.</p>
+                                                        <h2 class="post-title"><a href="#" title="Your Hotel Title Here">${tour.name.getName(lang.getLocale().getLanguage())} (<b><i>${tour.status}</i></b>)</a></h2>
+														<c:if test="${user.isAdmin()}"> 
+															<button type="button" class="btn btn-default" aria-label="Left Align" >
+															  <span class="glyphicon glyphicon-edit" aria-hidden="true"> ${lang.getString("tourpage.page.edit")}</span>
+															</button>
+                                                        </c:if>
+                                                        <p>${lang.getString("tourpage.list.duration")}: ${tour.minDuration} ${lang.getString("tourpage.list.days")}.</p>
                                                         
                                                         <b>${lang.getString("tourpage.list.date")}:</b>
 
@@ -181,13 +261,19 @@
 
                                              <div class="col-md-2 right-column col-lg-3 no-margin">
                                                  <div class="right-area">
-<div class="book-holder">
-                         <span class="price">${tour.minCapacity} ${lang.getString("tourpage.list.people")}</span>
-                        <span class="price"><span class="higlight emphasize value">${tour.minPrice} ${lang.getString("tourpage.list.money")}</span></span>
-                         <a href="#" class="button mini">${lang.getString("tourpage.list.path")}</a>
-                         <p>
-                         <a href="#" class="button mini">${lang.getString("tourpage.list.cart")}</a>
-                        </div>
+						<div class="book-holder">
+                         <span class="price">/ ${tour.minCapacity} ${lang.getString("tourpage.list.people")}</span>
+                         <span class="price"><span class="higlight emphasize value">${tour.minPrice} ${lang.getString("tourpage.list.money")}</span></span>
+                         <a data-toggle="modal" data-target="#placeBox" value="${tour.id}" class="button mini btn-block path-button">${lang.getString("tourpage.list.path")}</a>
+                         
+                         <c:set var="test1" value="${lang.getString('tourpage.list.close')}"/>
+                         <c:set var="test2" value="${tour.status}"/>
+                         <c:choose>
+           					<c:when test="${test1 != test2}">
+                         		<a href="#" class="button mini btn-block">${lang.getString("tourpage.list.cart")}</a>
+                       		</c:when>
+                       	</c:choose>
+                       </div>
                                                  </div>
                                              </div>
                                         </div>
@@ -197,7 +283,7 @@
                                 </div><!-- /.row -->
 
 
-               </c:forEach>
+             </c:forEach>
 
                             </div><!-- /.contents.grid-contents -->
 
