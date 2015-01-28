@@ -47,6 +47,12 @@ public class ActivationAccountServlet extends HttpServlet {
 		User user2 = null;
 		List <User> userList1 = UserService.getUsersWhere(LOGIN, request.getParameter(LOGIN));
 		List <User> userList2 = UserService.getUsersWhere(EMAIL, request.getParameter(HASH));
+		
+		System.out.println("request.getParameter(LOGIN) = " + request.getParameter(LOGIN));
+		System.out.println("request.getParameter(HASH) = " + request.getParameter(HASH));
+		
+		System.out.println("List <User> userList1 = " + userList1);
+		System.out.println("List <User> userList2 = " + userList2);
 
 		try {
 		if((userList1.size() == 1)  && (userList2.size() == 1)) {

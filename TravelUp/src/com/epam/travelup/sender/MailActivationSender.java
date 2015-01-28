@@ -1,6 +1,8 @@
 package com.epam.travelup.sender;
 
 import java.util.Properties;
+import java.util.logging.Logger;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -10,6 +12,7 @@ public class MailActivationSender {
 	private final static String ADMIN_EMAIL_PASS = "root1234";
 	private final static String ACTIVATION_URL = "http://localhost:8080/TravelUp/activationaccount";
 	private final static String SIGNUP_URL = "http://localhost:8080/TravelUp/signup";
+	private final static Logger LOGGER = Logger.getLogger("MailActivationSender ::");
 
 	private String userName;
 	private String userEmail;
@@ -52,16 +55,14 @@ public class MailActivationSender {
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(ADMIN_EMAIL));
-			System.out.println("3.1");
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(userEmail));
 			message.setSubject(subject);
 			message.setText(text);
-			System.out.println("3.4");
 			Transport.send(message);
-			System.out.println("3.5");
+			System.out.println("send mail");
 		} catch (Exception e) {
-			System.out.println("4");
+			LOGGER.warning("from send()" + e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -71,8 +72,8 @@ public class MailActivationSender {
 				+ userName
 				+ "!!! Congratulations, your TravelUp account created with success and we are pleased to count you among our community."
 				+ "We recommend you keep this email to store your identifiers."
-				+"our identifiers:" + "	Username: " + userName
-				+ "Email address: " + userEmail
+				+ "our identifiers:" + "	username: " + userName
+				+ ", email address: " + userEmail
 				+ "Thank you for your trust in our solutions, "
 				+ "TravelUp Team ";
 	}

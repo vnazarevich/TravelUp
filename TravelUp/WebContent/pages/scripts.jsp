@@ -50,7 +50,7 @@
         <script type="text/javascript" src="inc/js/jquery.mousewheel.min.js"></script>
         <script type="text/javascript" src="inc/js/jQRangeSlider-min.js"></script>
         <!-- bootstrap JS -->
-        <script type="text/javascript" src="inc/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="inc/bootstrap_new/js/bootstrap.min.js"></script>
         <!-- raty JS -->
         <script type="text/javascript" src="inc/js/jquery.raty.min.js"></script>
         <!-- Custom JS -->

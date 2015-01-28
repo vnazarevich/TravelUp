@@ -80,6 +80,14 @@
     <servlet-name>ImgLoader</servlet-name>
     <servlet-class>com.epam.travelup.img.servlet.ImgLoaderServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Request</servlet-name>
+    <servlet-class>com.epam.travelup.request.RequestServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SaveRequest</servlet-name>
+    <servlet-class>com.epam.travelup.request.SaveRequestServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>SignUp</servlet-name>
     <url-pattern>/signup</url-pattern>
@@ -156,6 +164,14 @@
     <servlet-name>ImgLoader</servlet-name>
     <url-pattern>/loader</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Request</servlet-name>
+    <url-pattern>/request </url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SaveRequest</servlet-name>
+    <url-pattern>/saverequest </url-pattern>
+  </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
@@ -194,10 +210,10 @@
      </param-value>
   </context-param>
   <listener>
-  	<listener-class>com.epam.travelup.img.listener.ImgLocationContextListener</listener-class>
+    <listener-class>com.epam.travelup.img.listener.ImgLocationContextListener</listener-class>
   </listener>
   <context-param>
- 	 <param-name>imagesPath</param-name>
-     <param-value>images/upload/</param-value>
+    <param-name>imagesPath</param-name>
+    <param-value>images/upload/</param-value>
   </context-param>
 </web-app>
