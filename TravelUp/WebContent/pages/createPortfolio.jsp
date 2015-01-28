@@ -16,6 +16,7 @@
 				<div id="add-file">
 					<img src="images/add-file.png" style="cursor:pointer;width:140px;height:140px;"/>
 				</div>
+			<br>
 			</div>
 			<br>
 			<div class="form-group">

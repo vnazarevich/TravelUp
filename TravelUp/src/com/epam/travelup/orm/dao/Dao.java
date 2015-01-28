@@ -190,20 +190,23 @@ public class Dao<T>{
 			builder.append(attrs.get(i));
 			builder.append(", ");
 		}
+
 		builder.append(attrs.get(size-1)+") Values ('");
 
 		for(int i=0;i<size-1;i++){
 			Object value = values.get(i);
-			if(value.getClass().getTypeName().equals(Boolean.class.getName())){
+			if(value!=null&&value.getClass().getTypeName().equals(Boolean.class.getName())){
 				value=((boolean) value)?1:0;
 			}
 			builder.append(value);
 			builder.append("', '");
 		}
+
 		Object value=values.get(size-1);
-		if(value.getClass().getTypeName().equals(Boolean.class.getName())){
+		if(value!=null&&value.getClass().getTypeName().equals(Boolean.class.getName())){
 			value=((boolean) value)?1:0;
 		}
+		System.out.println(builder);
 		builder.append(value+"');");
 		System.out.println(builder);
 		try (Connection connection=ConnectionManager.getConnection()){

@@ -28,7 +28,7 @@ import com.epam.travelup.signup.validation.VerificationCommand;
 @WebServlet("/ConfirmSignupServlet")
 public class ConfirmSignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final static Logger LOGGER = Logger.getLogger("ConfirmSignupServlet::"); 
+	private final static Logger LOGGER = Logger.getLogger("ConfirmSignupServlet::");
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,6 +38,9 @@ public class ConfirmSignupServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    	response.sendRedirect("index");
+    }
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -72,7 +75,7 @@ public class ConfirmSignupServlet extends HttpServlet {
 				user.setPassword(password);
 	   			UserService.insertUser(user);
 			}catch(Exception e){
-				//LOG HERE
+				e.printStackTrace();
 				request.setAttribute("status", LanguageContainer.getBundle().getString("auth.fail"));
 			}
 			request.setAttribute("status", LanguageContainer.getBundle().getString("auth.success"));
