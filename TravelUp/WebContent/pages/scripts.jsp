@@ -1,6 +1,7 @@
-        <!-- jQuery
-        <script src="inc/js/jquery-1.10.2.min.js"></script> -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- jQuery -->
+        <!-- <script src="inc/js/jquery-1.10.2.min.js"></script> 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+        <script src="inc/js/jquery-1.11.1.min.js"></script> 
         <script src="inc/js/jquery-migrate-1.2.1.js"></script>
 
         <!-- modernizer -->
@@ -30,13 +31,13 @@
         <script type="text/javascript" src="inc/js/jquery.mixitup.min.js"></script>
 
 
-        <!-- Google Map JS -->
+        <!-- Google Map JS 
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
-        <script type="text/javascript" src="inc/js/google-map-infobox.js"></script>
+        <script type="text/javascript" src="inc/js/google-map-infobox.js"></script> -->
 
 
-        <!-- Responsive Google Map (Fitmaps) JS -->
-        <script type="text/javascript" src="inc/js/jquery.fitmaps.js"></script>
+        <!-- Responsive Google Map (Fitmaps) JS 
+        <script type="text/javascript" src="inc/js/jquery.fitmaps.js"></script> -->
 
         <!-- Chozen UI JS -->
         <script type="text/javascript" src="inc/js/chosen.jquery.js"></script>

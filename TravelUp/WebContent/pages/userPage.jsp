@@ -8,8 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
    <jsp:include page="/pages/styles.jsp" />
+   <jsp:include page="/pages/scripts.jsp" />
   <script type="text/javascript" src="inc/js/jquery.object.js"></script>
 <title>Users</title>
 </head>
@@ -319,6 +319,6 @@ $(document).ready(function() {
 
 });
 </script>
-	<jsp:include page="/pages/scripts.jsp" />
+	
 </body>
 </html>
