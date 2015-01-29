@@ -263,21 +263,34 @@ public class Tour {
 
 	@Override
 	public String toString() {
-		return "Guide id: " + this.getGuideId() + "\n" + "Photograph id: "
-				+ this.getPhotographId() + "\n" + "Route id: "
-				+ this.getRoute_id() + "\n" + "Status id: "
-				+ this.getStatus() + "\n" + "Transport id: "
-				+ this.getTransport() + "\n" + "Name: " + this.getName()
-				+ "\n" + "Photographer required" + this.isPhotographRequired()
-				+ "\n" + "Min age: " + this.getMinAge() + "\n" + "Max age: "
-				+ this.getMaxAge() + "\n" + "Min capacity: "
+		return "Tour id:" + this.getId() +
+			//	+ "Guide id: " + this.getGuideId() + 
+//				"\n" + "Photograph id: "
+//				+ this.getPhotographId() + "\n" + "Route id: "
+//				+ this.getRoute_id() + "\n" + "Status id: "
+//				+ this.getStatus() + "\n" + "Transport id: "
+//				+ this.getTransport() + "\n" + "Name: " + this.getName()
+//				+ "\n" + "Photographer required" + this.isPhotographRequired()
+//				+ "\n" + "Min age: " + this.getMinAge() + "\n" + "Max age: "
+//				+ this.getMaxAge() +
+				"\n" + "Min capacity: "
 				+ this.getMinCapacity() + "\n" + "Max capacity: "
 				+ this.getMaxCapacity() + "\n" + "Min duration: "
 				+ this.getMinDuration() + "\n" + "Max duration: "
 				+ this.getMaxDuration() + "\n" + "Places: " 
-				+ this.getPlaces();
+				
+				+ getPlacesId(this.getPlaces());
+		
+				//+ this.getPlaces();
 	}
-
+	
+	private String getPlacesId (List<Place> list){
+		StringBuilder sb = new StringBuilder();
+		for (Place p: list){
+			sb.append(p.getId() + "\n");
+		}
+		return sb.toString();
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
