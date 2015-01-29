@@ -419,7 +419,7 @@ input.green:focus {
  * =============================== */
 #header {
   position: relative;
-  background-color: #ffffff;
+  background: rgba( 255, 255, 255, 0.7);
 }
 #header .container:before,
 #header .container:after {
@@ -2414,7 +2414,7 @@ form.hotels-filter-form a.chosen-single {
  * Footer Section
  * =============================== */
 #footer {
-  background-color: #85c616;
+  background: rgba( 133, 198, 22, 0.7);
 }
 #footer-2 {
   background-color: #85c616;
