@@ -222,6 +222,19 @@ public class Dao<T>{
 		return 0;
 	}
 
+	public int count(){
+		ResultSet set = null;
+		try (Connection connection=ConnectionManager.getConnection()){
+			PreparedStatement statement = connection.prepareStatement("Select COUNT(*) as FULL_COUNT From "+tableName+";");
+			set = statement.executeQuery();
+			set.next();
+			return set.getInt("FULL_COUNT");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
 	public void update(String conditionAttr, String conditionValue, String updateAttr, String updateValue){
 
 		try (Connection connection=ConnectionManager.getConnection()){

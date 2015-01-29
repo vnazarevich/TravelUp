@@ -55,8 +55,8 @@
 			     </c:otherwise>
 			     </c:choose>
 			     <h5></h5>
-				     <button id="change-image" class="btn btn-block btn-sm">
-				     <span class="glyphicon glyphicon-download-alt" ></span> Change image
+				     <button id="change-image" class="btn btn-block btn-sm" style="text-align:center;">
+				     <span  class="glyphicon glyphicon-download-alt" ></span> Change image
 				     </button>
 			     <div id="image-prompt" style="display:none">
 				     <h4>Save image?</h4>
@@ -115,14 +115,14 @@
 		      <div class="row-same-height">
 		      <div class="col-md-12 col-md-height col-top">
 		      <div class="form-group">
-			      <button type="button" class="btn btn-xs btn-block btn-show-password">
+			      <button type="button" style="text-align:center;"  class="btn btn-default btn-xs btn-block btn-show-password">
 						Change password
-						 <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+						 <span class="glyphicon glyphicon-triangle-bottom" style="align:middle" aria-hidden="true"></span>
 					</button>
 				</div>
 				<form id="password-form" accept-charset="UTF-8">
 					<div class="form-group" >
-						<input type="password" class="password form-control old-password" placeholder="Currnet password" required>
+						<input type="password" class="password form-control old-password" placeholder="Current password" required>
 					</div>
 					<div class="form-group" >
 						<input type="password" class="password form-control new-password" placeholder="New password" required>
@@ -131,7 +131,7 @@
 						<input type="password" class="password form-control confirmed-password" placeholder="Confirm password" required>
 					</div>
 					<div class="form-group" >
-						<input type="submit" class="btn btn-block btn-sm btn-success change-password" value="Change">
+						<input type="submit" style="text-align:center" class="btn btn-block btn-sm btn-success change-password green" value="Change">
 						<label class="error-label" style="color:#b94a48"></label>
 					</div>
 				</form>

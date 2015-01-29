@@ -13,6 +13,11 @@ public class UserService {
 		List<User> users = dao.selectWhere(attr, value, "=");
 		return users;
 	}
+	public static List<User> getUsers(){
+		Dao<User> dao = new Dao<User>(User.class,"en");
+		List<User> users = dao.selectAll();
+		return users;
+	}
 	public static void insertUser(User user){
 		new Dao<User>(User.class,"en").insert(user);
 	}
@@ -34,6 +39,11 @@ public class UserService {
 	public static void banUser(String id){
 		Dao<User> dao = new Dao<User>(User.class,"en");
 		dao.update("id", id	, "is_banned", "1");
+	}
+
+	public static int countUsers(){
+		Dao<User> dao = new Dao<User>(User.class,"en");
+		return dao.count();
 	}
 
 	public static void unbanUser(String id){

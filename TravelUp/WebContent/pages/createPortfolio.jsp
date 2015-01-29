@@ -20,7 +20,7 @@
 			</div>
 			<br>
 			<div class="form-group">
-			<button type="submit" id=submitPortfolio class="btn btn-lg btn-success center-block">
+			<button type="submit" id=submitPortfolio class="btn btn-lg btn-success center-block green">
 				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 				Create
 			</button>

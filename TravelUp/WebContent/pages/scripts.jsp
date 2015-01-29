@@ -55,3 +55,4 @@
         <script type="text/javascript" src="inc/js/jquery.raty.min.js"></script>
         <!-- Custom JS -->
         <script type="text/javascript" src="inc/js/custom.js"></script>
+        <script type="text/javascript" src="inc/js/customutil.js"></script>

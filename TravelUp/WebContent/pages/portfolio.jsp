@@ -6,7 +6,7 @@
 			</c:when>
 			<c:otherwise>
 				<jsp:include page="/pages/createPortfolio.jsp"/>
-				<button id=createBtn class="btn btn-lg btn-success center-block">
+				<button id=createBtn class="btn btn-lg btn-success center-block green">
 
 				<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 				Create portfolio

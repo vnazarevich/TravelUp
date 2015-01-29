@@ -1,0 +1,10 @@
+button.green{
+	background-color: #85C616;
+	text-align: center;
+	border-color: #85C616;
+}
+
+body, .navbar-fixed-top, .navbar-fixed-bottom {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+}

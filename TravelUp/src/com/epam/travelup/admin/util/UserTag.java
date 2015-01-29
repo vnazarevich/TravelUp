@@ -72,14 +72,14 @@ public class UserTag extends SimpleTagSupport {
 
 		tagBuilder.append("<div class='col-md-4'>");
 
-		tagBuilder.append("<button class='btn btn-success btn-sm profile btn-block' user-id='"+user.getId()+"'>Go to profile</button>");
+		tagBuilder.append("<button class='btn btn-success btn-sm profile btn-block green' user-id='"+user.getId()+"'>Go to profile</button>");
 		if(!user.isAdmin()){
 			if(!user.isBanned()){
-				tagBuilder.append("<button  class='btn btn-danger btn-sm ban btn-block' user-id='"+user.getId()+"'>Ban User</button>");
+				tagBuilder.append("<button  class='btn btn-danger btn-sm ban btn-block green' user-id='"+user.getId()+"'>Ban User</button>");
 			}else{
-				tagBuilder.append("<button  class='btn btn-warning btn-sm unban btn-block' user-id='"+user.getId()+"'>Unban User</button>");
+				tagBuilder.append("<button  class='btn btn-warning btn-sm unban btn-block green' user-id='"+user.getId()+"'>Unban User</button>");
 			}
-			tagBuilder.append("<button class='btn btn-primary btn-sm admin btn-block' user-id='"+user.getId()+"'>Set admin</button>");
+			tagBuilder.append("<button class='btn btn-primary btn-sm admin btn-block green' user-id='"+user.getId()+"'>Set admin</button>");
 		}
 
 
