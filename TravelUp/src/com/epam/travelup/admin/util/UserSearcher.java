@@ -11,7 +11,11 @@ public class UserSearcher {
 		if(input==null){
 			users = UserService.getUsers();
 		}else{
-			users = UserService.getUsersLike(input, offset, rowCount);
+			if(isGuide||isPhoto||isTransport){
+				users = UserService.getUsersLike(input, 0, Integer.MAX_VALUE);
+			}else{
+				users = UserService.getUsersLike(input, offset, rowCount);
+			}
 		}
 		if(isGuide){
 			users=filterGuide(users);

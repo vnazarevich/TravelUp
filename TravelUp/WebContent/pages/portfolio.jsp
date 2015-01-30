@@ -2,7 +2,7 @@
 	<div id="portfolio">
 		<c:choose>
 			<c:when test="${sessionScope.user.getPortfolio()!=null}">
-				There will be portfolio. We just know that it is exist...
+				<jsp:include page="/pages/editPortfolio.jsp"/>
 			</c:when>
 			<c:otherwise>
 				<jsp:include page="/pages/createPortfolio.jsp"/>

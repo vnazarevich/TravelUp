@@ -152,6 +152,26 @@ public class Dao<T>{
 		}
 		return null;
 	}
+	public List<T> selectWhereAnd(List<String> attrs, List<String> values, String equalitySign, int offset, int rowCount){
+		ResultSet set = null;
+		try(Connection connection=ConnectionManager.getConnection()) {
+			StringBuilder builder = new StringBuilder("Select * From "+tableName+" Where ");
+			for(int i=0;i<attrs.size();i++){
+				builder.append(attrs.get(i)+" "+equalitySign+" '"+values.get(i)+"'");
+				if(i!=attrs.size()-1){
+					builder.append(" AND ");
+				}
+			}
+			builder.append(" LIMIT "+offset+","+rowCount+"; ");
+			PreparedStatement statement = connection.prepareStatement(builder.toString());
+			System.out.println(builder);
+			set = statement.executeQuery();
+			return new Transformer<T>(type, language).getModelList(set);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public void delete(List<String> attrs, List<String> values){
 
 		try (Connection connection=ConnectionManager.getConnection()){
@@ -191,15 +211,17 @@ public class Dao<T>{
 			builder.append(", ");
 		}
 
-		builder.append(attrs.get(size-1)+") Values ('");
+		builder.append(attrs.get(size-1)+") Values (");
 
 		for(int i=0;i<size-1;i++){
 			Object value = values.get(i);
 			if(value!=null&&value.getClass().getTypeName().equals(Boolean.class.getName())){
 				value=((boolean) value)?1:0;
 			}
+			builder.append(value==null?"":"'");
 			builder.append(value);
-			builder.append("', '");
+			builder.append(value==null?"":"'");
+			builder.append(", ");
 		}
 
 		Object value=values.get(size-1);
@@ -207,7 +229,10 @@ public class Dao<T>{
 			value=((boolean) value)?1:0;
 		}
 		System.out.println(builder);
-		builder.append(value+"');");
+		builder.append(value==null?"":"'");
+		builder.append(value);
+		builder.append(value==null?"":"'");
+		builder.append(");");
 		System.out.println(builder);
 		try (Connection connection=ConnectionManager.getConnection()){
 			PreparedStatement statement = connection.prepareStatement(builder.toString(),Statement.RETURN_GENERATED_KEYS);

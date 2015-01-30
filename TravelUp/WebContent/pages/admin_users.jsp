@@ -79,6 +79,7 @@
 		<ex:user user="${item}"/>
 	  </c:forEach>
 	  <div>
+	  <c:if test="${!pagination.equals('no')}">
 	    <ul class="pager">
 	     <c:if test="${pageNo<pageCount-1}">
 	          <li class="next"><a  href="javascript: void(0)">Next &rarr;</a></li>
@@ -94,6 +95,7 @@
 
 
 	    </ul>
+	    </c:if>
 	</div>
 	  </div>
 

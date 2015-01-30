@@ -75,6 +75,9 @@ public class SearchUserServlet extends HttpServlet {
 		request.setAttribute("users", users);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageNo", pageNo);
+		if(isGuide||isPhoto||isTransporter){
+			request.setAttribute("pagination", "no");
+		}
 		request.getRequestDispatcher("pages/admin_users.jsp").forward(request, response);
 	}
 

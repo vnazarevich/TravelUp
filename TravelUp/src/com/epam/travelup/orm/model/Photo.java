@@ -4,11 +4,14 @@ package com.epam.travelup.orm.model;
 @DBTable(name = "photo")
 public class Photo {
 
+	@DBField(name = "id")
+	private int id;
+
 	@DBField(name = "place_id")
-	private int placeId;
+	private Integer placeId;
 
 	@DBField(name = "photograph_id")
-	private int photographId;
+	private Integer photographId;
 
 	@DBField(name = "photolink")
 	private String photolink;
@@ -30,19 +33,28 @@ public class Photo {
 		this.photolink = photolink;
 	}
 
-	public int getPlaceId() {
-		return placeId;
+
+
+	@Override
+	public String toString() {
+		return "Tour id: " + this.getPlaceId() + "\n" + "Photograph id: "
+				+ this.getPhotographId() + "\n" + "Photo link: "
+				+ this.getPhotolink();
 	}
 
-	public void setTourId(int placeId) {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setPlaceId(Integer placeId) {
 		this.placeId = placeId;
 	}
 
-	public int getPhotographId() {
-		return photographId;
-	}
-
-	public void setPhotographId(int photographId) {
+	public void setPhotographId(Integer photographId) {
 		this.photographId = photographId;
 	}
 
@@ -54,10 +66,11 @@ public class Photo {
 		this.photolink = photolink;
 	}
 
-	@Override
-	public String toString() {
-		return "Tour id: " + this.getPlaceId() + "\n" + "Photograph id: "
-				+ this.getPhotographId() + "\n" + "Photo link: "
-				+ this.getPhotolink();
+	public Integer getPlaceId() {
+		return placeId;
+	}
+
+	public Integer getPhotographId() {
+		return photographId;
 	}
 }

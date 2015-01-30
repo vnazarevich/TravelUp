@@ -2,10 +2,10 @@
 <div id="create-portfolio">
 
 		<div class="widget hotel-type-filter-widget">
-		<form id="cteate-portfolio-form" action="createportfolio" method="post">
+		<form id="cteate-portfolio-form" action="createportfolio" method="post" enctype="multipart/form-data">
 			<ul>
 				<li><h3>Who can you be:</h3><li>
-				<li><input type="checkbox" name="photorgapher"><label>photographrer</label></li>
+				<li><input type="checkbox" name="photographer"><label>photographrer</label></li>
 				<li><input type="checkbox" name="guide"><label>guide</label></li>
 				<li><input type="checkbox" name="transporter"><label>transporter</label></li>
 			</ul>
