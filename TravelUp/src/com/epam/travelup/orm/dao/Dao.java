@@ -74,8 +74,9 @@ public class Dao<T>{
 		ResultSet set = null;
 		System.out.println("Tablename: "+tableName);
 		try (Connection connection=ConnectionManager.getConnection()){
-			PreparedStatement statement = connection.prepareStatement("Select * From "+tableName+";");
-
+			String query = "Select * From "+tableName+";";
+			PreparedStatement statement = connection.prepareStatement(query);
+			System.out.println(query);
 			set = statement.executeQuery();
 			return new Transformer<T>(type, language).getModelList(set);
 		} catch (SQLException e) {
@@ -88,8 +89,9 @@ public class Dao<T>{
 		ResultSet set = null;
 		System.out.println("Tablename: "+tableName);
 		try (Connection connection=ConnectionManager.getConnection()){
-			PreparedStatement statement = connection.prepareStatement("Select * From "+tableName+" LIMIT "+offset+","+rowCount+";");
-
+			String query="Select * From "+tableName+" LIMIT "+offset+","+rowCount+";";
+			PreparedStatement statement = connection.prepareStatement(query);
+			System.out.println("");
 			set = statement.executeQuery();
 			return new Transformer<T>(type, language).getModelList(set);
 		} catch (SQLException e) {
@@ -122,8 +124,8 @@ public class Dao<T>{
 				}
 			}
 			builder.append(" ; ");
+			System.out.println(builder.toString());
 			PreparedStatement statement = connection.prepareStatement(builder.toString());
-			System.out.println(statement.toString());
 			set = statement.executeQuery();
 			return new Transformer<T>(type, language).getModelList(set);
 		} catch (SQLException e) {
