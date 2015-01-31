@@ -25,8 +25,15 @@
             </div>
 <script>
 $(function(){
+	
 	$(".path-button").click(function(e){
 		var tourId = $(this).attr("value");
+		
+//		var response;
+//	 	$.post('tour',{tourId:tourId} ,function(responseText) {
+//	  		response = responseText;
+//		});
+		
 		$(".tours-to-hide").hide();
 		$("#"+tourId).show();
 	});

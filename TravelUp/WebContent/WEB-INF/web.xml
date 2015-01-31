@@ -88,6 +88,10 @@
     <servlet-name>SaveRequest</servlet-name>
     <servlet-class>com.epam.travelup.request.SaveRequestServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>SelectedTour</servlet-name>
+    <servlet-class>com.epam.travelup.tour.servlet.SelectedTourServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>SignUp</servlet-name>
     <url-pattern>/signup</url-pattern>
@@ -171,6 +175,10 @@
   <servlet-mapping>
     <servlet-name>SaveRequest</servlet-name>
     <url-pattern>/saverequest </url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>SelectedTour</servlet-name>
+    <url-pattern>/tour</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
