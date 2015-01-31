@@ -57,3 +57,6 @@
         <!-- Custom JS -->
         <script type="text/javascript" src="inc/js/custom.js"></script>
         <script type="text/javascript" src="inc/js/customutil.js"></script>
+         <!-- Modal Box -->
+        <script type="text/javascript" src="inc/js/login-box.js"></script>
+        <script type="text/javascript" src="inc/js/signup-box.js"></script>
