@@ -159,7 +159,7 @@
 						<jsp:include page="/pages/portfolio.jsp"/>
                     </div>
                     <div class="tab-pane fade" id="cart-tab">
-						Still under construct...
+						<jsp:include page="/pages/cart.jsp"/>
                     </div>
                 </div>
 			</div>

@@ -60,6 +60,20 @@
 			  $('#but').click(onClick);
 			});
 
+			$(".addToCartBtn").click(function(e){
+				var response = "";
+				$.ajaxSetup({async: false});
+			 	$.post('userpage',{} ,function(responseText) {
+			 		console.log("responseText " + responseText);
+			  		response = responseText;
+				});
+				if(response=="0"){
+					$('#loginModal').modal();
+				} else {
+					console.log("success");
+				}
+			});
+			
 		});
     </script>
     </head>
@@ -76,7 +90,20 @@
             <jsp:include page="/pages/signupBox.jsp" />
 			<jsp:include page="/pages/placeBox.jsp" />
 
-
+<div class="modal fade autoModal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+						      <div class="modal-dialog">
+						        <div class="modal-content">
+						          <div class="modal-body">
+						           <div class="row">
+					    			<div class="span12" style="text-align: center;">
+							          <h4>Log in first</h4>
+						          	</div>
+						          </div>
+						          </div>
+						        </div><!-- /.modal-content -->
+						      </div><!-- /.modal-dialog -->
+						    </div><!-- /.modal -->
+						    
             <section class="page-head-holder">
                 <div class="container">
                     <div class="col-xs-6">
@@ -275,7 +302,7 @@
                          <c:set var="test2" value="${tour.status}"/>
                          <c:choose>
            					<c:when test="${test1 != test2}">
-                         		<a href="#" class="button mini btn-block">${lang.getString("tourpage.list.cart")}</a>
+                         		<a id="addToCartBtn" class="addToCartBtn button mini btn-block">${lang.getString("tourpage.list.cart")}</a>
                        		</c:when>
                        	</c:choose>
                        </div>
