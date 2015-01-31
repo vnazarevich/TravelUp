@@ -46,6 +46,14 @@
 				list2 = $(this).html();
 				$('#daybutton').html($(this).html() + '<span class="caret"></span>');    
 			})
+			
+			$('.select-tour form').click(function(){
+				var id = $(this).find('.selecttour').val();
+				
+				$("input[name='selectedtour']").val(id);
+				$('#getdata-form').submit();
+				console.log('_a_' + id);
+			})
 		
 		// attach button click listener on dom ready
 			$(function() {
@@ -67,16 +75,6 @@
             <jsp:include page="/pages/loginBox.jsp" />
             <jsp:include page="/pages/signupBox.jsp" />
 			<jsp:include page="/pages/placeBox.jsp" />
-
-			<div id="dialog-message" title="Download complete">
-			<p>
-			<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-			Your files have downloaded successfully into the My Downloads folder.
-			</p>
-			<p>
-			Currently using <b>36% of your storage space</b>.
-			</p>
-			</div>
 			
 
             <section class="page-head-holder">
@@ -88,7 +86,7 @@
                         <div class="breadcrumb-holder">
                             <ol class="breadcrumb">
                                 <li><a href="index">${lang.getString("tourpage.page.home")}</a></li>
-                                <li class="active"><a href="#">${lang.getString("tourpage.page.tourlist")}</a></li>
+                                <li class="active"><a href="tours">${lang.getString("tourpage.page.tourlist")}</a></li>
                             </ol>
                         </div>
                     </div>
@@ -220,6 +218,10 @@
 
                             <div class="contents grid-contents col-md-9 col-xs-12">
 
+						<form id="getdata-form" action="tour" method="get">
+						<input type="hidden" id="selectedtourid" name="selectedtour" value="">
+						</form>
+
 				<c:forEach var="tour" items="${tourList}">
 
                                 <div class="row">
@@ -237,8 +239,11 @@
 
                                                 <div class="entry">
 
-                                                    <article class="entry-content">
-                                                        <h2 class="post-title"><a href="#" title="Your Hotel Title Here">${tour.name.getName(lang.getLocale().getLanguage())} (<b><i>${tour.status}</i></b>)</a></h2>
+                                                    <article class="entry-content select-tour">
+                                                    <form>
+                                                        <h2 class="post-title"><a href="#" title="Your Tour Title Here">${tour.name.getName(lang.getLocale().getLanguage())} (<b><i>${tour.status}</i></b>)</a></h2>
+														<input type="hidden" class="selecttour" value="${tour.id}">
+													</form>
 														<c:if test="${user.isAdmin()}"> 
 															<button type="button" class="btn btn-default" aria-label="Left Align" >
 															  <span class="glyphicon glyphicon-edit" aria-hidden="true"> ${lang.getString("tourpage.page.edit")}</span>
