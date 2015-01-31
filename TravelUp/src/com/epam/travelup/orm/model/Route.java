@@ -9,9 +9,7 @@ public class Route {
 
 	@DBDictionaryField(name = "region")
 	@DBField(name = "region_id")
-	private String region;
-
-	
+	private String region;	
 
 	@DBField(name = "min_duration")
 	private double minDuration;
@@ -22,7 +20,6 @@ public class Route {
 	public Route() {
 
 	}
-
 	
 	public int getId() {
 		return id;
@@ -38,9 +35,7 @@ public class Route {
 
 	public void setRegion(String region) {
 		this.region = region;
-	}
-
-	
+	}	
 
 	public double getMinDuration() {
 		return minDuration;

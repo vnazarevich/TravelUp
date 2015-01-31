@@ -1,6 +1,8 @@
 package com.epam.travelup.orm.model;
 
+@DBTable(name="request_to_model")
 public class RequestToModel {
+	
 	@DBField(name="id")
 	private int id;
 

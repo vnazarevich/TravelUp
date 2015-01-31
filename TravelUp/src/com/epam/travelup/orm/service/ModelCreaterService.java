@@ -11,7 +11,9 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import com.epam.travelup.orm.model.Place;
+import com.epam.travelup.orm.model.PlaceToRoute;
 import com.epam.travelup.orm.model.RequestToModel;
+import com.epam.travelup.orm.model.Route;
 import com.epam.travelup.orm.model.Tour;
 
 public class ModelCreaterService {
@@ -66,7 +68,6 @@ public class ModelCreaterService {
 			}
 			System.out.println("SimpleTour size = " + simpleTours.size());
 			models.add(createModel(simpleTours));
-
 		}
 			saveModels();	
 	}
@@ -82,7 +83,9 @@ public class ModelCreaterService {
 			
 			for (Tour request: model.getRequests()){
 				requestToModel.setRequest(request);
-				requestToModel.setModel((TourService.getToursWhere("id", modelId.toString(), "en")).get(0));
+//				requestToModel.setModel(model);
+ 
+				//requestToModel.setModel((TourService.getToursWhere("id", modelId+"", "en")).get(0));
 				RequestToModelServices.insertRequestToModel(requestToModel);
 			}			
 		}
@@ -135,8 +138,21 @@ public class ModelCreaterService {
 				iterator.remove();
 			}
 		}
-				
-		model.setPlaces(new ArrayList(places.keySet()));
+		Route route = new Route();
+		Integer routeId = RouteService.insertRoute(route);
+		
+		//get this route, with id
+		System.out.println("******************** " + "RouteService.getRouteWhere(id, routeId.toString(), en) == null" + RouteService.getRouteWhere("id", routeId.toString(), "en") == null);
+		route = RouteService.getRouteWhere("id", routeId.toString(), "en").get(0);
+		
+		PlaceToRoute placeToRoute = new PlaceToRoute();
+		for (Place place: places.keySet()){
+			placeToRoute.setPlaceId(place);
+			placeToRoute.setRouteId(route);
+			PlaceToRouteService.insertPlaceToRoute(placeToRoute);
+		}
+		
+		model.setRoute_id(route);
 		model.setMinCapacity(minCapacity / simpleTours.size());
 		model.setMaxCapacity(maxCapacity / simpleTours.size());
 		model.setMinDuration(minDuration / simpleTours.size());
