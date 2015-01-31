@@ -82,13 +82,17 @@ $(function(){
 
 	if(guide=="true"){
 		$("#guide").prop("checked","true");
+		$("#guide").parent().css("background-position","0px -16px");
 	}
 	if(transporter=="true"){
 		$("#transporter").prop("checked","true");
+		$("#transporter").parent().css("background-position","0px -16px");
+
 	}
 
 	if(photographer=="true"){
 		$("#photographer").prop("checked","true");
+		$("#photographer").parent().css("background-position","0px -16px");
 	}
 
 	$("#description").val("${portfolio.getDescription()}");
