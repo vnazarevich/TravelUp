@@ -24,7 +24,7 @@ public class PhotoService {
 				photosForPlace.add(photo);
 			}
 		}
-
+		System.out.println(photosForPlace);
 		return photosForPlace;
 	}
 
