@@ -60,7 +60,10 @@
 				<li><input type="hidden" name="pageNo" /></li>
 			 </ul>
 			 <div class="search-field">
-				 <button type="submit" class="button wide-fat">Search</button>
+				 <button type="submit" class="btn btn-success btn-md btn-block green">
+				 Search
+				 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				 </button>
 			</div>
 
 			</div>
@@ -76,16 +79,23 @@
 		<ex:user user="${item}"/>
 	  </c:forEach>
 	  <div>
+	  <c:if test="${!pagination.equals('no')}">
 	    <ul class="pager">
-	     <c:if test="${users!=null&&users.size()>0}">
+	     <c:if test="${pageNo<pageCount-1}">
 	          <li class="next"><a  href="javascript: void(0)">Next &rarr;</a></li>
          </c:if>
+         <c:choose>
+         	<c:when test="${pageCount>0}">
+         		<li style="horizontal-align:center;vrtical-align:center;" ><p>${pageNo+1}/${pageCount}</p></li>
+         	</c:when>
+         </c:choose>
          <c:if test="${pageNo>0}">
 	           <li class="previous"><a  href="javascript: void(0)">&larr; Previous</a></li>
          </c:if>
 
 
 	    </ul>
+	    </c:if>
 	</div>
 	  </div>
 

@@ -8,8 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
    <jsp:include page="/pages/styles.jsp" />
+   <jsp:include page="/pages/scripts.jsp" />
   <script type="text/javascript" src="inc/js/jquery.object.js"></script>
 <title>Users</title>
 </head>
@@ -44,7 +44,7 @@
 	    <div class="sidebar col-md-3 col-sm-6 col-xs-12">
 		    <div class="thumbnail">
 		    <form id="avatar-form">
-			<input type="file" id="avatarInput" class="form-control" name="image" onchange="readImage(this);" style="display:none"/>
+			<input type="file" id="avatarInput" class="form-control" name="image" onchange="readImage(this);" style="display:none" accept="image/*"/>
 			</form>
 				<c:choose>
 				<c:when test="${user.getPicture()=='null'}">
@@ -55,8 +55,8 @@
 			     </c:otherwise>
 			     </c:choose>
 			     <h5></h5>
-				     <button id="change-image" class="btn btn-block btn-sm">
-				     <span class="glyphicon glyphicon-download-alt" ></span> Change image
+				     <button id="change-image" class="btn btn-block btn-sm" style="text-align:center;">
+				     <span  class="glyphicon glyphicon-download-alt" ></span> Change image
 				     </button>
 			     <div id="image-prompt" style="display:none">
 				     <h4>Save image?</h4>
@@ -115,14 +115,14 @@
 		      <div class="row-same-height">
 		      <div class="col-md-12 col-md-height col-top">
 		      <div class="form-group">
-			      <button type="button" class="btn btn-xs btn-block btn-show-password">
+			      <button type="button" style="text-align:center;"  class="btn btn-default btn-xs btn-block btn-show-password">
 						Change password
-						 <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+						 <span class="glyphicon glyphicon-triangle-bottom" style="align:middle" aria-hidden="true"></span>
 					</button>
 				</div>
 				<form id="password-form" accept-charset="UTF-8">
 					<div class="form-group" >
-						<input type="password" class="password form-control old-password" placeholder="Currnet password" required>
+						<input type="password" class="password form-control old-password" placeholder="Current password" required>
 					</div>
 					<div class="form-group" >
 						<input type="password" class="password form-control new-password" placeholder="New password" required>
@@ -131,7 +131,7 @@
 						<input type="password" class="password form-control confirmed-password" placeholder="Confirm password" required>
 					</div>
 					<div class="form-group" >
-						<input type="submit" class="btn btn-block btn-sm btn-success change-password" value="Change">
+						<input type="submit" style="text-align:center" class="btn btn-block btn-sm btn-success change-password green" value="Change">
 						<label class="error-label" style="color:#b94a48"></label>
 					</div>
 				</form>
@@ -319,6 +319,6 @@ $(document).ready(function() {
 
 });
 </script>
-	<jsp:include page="/pages/scripts.jsp" />
+
 </body>
 </html>

@@ -7,46 +7,46 @@
 Content Tabel
 +---------------+
 
-1-Reset 
+1-Reset
 2-General
-3-Layout 
+3-Layout
     -Typography
     -Buttons
 4-Header
-    -Main menu 
+    -Main menu
 5-Featured
-6-About Section 
-7-Awesome Destinations Section 
+6-About Section
+7-Awesome Destinations Section
 8-Post navigation
-9-Special Offers Section 
-10-Our Travel Section 
-    -Tour Categories by Country 
-11-Testimonials Section 
+9-Special Offers Section
+10-Our Travel Section
+    -Tour Categories by Country
+11-Testimonials Section
     -Slider
-12-Hotels Section 
+12-Hotels Section
     -Hotel Filter
     -Grid Content
-13-Contact Section 
-14-Widgets 
+13-Contact Section
+14-Widgets
     -Global Widget Style
     -Range slider filter widget
-15-Footer Section 
+15-Footer Section
 16-Responsive layout
 
 */
 
-/** 
- * Home 
+/**
+ * Home
  * =============================== */
  #travelup {
-  background: url('../images/overlay-pattern.png') 50% 50% repeat; 
+  background: url('../images/overlay-pattern.png') 50% 50% repeat;
   border-top: 1px solid #ffffff;
   background-attachment: fixed;
   padding: 50px 0 100px 0;
 }
 
 video { display:block; }
- 
+
 video#video-on-bg {
         background:url('images/karpaty.jpg') no-repeat center center fixed;
         -webkit-background-size:cover;
@@ -59,8 +59,8 @@ video#video-on-bg {
         min-width:100%;
         min-height:100%;
         position:fixed;
-        left:0; 
-        bottom:0; 
+        left:0;
+        bottom:0;
         z-index:-998;
     }
 
@@ -118,11 +118,11 @@ video#video-on-bg {
   margin: -100px 0 0 -100px;
   /* is width and height divided by two */
 }
-/** 
+/**
 
 
 
- * Reset 
+ * Reset
  * =============================== */
 ul,
 ol {
@@ -130,8 +130,8 @@ ol {
   margin: 0;
   padding: 0;
 }
-/** 
- * General  
+/**
+ * General
  * =============================== */
 body {
   background-color: #ffffff;
@@ -144,7 +144,6 @@ body {
 a {
   color: #51575b;
 }
-a:visited,
 a:hover {
   color: #85c616;
 }
@@ -208,8 +207,8 @@ noscript {
   color: red;
   margin: 100px 0 0 0;
 }
-/** 
- * Format 
+/**
+ * Format
  * =============================== */
 /* Layout */
 .section {
@@ -415,12 +414,12 @@ input.green:focus {
     padding-right: 0;
   }
 }
-/** 
- * Header 
+/**
+ * Header
  * =============================== */
 #header {
   position: relative;
-  background-color: #ffffff;
+  background: rgba( 255, 255, 255, 0.7);
 }
 #header .container:before,
 #header .container:after {
@@ -531,8 +530,8 @@ input.green:focus {
 .modal-body input {
   margin-bottom: 15px;
 }
-/** 
- * Main menu 
+/**
+ * Main menu
  * =============================== */
 #main-menu:before,
 #main-menu:after {
@@ -639,7 +638,7 @@ input.green:focus {
   display: block;
   opacity: 0;
 }
-/** 
+/**
  * Featured
  * =============================== */
 #featured {
@@ -659,30 +658,30 @@ input.green:focus {
                   height:50px;
                   background:rgba(123, 194, 0, 0.8);
                   .rounded(2px);
-                  
+
                   &.flex-next{
-                          background:rgba(123, 194, 0, 0.8);	
-                  
+                          background:rgba(123, 194, 0, 0.8);
+
                           &:hover{
                                   background:rgba(0, 0, 0, 0.7);
-                          }			
-                          
+                          }
+
                   }
-                  
+
                   &.flex-prev{
-                          background:rgba(123, 194, 0, 0.8) url('images/slide-left-arrow.png') 50% 50% no-repeat;	
-                  
+                          background:rgba(123, 194, 0, 0.8) url('images/slide-left-arrow.png') 50% 50% no-repeat;
+
                           &:hover{
-                                  background:rgba(0, 0, 0, 0.7) url('images/slide-left-arrow.png') 50% 50% no-repeat;	
-                          }		
+                                  background:rgba(0, 0, 0, 0.7) url('images/slide-left-arrow.png') 50% 50% no-repeat;
+                          }
                   }
-                  
+
           }
-          
+
           .flex-next, .flex-prev{
-                  text-indent:-9999px;	
+                  text-indent:-9999px;
           }
-          
+
     */
 }
 .flex-direction-nav a {
@@ -987,8 +986,8 @@ footer input[type="submit"] {
     visibility: hidden;
   }
 }
-/** 
- * About Section 
+/**
+ * About Section
  * =============================== */
 .homepage#about-us {
   padding-top: 0;
@@ -1058,8 +1057,8 @@ footer input[type="submit"] {
     margin-bottom: 50px;
   }
 }
-/** 
- * Awesome Destinations Section 
+/**
+ * Awesome Destinations Section
  * =============================== */
 #awesome-destinations {
   background: #e9eff4 url('images/world-map-bg.png') 50% 50% no-repeat;
@@ -1220,8 +1219,8 @@ footer input[type="submit"] {
     max-width: 100%;
   }
 }
-/** 
- * Special Offers Section 
+/**
+ * Special Offers Section
  * =============================== */
 #special-offers {
   position: relative;
@@ -1375,8 +1374,8 @@ footer input[type="submit"] {
   border-right: 15px solid #3a3e4a;
   border-bottom: 15px solid transparent;
 }
-/** 
- * Our Travel Section 
+/**
+ * Our Travel Section
  * =============================== */
 #our-travel {
   padding-top: 52px;
@@ -1719,8 +1718,8 @@ footer input[type="submit"] {
     margin-right: auto;
   }
 }
-/** 
- * Testimonials Section 
+/**
+ * Testimonials Section
  * =============================== */
 #testimonials {
   padding-top: 52px;
@@ -1884,8 +1883,8 @@ footer input[type="submit"] {
   border-radius: 2px;
   border: 1px solid #ddd;
 }
-/** 
- * Hotels Section 
+/**
+ * Hotels Section
  * =============================== */
 #hotels {
   background-color: #ffffff;
@@ -2085,7 +2084,7 @@ form.hotels-filter-form a.chosen-single {
     margin-right: auto;
   }
 }
-/** 
+/**
  * Grid Content
  * =============================== */
 #hotels .grid-contents .entry .entry-content {
@@ -2211,8 +2210,8 @@ form.hotels-filter-form a.chosen-single {
   background: #8bcf17;
   border-color: #8bcf17;
 }
-/** 
- * Contact Section 
+/**
+ * Contact Section
  * =============================== */
 #contact {
   background: #e9eff4 url('images/world-map-bg.png') 50% 50% no-repeat;
@@ -2301,8 +2300,8 @@ form.hotels-filter-form a.chosen-single {
     float: none;
   }
 }
-/** 
- * Widgets 
+/**
+ * Widgets
  * =============================== */
 /* Global Widget Style */
 .widget {
@@ -2411,11 +2410,11 @@ form.hotels-filter-form a.chosen-single {
 .price-range-slider .ui-rangeSlider .ui-rangeSlider-label-value:before {
   content: '$';
 }
-/** 
- * Footer Section 
+/**
+ * Footer Section
  * =============================== */
 #footer {
-  background-color: #85c616;
+  background: rgba( 133, 198, 22, 0.7);
 }
 #footer-2 {
   background-color: #85c616;
@@ -3705,7 +3704,7 @@ height: 20px;
             right: 20px;
             font-size: 20px;
             line-height: 20px;
-            
+
         }*/
   }
   #our-travel.sidebar .load-more-hotel {

@@ -10,7 +10,7 @@
 
                         <h1 class="site-title">
 
-                            <a href="index"><img src="images/site-logo.png" alt="TravelUp" /> <span>Travel<span class="higlight">Up</span></span></a>
+                            <a href="index"><img src="images/site-logo.png" alt="TravelUp" /> <span style="font-weight: 700;">Travel<span class="higlight">Up</span></span></a>
 
                         </h1>
 

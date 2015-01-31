@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.epam.travelup.admin.util.UserSearcher;
 import com.epam.travelup.orm.model.User;
+import com.epam.travelup.orm.service.UserService;
 
 /**
  * Servlet implementation class SearchUserServlet
@@ -45,7 +46,7 @@ public class SearchUserServlet extends HttpServlet {
 			System.out.println("Wrong page number format");
 		}
 		System.out.println("Page: "+pageNo);
-		final int rowCount=10;
+		final int rowCount=5;
 		int offset=pageNo*rowCount;
 
 		boolean isGuide=false;
@@ -66,9 +67,17 @@ public class SearchUserServlet extends HttpServlet {
 		String key = request.getParameter("key");
 		List<User> users = UserSearcher.search(key, isPhoto, isTransporter, isGuide, offset, rowCount);
 		User.sortByDate(users);
+		int userCount = UserService.countUsers();
+		System.out.println("User count: "+userCount);
+		int pageCount = (userCount/rowCount)+(userCount%rowCount>0?1:0);
+		System.out.println("Page count: "+pageCount);
 		System.out.println(users);
 		request.setAttribute("users", users);
+		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageNo", pageNo);
+		if(isGuide||isPhoto||isTransporter){
+			request.setAttribute("pagination", "no");
+		}
 		request.getRequestDispatcher("pages/admin_users.jsp").forward(request, response);
 	}
 

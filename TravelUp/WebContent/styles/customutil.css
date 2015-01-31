@@ -1,0 +1,27 @@
+button.green{
+	background-color: #85C616;
+	text-align: center;
+	border-color: #85C616;
+}
+
+body, .navbar-fixed-top, .navbar-fixed-bottom {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+}
+
+.user-gallery {
+          padding:0 0 0 0;
+          margin:0 0 0 0;
+}
+.user-gallery li {
+     margin-bottom:25px;
+}
+.user-gallery li img {
+    cursor: pointer;
+    height:200px;
+}
+
+.autoModal.modal .modal-body img{
+    margin-left: auto;
+    margin-right: auto;
+}
