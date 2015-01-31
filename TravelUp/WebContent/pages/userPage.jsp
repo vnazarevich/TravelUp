@@ -44,7 +44,7 @@
 	    <div class="sidebar col-md-3 col-sm-6 col-xs-12">
 		    <div class="thumbnail">
 		    <form id="avatar-form">
-			<input type="file" id="avatarInput" class="form-control" name="image" onchange="readImage(this);" style="display:none"/>
+			<input type="file" id="avatarInput" class="form-control" name="image" onchange="readImage(this);" style="display:none" accept="image/*"/>
 			</form>
 				<c:choose>
 				<c:when test="${user.getPicture()=='null'}">
@@ -319,6 +319,6 @@ $(document).ready(function() {
 
 });
 </script>
-	
+
 </body>
 </html>

@@ -188,6 +188,23 @@ public class Dao<T>{
 		}
 
 	}
+
+	public void delete(String attr, String value, String equalitySign){
+
+		try (Connection connection=ConnectionManager.getConnection()){
+			String query = "Delete From "+tableName+" Where "+attr+" "+equalitySign+" ?;";
+			PreparedStatement statement = connection.prepareStatement(query);
+			if(value.equals("true")||value.equals("false")){
+				statement.setBoolean(1, Boolean.parseBoolean(value));
+			}else{
+				statement.setString(1, value);
+			}
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 	//returns generated key
 	public int insert(T model){
 
@@ -265,7 +282,7 @@ public class Dao<T>{
 		try (Connection connection=ConnectionManager.getConnection()){
 			PreparedStatement statement = connection.prepareStatement("Update "+tableName+" Set "+updateAttr+"=? Where "+conditionAttr+"=?");
 			statement.setString(2, conditionValue);
-			if(updateValue.equals("true")||updateValue.equals("false")){
+			if(updateValue!=null&&(updateValue.equals("true")||updateValue.equals("false"))){
 				statement.setBoolean(1, Boolean.parseBoolean(updateValue));
 			}else{
 				statement.setString(1, updateValue);

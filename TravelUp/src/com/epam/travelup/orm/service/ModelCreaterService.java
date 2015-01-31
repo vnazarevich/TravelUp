@@ -25,23 +25,23 @@ public class ModelCreaterService {
 		LOGGER.info(":: finish create object new ModelCreaterService()");
 	}
 
-//	 public static void main (String [] args){
-//	 System.out.println("===================Start test CreaterModels============");
-//	 ModelCreaterService mc = new ModelCreaterService ();
-//	 mc.createModels();
-//	 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Requests count = " + TourService.getTourRequests().size());
-//	 System.out.println();
-//	 for (Tour t: TourService.getTourRequests()){
-//		 System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-//		 System.out.println(t.toString());
-//	 }
-//	 System.out.println();
-//	 for (Tour model : mc.models){
-//	 System.out.println("=========================================================================");
-//	 System.out.println("MODEL : " + model.toString() + ", countRequests = "
-//	 + model.getCountRequests());
-//	 }
-//	 }
+	 public static void main (String [] args){
+	 System.out.println("===================Start test CreaterModels============");
+	 ModelCreaterService mc = new ModelCreaterService ();
+	 mc.createModels();
+	 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Requests count = " + TourService.getTourRequests().size());
+	 System.out.println();
+	 for (Tour t: TourService.getTourRequests()){
+		 System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		 System.out.println(t.toString());
+	 }
+	 System.out.println();
+	 for (Tour model : mc.models){
+	 System.out.println("=========================================================================");
+	 System.out.println("MODEL : " + model.toString() + ", countRequests = "
+	 + model.getCountRequests());
+	 }
+	 }
 
 	public void createModels() {
 		List<Tour> simpleTours = new ArrayList<Tour>();
@@ -137,25 +137,25 @@ public class ModelCreaterService {
 	}
 
 	private Double comparissonByData(Tour t1, Tour t2) {
-		
+
 		long t1AverageDurationMiliSecunds = (t1.getMinDuration() + t1.getMaxDuration())/2*24*60*60*1000;
 		long t2AverageDurationMiliSecunds = (t2.getMinDuration() + t2.getMaxDuration())/2*24*60*60*1000;
-				
-		if (t1.getStartDate().after(t2.getStartDate()) 
-				&& (t1.getStartDate().getTime()+ t1AverageDurationMiliSecunds) <= t2.getStartDate().getTime()){			
+
+		if (t1.getStartDate().after(t2.getStartDate())
+				&& (t1.getStartDate().getTime()+ t1AverageDurationMiliSecunds) <= t2.getStartDate().getTime()){
 			return 1.;
 		}
-		if (t2.getStartDate().after(t1.getStartDate()) 
-				&& (t2.getStartDate().getTime()+ t2AverageDurationMiliSecunds) <= t1.getStartDate().getTime()){			
+		if (t2.getStartDate().after(t1.getStartDate())
+				&& (t2.getStartDate().getTime()+ t2AverageDurationMiliSecunds) <= t1.getStartDate().getTime()){
 			return 1.;
 		} else {
 			return (t1.getStartDate().getTime()+t1.getEndDate().getTime())*1.0
 					/(t2.getStartDate().getTime()+t2.getEndDate().getTime());
 		}
-		
+
 	}
 
-	private Double comparissonByDuration(Tour curentTour, Tour tour) {		
+	private Double comparissonByDuration(Tour curentTour, Tour tour) {
 		return (curentTour.getMinDuration()+curentTour.getMaxDuration())*1.0
 				/ (tour.getMinDuration()+tour.getMaxDuration()) ;
 	}

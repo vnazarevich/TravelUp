@@ -1,78 +1,102 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="edit-portfolio">
-<c:set var="portfolio" scope="session" value="${user.getPortfolio()}"/>
-		<h3>
-		<button id="occupation-edit-btn" type="button" class="btn btn-default" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-		</button>
-		<button id="occupation-confirm-btn" type="button" class="btn btn-default" style="display:none;" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-		</button>
-		My occupation:</h3>
-		<div class="widget hotel-type-filter-widget" id="occupation-edit-list" style="display:none;">
-			<ul  >
-					<li><input type="checkbox" name="photorgapher"><label>photographrer</label></li>
-					<li><input type="checkbox" name="guide"><label>guide</label></li>
-					<li><input type="checkbox" name="transporter"><label>transporter</label></li>
+
+		<div class="widget hotel-type-filter-widget">
+		<form id="edit-portfolio-form" action="editportfolio" method="post" enctype="multipart/form-data">
+			<ul>
+				<li><h3>Who can you be:</h3><li>
+				<li><input id="photographer" type="checkbox" name="photographer"><label>photographrer</label></li>
+				<li><input id="guide" type="checkbox" name="guide"><label>guide</label></li>
+				<li><input id="transporter" type="checkbox" name="transporter"><label>transporter</label></li>
 			</ul>
-		</div>
-		<h3>
-
-		<ul id="occupation-list" >
-				<c:if test="${portfolio.isPhotographer()}">
-					<li><h4><span class="glyphicon glyphicon-camera" aria-hidden="true"></span> photographrer</h4></li>
-				</c:if>
-				<c:if test="${portfolio.isGuide()}">
-					<li><h4><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> guide</h4></li>
-				</c:if>
-				<c:if test="${portfolio.isCarrier()}">
-					<li><h4><span class="glyphicon glyphicon-road" aria-hidden="true"></span> transporter</h4></li>
-				</c:if>
-		</ul>
-		<button id="about-edit-btn" type="button" class="btn btn-default" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-		</button>
-		<button id="about-confirm-btn" type="button" class="btn btn-default" style="display:none;" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-		</button>
-		About me:</h3>
-		<p>${portfolio.getDescription()}</p>
-		<br>
-		 <ul class="row user-gallery">
-		 <c:forEach var="userPhoto" items="${userPhotos}">
-          <li class="col-lg-4 col-md-4 col-sm-6 col-xs-9"><img src="${initParam['imagesPath']}${userPhoto.getPhotolink()}"/></li>
-			</c:forEach>
-          </ul>
-
-
-          <div class="modal fade autoModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		      <div class="modal-dialog">
-		        <div class="modal-content">
-		          <div class="modal-body">
-		          </div>
-		        </div><!-- /.modal-content -->
-		      </div><!-- /.modal-dialog -->
-		    </div><!-- /.modal -->
+			<h3>Describe your abilities, leave contacts:</h3>
+			<textarea id="description" class="form-control" form="edit-portfolio-form" name="description" rows="5" style="resize:vertical;"></textarea>
+			<h3>Change your gallery:</h3>
+			<div id="images-root">
+				<c:forEach var="userPhoto" items="${userPhotos}">
+				<div class="existing-image">
+					<input type="hidden" name="photo${userPhoto.getId()}" value="exist">
+					<div class="view third-effect" >
+					<img src="${initParam['imagesPath']}${userPhoto.getPhotolink()}" style="cursor:pointer;height:140px;"/>
+					<div class="mask" onclick="removeExistingImage(this);">
+					<a class="info" title="Remove">Remove</a>
+					</div>
+					</div>
+				</div>
+				</c:forEach>
+				<div id="add-file">
+					<img src="images/add-file.png" style="cursor:pointer;width:140px;height:140px;"/>
+				</div>
+			<br>
+			</div>
+			<br>
+			<div class="form-group">
+			<button type="submit" id=submitPortfolio class="btn btn-lg btn-success center-block green">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+				Save changes
+			</button>
+			</div>
+		</form>
+			</div>
 </div>
-<script>
-	$(function(){
-		$("#occupation-edit-btn").click(function(e){
-			$(this).hide();
-			$("#occupation-list").hide();
-			$("#occupation-confirm-btn").show();
-			$("#occupation-edit-list").show();
-		});
-		$('ul.user-gallery li img').on('click',function(){
-            var src = $(this).attr('src');
-            var img = '<img src="' + src + '" class="img-responsive"/>';
-            $('#myModal').modal();
-            $('#myModal').on('shown.bs.modal', function(){
-                $('#myModal .modal-body').html(img);
-            });
-            $('#myModal').on('hidden.bs.modal', function(){
-                $('#myModal .modal-body').html('');
-            });
-       });
-	});
-</script>
+<script type="text/javascript">
+var files=1;
+function readURL(input) {
+	console.log('changed');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        	var file=$(input).val();
+        	var extension=file.split('.').pop().toLowerCase();
+        	if(extension.match(/(jpg|jpeg|png|gif|bmp)$/)){
+	            $('#lastimage').attr('src', e.target.result);
+	            $("#lastimage").removeAttr('id');
+	            $("#lastinput").removeAttr("id");
+        	}else{
+        		$(input).parent().remove();
+        	}
+        }
+        files++;
+        reader.readAsDataURL(input.files[0]);
+    }
 
+}
+function removeImage(mask){
+	files--;
+	$(mask).parent().remove();
+}
+
+function removeExistingImage(mask){
+	$(mask).parent().parent().find("input[type='hidden']").val("deleted");
+	$(mask).parent().remove();
+}
+
+function loadFile(){
+	$("#lastinput").trigger('click');
+}
+
+$(function(){
+	var guide = "${portfolio.isGuide()}";
+	var transporter="${portfolio.isCarrier()}";
+	var photographer = "${portfolio.isPhotographer()}";
+
+	if(guide=="true"){
+		$("#guide").prop("checked","true");
+	}
+	if(transporter=="true"){
+		$("#transporter").prop("checked","true");
+	}
+
+	if(photographer=="true"){
+		$("#photographer").prop("checked","true");
+	}
+
+	$("#description").val("${portfolio.getDescription()}");
+
+		$("#add-file").click(function(e) {
+			$('<div class="view third-effect" ><input type="file" onchange="readURL(this);" name="file'+files+'" id="lastinput" style="display:none" accept="image/*"><img src="" id="lastimage" style="cursor:pointer;height:140px;"/> <div class="mask" onclick="removeImage(this);"><a class="info" title="Remove">Remove</a></div></div>').insertBefore(this);
+			loadFile();
+		});
+
+});
+</script>

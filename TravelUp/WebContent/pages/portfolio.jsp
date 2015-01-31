@@ -2,7 +2,7 @@
 	<div id="portfolio">
 		<c:choose>
 			<c:when test="${sessionScope.user.getPortfolio()!=null}">
-				<jsp:include page="/pages/editPortfolio.jsp"/>
+				<jsp:include page="/pages/showPortfolio.jsp"/>
 			</c:when>
 			<c:otherwise>
 				<jsp:include page="/pages/createPortfolio.jsp"/>
