@@ -139,6 +139,7 @@ public class ModelCreaterService {
 			}
 		}
 		Route route = new Route();
+		route.setRegion("Carpathians");
 		Integer routeId = RouteService.insertRoute(route);
 		
 		//get this route, with id

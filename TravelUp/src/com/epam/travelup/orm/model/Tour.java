@@ -291,9 +291,9 @@ public class Tour {
 				+ this.getMinDuration() + "\n" + "Max duration: "
 				+ this.getMaxDuration() + "\n" + "Places: " 
 				
-				+ getPlacesId(this.getPlaces());
+			//	+ getPlacesId(this.getPlaces());
 		
-				//+ this.getPlaces();
+				+ this.getPlaces();
 	}
 	
 	private String getPlacesId (List<Place> list){
