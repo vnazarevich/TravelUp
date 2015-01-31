@@ -49,7 +49,6 @@ public class SelectedTourServlet extends HttpServlet {
 		request.setAttribute("orig", origin);
 		request.setAttribute("dest", destination);
 		request.setAttribute("placecoordinats", placeCoordinats);
-		request.setAttribute("tour", tour);
 		
 
 		request.getRequestDispatcher("pages/tour.jsp").forward(request, response);
@@ -59,7 +58,6 @@ public class SelectedTourServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	}
 
 }
