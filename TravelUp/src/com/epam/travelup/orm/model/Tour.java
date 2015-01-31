@@ -2,6 +2,7 @@ package com.epam.travelup.orm.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @DBTable(name = "tour")
 public class Tour {
@@ -74,6 +75,9 @@ public class Tour {
 	//count of similar users requests, which used for creating model
 	private int countRequests;
 	
+	// include requests, from which model was created
+	private Set <Tour> requests;
+	
 	public Tour() {
 
 	}
@@ -131,6 +135,14 @@ public class Tour {
 
 	public void setRoute_id(Route route_id) {
 		this.route = route_id;
+	}
+	
+	public Set<Tour> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(Set<Tour> requests) {
+		this.requests = requests;
 	}
 
 	public String getStatus() {

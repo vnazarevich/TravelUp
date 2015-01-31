@@ -3,13 +3,15 @@ package com.epam.travelup.orm.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 
-import com.epam.travelup.orm.dao.Dao;
 import com.epam.travelup.orm.model.Place;
+import com.epam.travelup.orm.model.RequestToModel;
 import com.epam.travelup.orm.model.Tour;
 
 public class ModelCreaterService {
@@ -71,14 +73,24 @@ public class ModelCreaterService {
 
 	private void saveModels() {
 		int i = 1;
+		Integer modelId;
 		for (Tour model : models) {
-			System.out.println("********************************** Insert in DB model number " + i++);			
-			TourService.insertTour(model);
+			System.out.println("********************************** Insert in DB model number " + i++);
+			
+			RequestToModel requestToModel = new RequestToModel();
+			modelId = TourService.insertTour(model);
+			
+			for (Tour request: model.getRequests()){
+				requestToModel.setRequest(request);
+				requestToModel.setModel((TourService.getToursWhere("id", modelId.toString(), "en")).get(0));
+				RequestToModelServices.insertRequestToModel(requestToModel);
+			}			
 		}
 	}
 
 	private Tour createModel(List<Tour> simpleTours) {
 		Tour model = new Tour();
+		Set<Tour> requests = new HashSet<>();
 		
 		// Key - Place, V - count 
 		Map<Place, Integer> places = new HashMap<>();
@@ -97,6 +109,7 @@ public class ModelCreaterService {
 		int tripId = 0;
 
 		for (Tour tour : simpleTours) {
+			requests.add(tour);
 			minCapacity += tour.getMinCapacity();
 			maxCapacity += tour.getMaxCapacity();
 			minDuration += tour.getMinDuration();
@@ -135,6 +148,7 @@ public class ModelCreaterService {
 		model.setEndDate(new java.sql.Date(endDateLong / simpleTours.size()));
 		model.setStatusId(TOUR_TYPE);
 		model.setTransport(TRANSPORT);
+		model.setRequests(requests);
 		return model;
 	}
 
