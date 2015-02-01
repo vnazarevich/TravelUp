@@ -66,18 +66,29 @@ public class Tour {
 
 	@DBField(name = "max_price")
 	private double maxPrice;
-	
+
 	@DBField(name = "trip_days_id")
 	private int tripId;
 
-	private List<Place> places;	
-	
+	private List<Place> places;
+
 	//count of similar users requests, which used for creating model
 	private int countRequests;
-	
+
 	// include requests, from which model was created
 	private Set <Tour> requests;
-	
+
+	//count of users, that bought this tour
+	private int userCount;
+
+	public int getUserCount() {
+		return userCount;
+	}
+
+	public void setUserCount(int userCount) {
+		this.userCount = userCount;
+	}
+
 	public Tour() {
 
 	}
@@ -136,7 +147,7 @@ public class Tour {
 	public void setRoute_id(Route route_id) {
 		this.route = route_id;
 	}
-	
+
 	public Set<Tour> getRequests() {
 		return requests;
 	}
@@ -248,7 +259,7 @@ public class Tour {
 	public int getTripId() {
 		return tripId;
 	}
-	
+
 	public void setTripId(int tripId) {
 		this.tripId = tripId;
 	}
@@ -276,7 +287,7 @@ public class Tour {
 	@Override
 	public String toString() {
 		return "Tour id:" + this.getId() +
-				 "Guide id: " + this.getGuideId() + 
+				 "Guide id: " + this.getGuideId() +
 				"\n" + "Photograph id: "
 				+ this.getPhotographId() + "\n" + "Route id: "
 				+ this.getRoute_id() + "\n" + "Status id: "
@@ -289,13 +300,13 @@ public class Tour {
 				+ this.getMinCapacity() + "\n" + "Max capacity: "
 				+ this.getMaxCapacity() + "\n" + "Min duration: "
 				+ this.getMinDuration() + "\n" + "Max duration: "
-				+ this.getMaxDuration() + "\n" + "Places: " 
-				
+				+ this.getMaxDuration() + "\n" + "Places: "
+
 			//	+ getPlacesId(this.getPlaces());
-		
+
 				+ this.getPlaces();
 	}
-	
+
 	private String getPlacesId (List<Place> list){
 		StringBuilder sb = new StringBuilder();
 		for (Place p: list){
@@ -324,9 +335,9 @@ public class Tour {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }
