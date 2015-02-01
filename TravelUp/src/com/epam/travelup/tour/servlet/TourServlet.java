@@ -1,6 +1,7 @@
 package com.epam.travelup.tour.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.epam.travelup.locaization.LanguageContainer;
+import com.epam.travelup.orm.model.Place;
 import com.epam.travelup.orm.model.Tour;
 import com.epam.travelup.orm.model.User;
 import com.epam.travelup.orm.service.TourService;
@@ -41,6 +43,8 @@ public class TourServlet extends HttpServlet {
 		} else {
 			tours = TourService.getAllTours(LanguageContainer.getBundle().getLocale().getLanguage());
 		}
+	
+		
 		request.setAttribute("tourList", tours);
 		System.out.println(tours);
 		request.getRequestDispatcher("pages/tours.jsp").forward(request, response);

@@ -259,7 +259,7 @@
                                         <div class="inner">
                                             <div class="col-md-5 col-lg-4 no-margin-left">
                                                 <a class="thumbnailz" href="#">
-                                                    <img src=${tour.places[0].photos[0].photolink} alt="Your Hotel Title Here" class="responsive-image" />
+                                                    <img src=${tour.places[0].photos[0].photolink} alt="TravelUp" class="responsive-image" />
                                                     <span class="overlay">Details</span>
                                                 </a>
                                             </div>
@@ -269,7 +269,7 @@
 
                                                     <article class="entry-content select-tour">
                                                     <form>
-                                                        <h2 class="post-title"><a href="#" title="Your Tour Title Here">${tour.name.getName(lang.getLocale().getLanguage())} (<b><i>${tour.status}</i></b>)</a></h2>
+                                                        <h2 class="post-title"><a title="Your Tour Title Here">${tour.name.getName(lang.getLocale().getLanguage())} (<b><i>${tour.status}</i></b>)</a></h2>
 														<input type="hidden" class="selecttour" value="${tour.id}">
 													</form>
 														<c:if test="${user.isAdmin()}"> 

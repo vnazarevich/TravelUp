@@ -7,14 +7,25 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>${lang.getString("tourpage.page.tourlist")}</title>
+        <title>Тур: ${tour.name.getName(lang.getLocale().getLanguage())}</title>
 
         <jsp:include page="/pages/styles.jsp" />
 		
 		 <style>
+		 .in-same-line h2{
+		 	text-align:left;
+		 	float:left;
+		 }
+		 .image-container .img-responsive {
+           
+           height: 100px;
+ 		   width: 160px;
+        }
+		 
+		 
 		      #map-canvas {
-		        height: 300px;
-		        width: 450px;
+		        height: 350px;
+		        width: 500px;
 		        margin-left: auto;
 		        margin-right: auto;
 		 
@@ -22,6 +33,20 @@
 		      }
 		    </style>
 		    <script>
+		    
+		    $(function(){
+		    	$('ul.user-gallery li img').on('click',function(){
+		            var src = $(this).attr('src');
+		            var img = '<img src="' + src + '" class="img-responsive"/>';
+		            $('#myModal').modal();
+		            $('#myModal').on('shown.bs.modal', function(){
+		                $('#myModal .modal-body').html(img);
+		            });
+		            $('#myModal').on('hidden.bs.modal', function(){
+		                $('#myModal .modal-body').html('');
+		            });
+		       });
+		    });
 		    
 			function initialize() {
 			   var directionsService = new google.maps.DirectionsService();
@@ -81,40 +106,68 @@
             <jsp:include page="/pages/signupBox.jsp" />
 			<jsp:include page="/pages/placeBox.jsp" />
 			
+			<div class="modal fade autoModal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		      <div class="modal-dialog">
+		        <div class="modal-content">
+		          <div class="modal-body">
+		          </div>
+		        </div><!-- /.modal-content -->
+		      </div><!-- /.modal-dialog -->
+		    </div><!-- /.modal -->
 
             <section class="page-head-holder">
                 <div class="container">
                     <div class="col-xs-6">
-                      <h2>${lang.getString("tourpage.page.tourlist")}</h2>
+                      <h2>${tour.name.getName(lang.getLocale().getLanguage())} (<b><i>${tour.status}</i></b>)</h2>
                     </div>
                     <div class="col-xs-6">
                         <div class="breadcrumb-holder">
                             <ol class="breadcrumb">
                                 <li><a href="index">${lang.getString("tourpage.page.home")}</a></li>
-                                <li class="active"><a href="tours">${lang.getString("tourpage.page.tourlist")}</a></li>
+                                <li><a href="tours">${lang.getString("tourpage.page.tourlist")}</a></li>
+                                <li class="active">${tour.name.getName(lang.getLocale().getLanguage())}</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="hotels" class="section wide-fat page">
+            <section class="section wide-fat page">
                 <div class="container">                 
                     <div class="contents-wrapper">         
                         <div class="row">
-							 <h2>${tour.name.getName(lang.getLocale().getLanguage())} (<b><i>${tour.status}</i></b>)</h2>
-                            <div class="sidebar col-md-5  col-xs-12">
-
-                                <div class="widget">
+							 
+                            <div class="sidebar col-md-6  col-xs-12">
 								
-                                     <div id="map-canvas"></div>
+                                <div class="widget">
+									
+                                <div id="map-canvas"></div>
 
-                                </div><!-- /.widget -->
+                            </div><!-- /.widget -->
+								
+							<div class="entry">
+								<article class="entry-content">
+								<h2>Опис:</h2>							
+									<c:forEach var="place" items="${tour.places}"> 
+										<p><c:out value="${place.info.getDescription(lang.getLocale().getLanguage())}"></c:out></p>
+									</c:forEach>
+									<div class="in-same-line">
+										<br/><h2>Фотограф: </h2> ${tour.photographRequired}
+										<p></p><h2>Гайд: </h2> - 
+										<p></p><h2>Спосіб добирання до старту: </h2> ${tour.transport}
+										<p></p><h2>Набір: </h2>${tour.minCapacity} ${lang.getString("tourpage.list.people")}
+										<p></p><h2>Вік: </h2>${tour.minAge} - ${tour.maxAge} років 
+										<p></p><h2>Тривалість: </h2>${tour.minDuration} ${lang.getString("tourpage.list.days")}
+										<p></p><h2>Дата: </h2>${tour.startDate} - ${tour.endDate}
+										<p></p><h2>Ціна: </h2>${tour.minPrice} ${lang.getString("tourpage.list.money")}
+									</div>
+								</article>
+							</div>
 
 						
                             </div><!-- /.sidebar -->
 
-                            <div class="contents grid-contents col-md-7 col-xs-12">
+                            <div class="contents grid-contents col-md-6 col-xs-12">
 
 				
 
@@ -125,25 +178,27 @@
                                         <div class="inner">
 
                                                 <div class="entry">
-
                                                     <article class="entry-content">
+                                                    <h2>Шлях:</h2>
+                                                    <-
                                                     <c:forEach var="place" items="${tour.places}">
-                                                        <a href="#" ><b>${place.info.getName(lang.getLocale().getLanguage())} - </b></a>
+                                                        <a href="#" ><b>${place.type.getType(lang.getLocale().getLanguage())} ${place.info.getName(lang.getLocale().getLanguage())}</b></a> -
 														</c:forEach>
-                                                        
-
+														>
                                                     </article>
+                                            <article class="entry-content">
+                                            <h2>Фотографії:</h2>       
+                                            </article>
+                                            <ul class="row user-gallery">
+                                             <c:forEach var="place" items="${tour.places}"> 
+                                        		<c:forEach var="photo" items="${place.photos}">		
+                                                		<li class="col-lg-3 col-md-4 col-sm-6 col-xs-6 container image-container"><img src=${photo.getPhotolink()} class="img-responsive"/></li>
+		                                     	</c:forEach>		                                   	
+		                                     </c:forEach>
+		                                    </ul>
 
-                                                </div><!-- /.entry -->
-                                                <c:forEach var="place" items="${tour.places}">
-                                        <c:forEach var="photo" items="${place.photos}">
-                                      		<div class="col-md-5 col-lg-4 no-margin-left">
-                                      			<a class="thumbnailz" href="#">
-                                                    <img src=${photo.photolink} alt="Your Hotel Title Here" class="responsive-image" />
-                                                </a>
-                                                </div>
-                                     	</c:forEach>
-                                     	</c:forEach>
+                                        		</div><!-- /.entry -->
+                                            
                                         </div>
 
                                     </div><!-- /.content -->
