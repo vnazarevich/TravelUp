@@ -10,12 +10,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>TravelUp</title>
-
-        <!-- Styles -->
-        <jsp:include page="/pages/styles.jsp" />
         
         <!-- Scripts -->
         <jsp:include page="/pages/scripts.jsp" />
+
+        <!-- Styles -->
+        <jsp:include page="/pages/styles.jsp" />
     </head>
     <body>
 
