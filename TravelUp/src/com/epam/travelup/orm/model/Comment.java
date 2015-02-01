@@ -1,6 +1,9 @@
 package com.epam.travelup.orm.model;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 @DBTable(name = "comment")
 public class Comment {
@@ -81,6 +84,18 @@ public class Comment {
 		this.date = date;
 	}
 
+	private static Comparator<Comment> dateComparator = new Comparator<Comment>() {
+
+		@Override
+		public int compare(Comment o1, Comment o2) {
+			return (int) (o2.getDate().getTime()-o1.getDate().getTime());
+		}
+	};
+
+	public static void sortByDate(List<Comment> comments){
+		Collections.sort(comments, dateComparator);
+	}
+	
 	@Override
 	public String toString() {
 		return "Tour id: " + this.getTourId() + "\n" + "User id: "

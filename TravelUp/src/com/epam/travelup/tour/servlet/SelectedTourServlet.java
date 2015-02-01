@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.epam.travelup.orm.model.Comment;
 import com.epam.travelup.orm.model.Place;
 import com.epam.travelup.orm.model.Tour;
 import com.epam.travelup.orm.service.TourService;
@@ -46,11 +47,15 @@ public class SelectedTourServlet extends HttpServlet {
 		placeCoordinats.remove(0);
 		placeCoordinats.remove(placeCoordinats.size()-1);
 		
+		List<Comment> comments = TourService.getCommentsForTour(tourId, "en");
+		
+		Comment.sortByDate(comments);
+		
 		request.setAttribute("orig", origin);
 		request.setAttribute("dest", destination);
 		request.setAttribute("placecoordinats", placeCoordinats);
 		request.setAttribute("tour", tour);
-		
+		request.setAttribute("comments", comments);
 
 		request.getRequestDispatcher("pages/tour.jsp").forward(request, response);
 	}
