@@ -159,7 +159,7 @@
 						<jsp:include page="/pages/portfolio.jsp"/>
                     </div>
                     <div class="tab-pane fade" id="cart-tab">
-                    	dlkfhlkdsljl
+
 						<jsp:include page="/pages/cart.jsp"/>
                     </div>
                 </div>
@@ -168,6 +168,25 @@
 		</section>
 		<!-- Footer -->
            <jsp:include page="/pages/footer.jsp" />
+            <c:if test="${isPaid=='error'}">
+							 <div class="modal fade autoModal payment-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+						      <div class="modal-dialog">
+						        <div class="modal-content">
+						          <div class="modal-body">
+						           <div class="row">
+					    			<div class="span12" style="text-align: center;">
+							          <h4>${isPaid}</h4>
+						          	</div>
+						          </div>
+						          </div>
+						        </div><!-- /.modal-content -->
+						      </div><!-- /.modal-dialog -->
+						    </div><!-- /.modal -->
+						    <script type="text/javascript">
+						    $(".payment-modal").modal('show');
+						    console.log("not payed!")
+						    </script>
+                       </c:if>
 	    </div><!--site-->
 
 

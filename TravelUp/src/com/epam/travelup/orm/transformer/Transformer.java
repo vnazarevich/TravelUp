@@ -38,26 +38,7 @@ public class Transformer <T>{
 						String fieldType = field.getType().getSimpleName().toLowerCase();
 						field.setAccessible(true);
 						if(attr!=null){
-//							switch ( fieldType) {
-//							case "int":{
-//								field.setInt(model,set.getInt(value));
-//								break;
-//							}
-//							case "string":{
-//								field.set(model,set.getString(value));
-//								break;
-//							}
-//							case "date":{
-//								field.set(model,set.getDate(value));
-//								break;
-//							}
-//							case "boolean":{
-//								field.setBoolean(model,set.getBoolean(value));
-//								break;
-//							}
-//							default:
-//								break;
-//							}
+
 							Annotation annotation = field.getAnnotation(DBDictionaryField.class);
 							if(annotation!=null){
 								String dictionaryName = (String) DBDictionaryField.class.getMethod("name", null).invoke(annotation, null);
@@ -78,9 +59,9 @@ public class Transformer <T>{
 								//if there is a null in DB
 								if(FKValue!=null){
 									fieldClass.getClass();
-									System.out.println(fieldClass.getSimpleName());
+									//System.out.println(fieldClass.getSimpleName());
 									Dao dao= new Dao<>(fieldClass, language);
-									System.out.println(FKValue);
+									//System.out.println(FKValue);
 									List<?> list = dao.selectWhere("id", FKValue, "=");
 									field.set(model, list.get(0));
 								}

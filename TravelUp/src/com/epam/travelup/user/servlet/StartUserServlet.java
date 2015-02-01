@@ -43,8 +43,15 @@ public class StartUserServlet extends HttpServlet {
 		session.setAttribute("userPhotos", photos);
 		String language = LanguageContainer.getBundle().getLocale().getLanguage();
 		List<Cart> orders = CartService.getCart(user.getId()+"", language);
+		Cart.sortByDate(orders);
 		System.out.println(orders);
 		request.setAttribute("orderList", orders);
+		String payment = (String)request.getAttribute("isPaid");
+		if(payment!=null){
+			if(payment.equals("error")){
+				request.setAttribute("paymentStatus", "Sorry, there are not enough places for You.");
+			}
+		}
 		request.getRequestDispatcher("pages/userPage.jsp").forward(request, response);
 	}
 
@@ -52,12 +59,17 @@ public class StartUserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();
-
-		if(session.getAttribute("user") == null){
-			response.getWriter().write("0");
-		} else {
-			response.getWriter().write("1");
+		String isPaid = (String) request.getAttribute("isPaid");
+		System.out.println("IN START!!");
+		if(isPaid!=null){
+			request.getRequestDispatcher("pages/userPage.jsp").forward(request, response);
+		}else{
+			HttpSession session=request.getSession();
+			if(session.getAttribute("user") == null){
+				response.getWriter().write("0");
+			} else {
+				response.getWriter().write("1");
+			}
 		}
 	}
 
