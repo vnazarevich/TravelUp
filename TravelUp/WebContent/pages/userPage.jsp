@@ -159,6 +159,7 @@
 						<jsp:include page="/pages/portfolio.jsp"/>
                     </div>
                     <div class="tab-pane fade" id="cart-tab">
+                    	dlkfhlkdsljl
 						<jsp:include page="/pages/cart.jsp"/>
                     </div>
                 </div>
