@@ -46,13 +46,15 @@ public class ModelCreaterService {
 		System.out.println();
 		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Models count = " + mc.models.size());
 		System.out.println();
-		for (Tour model : mc.models) {
+		List<Tour> list = TourService.getToursWhere("status_id", "1", "en");
+		for (Tour model : list) {
 			System.out.println("=========================================================================");
 			System.out.println("MODEL : " + model.toString()+ ", countRequests = " + model.getCountRequests());
 		}
 	}
 
 	public void createModels() {
+		LOGGER.info("start createModels()");
 		// include tours like curentTour -> create 1 model
 		List<Tour> simpleTours = new ArrayList<Tour>();
 		Tour curentTour;
@@ -73,25 +75,28 @@ public class ModelCreaterService {
 	}
 
 	private void saveModels() {
+		LOGGER.info("start saveModels()");
 		int i = 1;
 		Integer modelId;
 		for (Tour model : models) {
 			System.out.println("********************************** Insert in DB model number " + i++);
-			
-			RequestToModel requestToModel = new RequestToModel();
 			modelId = TourService.insertTour(model);
+			
+			// set in DB requestToModel
+			RequestToModel requestToModel = new RequestToModel();			
 			
 			for (Tour request: model.getRequests()){
 				requestToModel.setRequest(request);
 //				requestToModel.setModel(model);
  
-				//requestToModel.setModel((TourService.getToursWhere("id", modelId+"", "en")).get(0));
+				requestToModel.setModel((TourService.getToursWhere("id", modelId+"", "en")).get(0));
 				RequestToModelServices.insertRequestToModel(requestToModel);
 			}			
 		}
 	}
 
 	private Tour createModel(List<Tour> simpleTours) {
+		LOGGER.info("start createModel by simpleTours");
 		Tour model = new Tour();
 		Set<Tour> requests = new HashSet<>();
 		

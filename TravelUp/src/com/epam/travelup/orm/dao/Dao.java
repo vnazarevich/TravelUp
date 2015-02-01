@@ -47,7 +47,7 @@ public class Dao<T>{
 			ResultSet set = statement.executeQuery();
 			set.next();
 			int id=set.getInt("id");
-			System.out.println("id: "+id);
+			//System.out.println("id: "+id);
 			return id;
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -72,11 +72,11 @@ public class Dao<T>{
 	}
 	public List<T> selectAll(){
 		ResultSet set = null;
-		System.out.println("Tablename: "+tableName);
+//		System.out.println("Tablename: "+tableName);
 		try (Connection connection=ConnectionManager.getConnection()){
 			String query = "Select * From "+tableName+";";
 			PreparedStatement statement = connection.prepareStatement(query);
-			System.out.println(query);
+//			System.out.println(query);
 			set = statement.executeQuery();
 			return new Transformer<T>(type, language).getModelList(set);
 		} catch (SQLException e) {
@@ -87,7 +87,7 @@ public class Dao<T>{
 
 	public List<T> selectAll(int offset, int rowCount){
 		ResultSet set = null;
-		System.out.println("Tablename: "+tableName);
+//		System.out.println("Tablename: "+tableName);
 		try (Connection connection=ConnectionManager.getConnection()){
 			String query="Select * From "+tableName+" LIMIT "+offset+","+rowCount+";";
 			PreparedStatement statement = connection.prepareStatement(query);
@@ -105,7 +105,7 @@ public class Dao<T>{
 		try(Connection connection=ConnectionManager.getConnection()) {
 			PreparedStatement statement = connection.prepareStatement("Select * From "+tableName+" Where "+attr+" "+equalitySign+" ?;");
 			statement.setString(1, value);
-			System.out.println(statement.toString());
+			//System.out.println(statement.toString());
 			set = statement.executeQuery();
 			return new Transformer<T>(type, language).getModelList(set);
 		} catch (SQLException e) {
@@ -124,7 +124,7 @@ public class Dao<T>{
 				}
 			}
 			builder.append(" ; ");
-			System.out.println(builder.toString());
+			//System.out.println(builder.toString());
 			PreparedStatement statement = connection.prepareStatement(builder.toString());
 			set = statement.executeQuery();
 			return new Transformer<T>(type, language).getModelList(set);
@@ -146,7 +146,7 @@ public class Dao<T>{
 			}
 			builder.append(" LIMIT "+offset+","+rowCount+"; ");
 			PreparedStatement statement = connection.prepareStatement(builder.toString());
-			System.out.println(builder);
+			//System.out.println(builder);
 			set = statement.executeQuery();
 			return new Transformer<T>(type, language).getModelList(set);
 		} catch (SQLException e) {
@@ -166,7 +166,7 @@ public class Dao<T>{
 			}
 			builder.append(" LIMIT "+offset+","+rowCount+"; ");
 			PreparedStatement statement = connection.prepareStatement(builder.toString());
-			System.out.println(builder);
+			//System.out.println(builder);
 			set = statement.executeQuery();
 			return new Transformer<T>(type, language).getModelList(set);
 		} catch (SQLException e) {
@@ -183,7 +183,7 @@ public class Dao<T>{
 			}
 			builder.append(attrs.get(attrs.size()-1)+"='"+values.get(attrs.size()-1)+"';");
 			PreparedStatement statement = connection.prepareStatement(builder.toString());
-			System.out.println(statement);
+			//System.out.println(statement);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -223,7 +223,7 @@ public class Dao<T>{
 //			}
 //		}
 		int size = attrs.size();
-		System.out.println("Attrs "+attrs.size()+"values "+values.size());
+		//System.out.println("Attrs "+attrs.size()+"values "+values.size());
 		StringBuilder builder = new StringBuilder("Insert into "+tableName+"(");
 		for(int i=0;i<size-1;i++){
 			builder.append(attrs.get(i));
@@ -247,12 +247,12 @@ public class Dao<T>{
 		if(value!=null&&value.getClass().getTypeName().equals(Boolean.class.getName())){
 			value=((boolean) value)?1:0;
 		}
-		System.out.println(builder);
+//		System.out.println(builder);
 		builder.append(value==null?"":"'");
 		builder.append(value);
 		builder.append(value==null?"":"'");
 		builder.append(");");
-		System.out.println(builder);
+//		System.out.println(builder);
 		try (Connection connection=ConnectionManager.getConnection()){
 			PreparedStatement statement = connection.prepareStatement(builder.toString(),Statement.RETURN_GENERATED_KEYS);
 			statement.executeUpdate();
@@ -289,7 +289,7 @@ public class Dao<T>{
 			}else{
 				statement.setString(1, updateValue);
 			}
-			System.out.println(statement);
+			//System.out.println(statement);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

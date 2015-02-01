@@ -112,9 +112,10 @@ public class Place {
 
 	@Override
 	public String toString() {
-		return "Place [id=" + id + ", info=" + info + ", type=" + type
-				+ ", region=" + region + ", xCoordinate=" + xCoordinate
-				+ ", yCoordinate=" + yCoordinate + ", photos=" + photos + "]";
+		return "";
+//		return "Place [id=" + id + ", info=" + info + ", type=" + type
+//				+ ", region=" + region + ", xCoordinate=" + xCoordinate
+//				+ ", yCoordinate=" + yCoordinate + ", photos=" + photos + "]";
 	}
 
 	

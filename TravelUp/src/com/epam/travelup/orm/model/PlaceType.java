@@ -45,7 +45,8 @@ public class PlaceType {
 	
 	@Override
 	public String toString() {
-		return "PlaceType [id=" + id + ", uaType=" + uaType + ", enType="
-				+ enType + "]";
+		return "";
+//		return "PlaceType [id=" + id + ", uaType=" + uaType + ", enType="
+//				+ enType + "]";
 	}
 }
