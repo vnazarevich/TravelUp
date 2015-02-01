@@ -11,8 +11,8 @@ public class Cart {
 	@DBKey(name = "user_id")
 	private User userId;
 
-	@DBKey(name = "admin_id")
-	private User adminId;
+	@DBKey(name = "tour_id")
+	private Tour tourId;
 
 	@DBField(name = "date")
 	private Date date;
@@ -20,33 +20,14 @@ public class Cart {
 	@DBField(name = "is_paid")
 	private boolean isPaid;
 
-	@DBField(name = "is_confirmed")
-	private boolean isConfirmed;
+	@DBField(name = "quantity")
+	private int quantity;
 
 	public Cart() {
 
 	}
 
-	public Cart(User userId, User adminId, Date date, boolean isPaid,
-			boolean isConfirmed) {
-		super();
-		this.userId = userId;
-		this.adminId = adminId;
-		this.date = date;
-		this.isPaid = isPaid;
-		this.isConfirmed = isConfirmed;
-	}
 
-	public Cart(int id, User userId, User adminId, Date date, boolean isPaid,
-			boolean isConfirmed) {
-		super();
-		this.id = id;
-		this.userId = userId;
-		this.adminId = adminId;
-		this.date = date;
-		this.isPaid = isPaid;
-		this.isConfirmed = isConfirmed;
-	}
 
 	public int getId() {
 		return id;
@@ -64,13 +45,7 @@ public class Cart {
 		this.userId = userId;
 	}
 
-	public User getAdminId() {
-		return adminId;
-	}
 
-	public void setAdminId(User adminId) {
-		this.adminId = adminId;
-	}
 
 	public Date getDate() {
 		return date;
@@ -88,19 +63,38 @@ public class Cart {
 		this.isPaid = isPaid;
 	}
 
-	public boolean isConfirmed() {
-		return isConfirmed;
+
+
+	public Tour getTourId() {
+		return tourId;
 	}
 
-	public void setConfirmed(boolean isConfirmed) {
-		this.isConfirmed = isConfirmed;
+
+
+	public void setTourId(Tour tourId) {
+		this.tourId = tourId;
 	}
+
+
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "User Id: " + this.getUserId() + "\n" + "Admin Id: "
-				+ this.getAdminId() + "\n" + "Date: " + this.getDate() + "\n"
-				+ "Is Paid: " + this.isPaid() + "\n" + "Is Confirmed: "
-				+ this.isConfirmed();
+		return "Cart [id=" + id + ", userId=" + userId + ", tourId=" + tourId
+				+ ", date=" + date + ", isPaid=" + isPaid + ", quantity="
+				+ quantity + "]";
 	}
+
+
 }

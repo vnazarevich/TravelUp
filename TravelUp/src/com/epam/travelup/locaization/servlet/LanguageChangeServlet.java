@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.epam.travelup.locaization.LanguageContainer;
+
 
 /**
  * Servlet implementation class LanguageChangeServlet
@@ -36,11 +38,13 @@ public class LanguageChangeServlet extends HttpServlet {
 			if (locale.equals("ua")) {
 				session.removeAttribute("lang");
 				session.setAttribute("langChange", locale);
+				LanguageContainer.SetLanguage("ua");
 			} else {
 				session.removeAttribute("lang");
 				session.setAttribute("langChange", "en");
+				LanguageContainer.SetLanguage("en");
 			}
-			
+
 		}
 		response.sendRedirect(request.getHeader("referer"));
 	}

@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.epam.travelup.locaization.LanguageContainer;
+import com.epam.travelup.orm.model.Cart;
 import com.epam.travelup.orm.model.Photo;
 import com.epam.travelup.orm.model.User;
+import com.epam.travelup.orm.service.CartService;
 import com.epam.travelup.orm.service.PhotoService;
 
 /**
@@ -38,6 +41,10 @@ public class StartUserServlet extends HttpServlet {
 		List<Photo> photos = PhotoService.getPhotosForUser(user.getId()+"");
 		System.out.println(photos);
 		session.setAttribute("userPhotos", photos);
+		String language = LanguageContainer.getBundle().getLocale().getLanguage();
+		List<Cart> orders = CartService.getCart(user.getId()+"", language);
+		System.out.println(orders);
+		request.setAttribute("orderList", orders);
 		request.getRequestDispatcher("pages/userPage.jsp").forward(request, response);
 	}
 
@@ -46,7 +53,7 @@ public class StartUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
-		
+
 		if(session.getAttribute("user") == null){
 			response.getWriter().write("0");
 		} else {

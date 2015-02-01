@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>${lang.getString("tourpage.page.tourlist")}</title>
@@ -15,7 +15,7 @@
 		$(function(){
 			var list1, list2;
 			function onClick(event) {
-		
+
 				$('#search-form').submit(function(e){
 					var basicSliderBounds = $("#sliderz").rangeSlider("values");
 					$("input[name='minprice']").val(basicSliderBounds.min);
@@ -25,41 +25,41 @@
 					$("input[name='check1']").val($('#check1').is(':checked'));
 					$("input[name='check2']").val($('#check2').is(':checked'));
 				});
-			
+
 				console.log($("input[name='key']").val());
-				console.log($("input[name='start-date']").val());	
-				console.log($("input[name='end-date']").val());	
+				console.log($("input[name='start-date']").val());
+				console.log($("input[name='end-date']").val());
 				var basicSliderBounds = $("#sliderz").rangeSlider("values");
-				console.log(basicSliderBounds.min + " " + basicSliderBounds.max);	
-				console.log(list1);	
-				console.log(list2);	
-				console.log($('#check1').is(':checked'));	
+				console.log(basicSliderBounds.min + " " + basicSliderBounds.max);
+				console.log(list1);
+				console.log(list2);
+				console.log($('#check1').is(':checked'));
 				console.log($('#check2').is(':checked'));
 			}
-			
-			$('#durlist a').click(function(e){    
+
+			$('#durlist a').click(function(e){
 				list1 = $(this).html();
-				$('#durbutton').html($(this).html() + '<span class="caret"></span>');    
+				$('#durbutton').html($(this).html() + '<span class="caret"></span>');
 			})
-			
-			$('#daylist a').click(function(e){    
+
+			$('#daylist a').click(function(e){
 				list2 = $(this).html();
-				$('#daybutton').html($(this).html() + '<span class="caret"></span>');    
+				$('#daybutton').html($(this).html() + '<span class="caret"></span>');
 			})
-			
+
 			$('.select-tour form').click(function(){
 				var id = $(this).find('.selecttour').val();
-				
+
 				$("input[name='selectedtour']").val(id);
 				$('#getdata-form').submit();
 				console.log('_a_' + id);
 			})
-		
+
 		// attach button click listener on dom ready
 			$(function() {
 			  $('#but').click(onClick);
 			});
-			
+
 			$(".addToCartBtn").click(function(e){
 				var response = "";
 				$.ajaxSetup({async: false});
@@ -89,9 +89,8 @@
             <jsp:include page="/pages/loginBox.jsp" />
             <jsp:include page="/pages/signupBox.jsp" />
 			<jsp:include page="/pages/placeBox.jsp" />
-			
 
-				 <div class="modal fade autoModal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade autoModal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
 						      <div class="modal-dialog">
 						        <div class="modal-content">
 						          <div class="modal-body">
@@ -104,7 +103,7 @@
 						        </div><!-- /.modal-content -->
 						      </div><!-- /.modal-dialog -->
 						    </div><!-- /.modal -->
-
+						    
             <section class="page-head-holder">
                 <div class="container">
                     <div class="col-xs-6">
@@ -128,16 +127,16 @@
                         <div class="row">
                             <div class="sidebar col-md-3  col-xs-12">
 
-						
+
                                 <div class="widget">
 
-								
+
                                     <h3 class="widget-title">${lang.getString("tourpage.page.search")}</h3>
 
                                     <div class="location-search-widget">
 										<form action="search_tour" class="location-search"  method="get"  id="search-form" accept-charset="UTF-8">
 
-                                        
+
                                             <div class="search-field">
                                                 <div class="destination-field">
                                                     <input id="destination" type="text" placeholder="search" name="key" />
@@ -177,8 +176,8 @@
                                       </form>
 
                                     </div>
-								
-								
+
+
                                 </div><!-- /.widget -->
                                 <!-- /.widget -->
 
@@ -193,10 +192,10 @@
 
                                     </div><!-- /.price-range-slider -->
                                 </div><!-- /.widget -->
-                                
+
                                 <div class="widget hotel-type-filter-widget">
                                     <h3 class="widget-title">${lang.getString("tourpage.filters.duration")}</h3>
-                                    
+
                                     <div class="btn-group btn-input clearfix">
 									  <button type="button" id="durbutton" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
 									    <span data-bind="label">${lang.getString("tourpage.page.search.choose")}</span> <span class="caret"></span>
@@ -210,13 +209,13 @@
 											 <li><a>11 - 14</a></li>
 									  </ul>
 									</div>
-                                    
+
                                 </div><!-- /.widget -->
-                                
+
                                 <div class="widget hotel-type-filter-widget">
 
                                     <h3 class="widget-title">${lang.getString("tourpage.filters.tourdays")}</h3>
-									
+
 									<div class="btn-group btn-input clearfix">
 									  <button type="button" id="daybutton" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
 									    <span data-bind="label">${lang.getString("tourpage.page.search.choose")}</span> <span class="caret"></span>
@@ -224,10 +223,10 @@
 									  <ul class="dropdown-menu" id="daylist" role="menu">
 									 		  <li><a>${lang.getString("tourpage.filters.tourdays.weekdays")}</a></li>
 											 <li><a>${lang.getString("tourpage.filters.tourdays.weekend")}</a></li>
-											 <li><a>${lang.getString("tourpage.filters.tourdays.no-matter")}</a></li>							 
+											 <li><a>${lang.getString("tourpage.filters.tourdays.no-matter")}</a></li>
 									  </ul>
 									</div>
-									            
+
                                 </div><!-- /.widget -->
 
                                 <div class="widget hotel-type-filter-widget">
@@ -241,7 +240,7 @@
 
                                 </div><!-- /.widget -->
 
-						
+
                             </div><!-- /.sidebar -->
 
                             <div class="contents grid-contents col-md-9 col-xs-12">
@@ -272,13 +271,13 @@
                                                         <h2 class="post-title"><a href="#" title="Your Tour Title Here">${tour.name.getName(lang.getLocale().getLanguage())} (<b><i>${tour.status}</i></b>)</a></h2>
 														<input type="hidden" class="selecttour" value="${tour.id}">
 													</form>
-														<c:if test="${user.isAdmin()}"> 
+														<c:if test="${user.isAdmin()}">
 															<button type="button" class="btn btn-default" aria-label="Left Align" >
 															  <span class="glyphicon glyphicon-edit" aria-hidden="true"> ${lang.getString("tourpage.page.edit")}</span>
 															</button>
                                                         </c:if>
                                                         <p>${lang.getString("tourpage.list.duration")}: ${tour.minDuration} ${lang.getString("tourpage.list.days")}.</p>
-                                                        
+
                                                         <b>${lang.getString("tourpage.list.date")}:</b>
 
                                                         <p>${tour.startDate} - ${tour.endDate}</p>
@@ -287,7 +286,7 @@
 
                                                     <div class="entry-meta"> <span class="review"><a href="#">${lang.getString("tourpage.list.comments")}</a></span>
                                                         <span class="go-detail"><a href="#">${lang.getString("tourpage.list.more")}</a></span>
-                                                    </div>	
+                                                    </div>
 
                                                 </div><!-- /.entry -->
                                             </div>
@@ -298,7 +297,7 @@
                          <span class="price">/ ${tour.minCapacity} ${lang.getString("tourpage.list.people")}</span>
                          <span class="price"><span class="higlight emphasize value">${tour.minPrice} ${lang.getString("tourpage.list.money")}</span></span>
                          <a data-toggle="modal" data-target="#placeBox" value="${tour.id}" class="button mini btn-block path-button">${lang.getString("tourpage.list.path")}</a>
-                         
+
                          <c:set var="test1" value="${lang.getString('tourpage.list.close')}"/>
                          <c:set var="test2" value="${tour.status}"/>
                          <c:choose>
