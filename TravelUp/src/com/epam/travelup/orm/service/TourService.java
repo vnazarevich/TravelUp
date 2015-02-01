@@ -52,8 +52,8 @@ public class TourService {
 		return tours;
 	}
 	
-	public static void insertTour(Tour tour){
-		new Dao<Tour>(Tour.class,"en").insert(tour);
+	public static int insertTour(Tour tour){
+		return new Dao<Tour>(Tour.class,"en").insert(tour);
 	}
 	
 }

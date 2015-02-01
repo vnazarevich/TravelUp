@@ -123,7 +123,7 @@ html[xmlns] .slides {
 /* Direction Nav */
 
 .flex-direction-nav {
-  *height:0;
+  height:0;
 }
 
 .flex-direction-nav a {

@@ -2,12 +2,13 @@ package com.epam.travelup.orm.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @DBTable(name = "tour")
 public class Tour {
 
 	@DBField(name = "id")
-	private int id;
+	private Integer id;
 
 	@DBKey(name = "guide_id")
 	private User guideId;
@@ -74,6 +75,9 @@ public class Tour {
 	//count of similar users requests, which used for creating model
 	private int countRequests;
 	
+	// include requests, from which model was created
+	private Set <Tour> requests;
+	
 	public Tour() {
 
 	}
@@ -90,7 +94,7 @@ public class Tour {
 
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -131,6 +135,14 @@ public class Tour {
 
 	public void setRoute_id(Route route_id) {
 		this.route = route_id;
+	}
+	
+	public Set<Tour> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(Set<Tour> requests) {
+		this.requests = requests;
 	}
 
 	public String getStatus() {
@@ -264,24 +276,24 @@ public class Tour {
 	@Override
 	public String toString() {
 		return "Tour id:" + this.getId() +
-			//	+ "Guide id: " + this.getGuideId() + 
-//				"\n" + "Photograph id: "
-//				+ this.getPhotographId() + "\n" + "Route id: "
-//				+ this.getRoute_id() + "\n" + "Status id: "
-//				+ this.getStatus() + "\n" + "Transport id: "
-//				+ this.getTransport() + "\n" + "Name: " + this.getName()
-//				+ "\n" + "Photographer required" + this.isPhotographRequired()
-//				+ "\n" + "Min age: " + this.getMinAge() + "\n" + "Max age: "
-//				+ this.getMaxAge() +
+				 "Guide id: " + this.getGuideId() + 
+				"\n" + "Photograph id: "
+				+ this.getPhotographId() + "\n" + "Route id: "
+				+ this.getRoute_id() + "\n" + "Status id: "
+				+ this.getStatus() + "\n" + "Transport id: "
+				+ this.getTransport() + "\n" + "Name: " + this.getName()
+				+ "\n" + "Photographer required" + this.isPhotographRequired()
+				+ "\n" + "Min age: " + this.getMinAge() + "\n" + "Max age: "
+				+ this.getMaxAge() +
 				"\n" + "Min capacity: "
 				+ this.getMinCapacity() + "\n" + "Max capacity: "
 				+ this.getMaxCapacity() + "\n" + "Min duration: "
 				+ this.getMinDuration() + "\n" + "Max duration: "
 				+ this.getMaxDuration() + "\n" + "Places: " 
 				
-				+ getPlacesId(this.getPlaces());
+			//	+ getPlacesId(this.getPlaces());
 		
-				//+ this.getPlaces();
+				+ this.getPlaces();
 	}
 	
 	private String getPlacesId (List<Place> list){
