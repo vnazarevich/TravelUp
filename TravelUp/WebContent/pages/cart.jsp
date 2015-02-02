@@ -18,26 +18,23 @@
                                        <div class="entry">
 
                                            <article class="entry-content select-tour">
-                                           <form>
-                                               <h2 class="post-title"><a href="#" title="Your Tour Title Here">${tour.name.getName(lang.getLocale().getLanguage())} (<b><i>${tour.status}</i></b>)</a></h2>
-											<input type="hidden" class="selecttour" value="${tour.id}">
+                                           <form action="tour">
+                                               <h2 class="post-title"><button type="submit" class="btn-link"><a>${tour.name.getName(lang.getLocale().getLanguage())} (<b><i>${tour.status}</i></b>)</a></button></h2>
+											<input type="hidden" class="selecttour" name="selectedtour" value="${tour.id}">
 										</form>
-											<c:if test="${user.isAdmin()}">
-												<button type="button" class="btn btn-default" aria-label="Left Align" >
-												  <span class="glyphicon glyphicon-edit" aria-hidden="true"> ${lang.getString("tourpage.page.edit")}</span>
-												</button>
-                                               </c:if>
+
                                                <p>${lang.getString("tourpage.list.duration")}: ${tour.minDuration} ${lang.getString("tourpage.list.days")}.</p>
 
                                                <b>${lang.getString("tourpage.list.date")}:</b>
 
                                                <p>${tour.startDate} - ${tour.endDate}</p>
+                                               <h5><b>Places required: </b>${order.getQuantity()}</h5>
 
                                            </article>
 
-                                           <div class="entry-meta"> <span class="review"><a href="#">${lang.getString("tourpage.list.comments")}</a></span>
-                                               <span class="go-detail"><a href="#">${lang.getString("tourpage.list.more")}</a></span>
-                                           </div>
+
+
+
 
                                        </div><!-- /.entry -->
                                       </div>
@@ -45,9 +42,8 @@
                                        <div class="col-md-2 right-column col-lg-3 no-margin">
                                            <div class="right-area">
 											<div class="book-holder">
-							                   <span class="price">/ ${tour.minCapacity} ${lang.getString("tourpage.list.people")}</span>
+							                   <span class="price">${tour.getUserCount()}/ ${tour.minCapacity} ${lang.getString("tourpage.list.people")}</span>
 							                <span class="price"><span class="higlight emphasize value">${tour.minPrice} ${lang.getString("tourpage.list.money")}</span></span>
-							                <a data-toggle="modal" data-target="#placeBox" value="${tour.id}" class="button mini btn-block path-button">${lang.getString("tourpage.list.path")}</a>
 
 							                <c:choose>
 							                <c:when test="${order.isPaid()}">
@@ -56,6 +52,9 @@
 											<c:otherwise>
 											<button class="button btn-block btn-success green pay-btn">
 												<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>Buy now!
+											</button>
+											<button class="button btn-block remove-btn">
+												<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Remove
 											</button>
 											</c:otherwise>
 											</c:choose>
@@ -68,13 +67,13 @@
                                </div>
 
                            </div><!-- /.content -->
-							<div class="modal fade autoModal" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal fade autoModal pay-modal" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
 						      <div class="modal-dialog">
 						        <div class="modal-content">
 						          <div class="modal-body">
 						           <div class="row">
 					    			<div class="span12" style="text-align: center;">
-							          <h4>${tour.name.getName(lang.getLocale().getLanguage())} (${order.getQuantity()}x${tour.minPrice}=${order.getQuantity()*tour.minPrice}${lang.getString("tourpage.list.money")} )</h4>
+							          <h4>${tour.name.getName(lang.getLocale().getLanguage())} (${tour.minPrice}${lang.getString("tourpage.list.money")})</h4>
 
 						          	</div>
 						          </div>
@@ -112,11 +111,23 @@
 											<div class="col-md-2 col-sm-2 col-xs-3">
 												<input  type="text" name="year" class="year form-control" maxlength="2" onkeypress="validate(event)"  placeholder="YY" required="required">
 											</div>
+
+										</div>
+
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-6">
+												<h4>Order places:</h4>
+											</div>
+											<div class="col-md-2 col-sm-2 col-xs-3">
+												<input  type="text" name="quantity" class="quantity form-control" maxlength="2" onkeypress="validate(event)"  placeholder="00" required="required">
+											</div>
+
 											<div class="col-md-4 col-sm-6 col-xs-12">
 												<label class="payment-error" style="color:#b94a48"></label>
 											</div>
 										</div>
-
+											 <div class="userCount" style="display:none">${order.getQuantity()}</div>
+											 <div class="capacity" style="display:none">${tour.minCapacity}</div>
 								           <button type="submit" class="btn btn-md btn-success green center-block" id="Pay">
 								          	Buy now
 								          </button>
@@ -126,7 +137,37 @@
 						        </div><!-- /.modal-content -->
 						      </div><!-- /.modal-dialog -->
 						    </div><!-- /.modal -->
+
+
+						     <c:if test="${!order.isPaid()}">
+							 <div class="modal fade autoModal remove-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+						      <div class="modal-dialog">
+						        <div class="modal-content">
+						          <div class="modal-body">
+						           <div class="row">
+					    			<div class="span12" style="text-align: center;">
+							          <h4>Are you sure, you want to remove the order?</h4>
+
+								          <button class="btn btn-md btn-success green confirm-delete-order">
+								          Yes
+								          </button>
+								          <button class="btn btn-md btn-link decline-delete-order" style="vertical-align: bottom;">
+								          No
+								          </button>
+								          <div class="order-id" style="display:none">${order.getId()}</div>
+
+						          	</div>
+						          </div>
+						          </div>
+						        </div><!-- /.modal-content -->
+						      </div><!-- /.modal-dialog -->
+						    </div><!-- /.modal -->
+                       </c:if>
+
+
                        </div><!-- /.row -->
+
+
 
      </c:forEach>
 </div>
@@ -153,6 +194,7 @@
 		}
 		return true;
 	}
+
 	function validateCVV(input){
 		if(input!=""){
 			if(input<100){
@@ -174,27 +216,57 @@
 		}
 	$(function(e){
 		$(".pay-btn").click(function(e){
-			$(this).parents(".order").find(".modal").modal();
+			$(this).parents(".order").find(".pay-modal").modal();
 		});
 
 		$(".payment-form").submit(function(){
 			var year=$(this).find(".year").val();
 			var month=$(this).find(".year").val();
 			var cvv = $(this).find(".cvv").val();
-			console.log(year);
+			var orderPlaces = $(this).find(".quantity").val();
+			var capacity = $(this).find(".capacity").html();
+			var userCount=$(this).find(".userCount").html();
+			var freePlaces=capacity-userCount;
+
+			if(orderPlaces>freePlaces){
+				$(".payment-error").html("Not enough places");
+				return false;
+			}
+
 			if(validateYear(year)==false||validateMonth(month)){
 				$(".payment-error").html("Wrong date format");
 				return false;
 			}
 			if(validateCVV(cvv)==false){
 				$(".payment-error").html("Wrong CVV format");
+				return false;
 			}
+
+
 
 			return true;
 		});
 
-		$(".year, .month").focus(function(e){
+		$(".year, .month, .quantity").focus(function(e){
 			$(this).parents(".payment-form").find(".payment-error").html("");
+		});
+
+		$(".remove-btn").click(function(e){
+			$(this).parents(".order").find(".remove-modal").modal();
+
+
+		});
+
+		$(".confirm-delete-order").click(function(e){
+			var orderId=$(this).parents(".modal").find(".order-id").html();
+			$.ajaxSetup({async: false});
+			 $.post('removeorder',{orderId:orderId} ,function() {
+		      });
+			 $(this).parents(".order").remove();
+		});
+
+		$(".decline-delete-order").click(function(e){
+			$(this).parents(".modal").modal("hide");
 		});
 	});
 

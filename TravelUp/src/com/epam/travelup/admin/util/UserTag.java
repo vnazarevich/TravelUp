@@ -5,12 +5,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javafx.scene.control.TabBuilder;
-
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
-
 import com.epam.travelup.orm.model.User;
 
 public class UserTag extends SimpleTagSupport {
@@ -21,74 +18,76 @@ public class UserTag extends SimpleTagSupport {
 	}
 
 	@Override
-	public void doTag() throws IOException{
-
+	public void doTag() throws IOException {
 		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-
 		String date = formatter.format(user.getDateOfRegistration());
-
 		StringBuilder tagBuilder = new StringBuilder();
-		//header
+		// header
 		tagBuilder.append("<div class='row'/>");
-		if(user.isAdmin()){
+		if (user.isAdmin()) {
 			tagBuilder.append("<div class='panel panel-primary'>");
-		}else{
-			if(user.isBanned()){
+		} else {
+			if (user.isBanned()) {
 				tagBuilder.append("<div class='panel panel-danger'>");
-			}else{
+			} else {
 				tagBuilder.append("<div class='panel panel-success'>");
 			}
 		}
 		tagBuilder.append("<div class='panel-heading'>");
-		tagBuilder.append("<h3 class='panel-title'>"+user.getLogin()+" "+(user.isAdmin()?"(admin) ":user.isBanned()?"(BANNED) ":""));
-		if(user.getPortfolio()!=null&&user.getPortfolio().isPhotographer()){
+		tagBuilder.append("<h3 class='panel-title'>"
+				+ user.getLogin()
+				+ " "
+				+ (user.isAdmin() ? "(admin) " : user.isBanned() ? "(BANNED) "
+						: ""));
+		if (user.getPortfolio() != null && user.getPortfolio().isPhotographer()) {
 			tagBuilder.append("<i class='fa fa-picture-o'></i> ");
 		}
-
-		if(user.getPortfolio()!=null&&user.getPortfolio().isGuide()){
+		if (user.getPortfolio() != null && user.getPortfolio().isGuide()) {
 			tagBuilder.append("<i class='fa fa-location-arrow'></i> ");
 		}
-
-
-		if(user.getPortfolio()!=null&&user.getPortfolio().isCarrier()){
+		if (user.getPortfolio() != null && user.getPortfolio().isCarrier()) {
 			tagBuilder.append("<i class='fa fa-bus'></i> ");
 		}
-
 		tagBuilder.append("</h3></div>");
-		//body
+		// body
 		tagBuilder.append("<div class='panel-body'>");
-
-
 		tagBuilder.append("<div class='col-md-8'>");
 		tagBuilder.append("<ui>");
-		tagBuilder.append("<li><b>"+user.getFirstName()+" "+user.getLastName()+"</b></li>");
-		tagBuilder.append("<li><b>Email: </b>"+user.getMail()+"</li>");
-		tagBuilder.append("<li><b>Registration date: </b>"+date+"</li>");
-
+		tagBuilder.append("<li><b>" + user.getFirstName() + " "
+				+ user.getLastName() + "</b></li>");
+		tagBuilder.append("<li><b>Email: </b>" + user.getMail() + "</li>");
+		tagBuilder.append("<li><b>Registration date: </b>" + date + "</li>");
 		tagBuilder.append("</ui>");
-
-
 		tagBuilder.append("</div>");
-
 		tagBuilder.append("<div class='col-md-4'>");
-
-		tagBuilder.append("<button class='btn btn-success btn-sm profile btn-block green' user-id='"+user.getId()+"'>Go to profile</button>");
-		if(!user.isAdmin()){
-			if(!user.isBanned()){
-				tagBuilder.append("<button  class='btn btn-danger btn-sm ban btn-block green' user-id='"+user.getId()+"'>Ban User</button>");
-			}else{
-				tagBuilder.append("<button  class='btn btn-warning btn-sm unban btn-block green' user-id='"+user.getId()+"'>Unban User</button>");
+		tagBuilder.append("<form method='get' action='userinfo'>");
+		tagBuilder.append("<input type='hidden' name='userId' value='"
+				+ user.getId() + "'>");
+		tagBuilder
+				.append("<button type='submit' class='btn btn-success btn-sm profile btn-block green' style='margin-top:5px'>Go to profile</button>");
+		tagBuilder.append("</form>");
+		if (!user.isAdmin()) {
+			if (!user.isBanned()) {
+				tagBuilder
+						.append("<button class='btn btn-danger btn-sm ban btn-block green' user-id='"
+								+ user.getId()
+								+ "' style='margin-top:5px'>Ban User</button>");
+			} else {
+				tagBuilder
+						.append("<button class='btn btn-warning btn-sm unban btn-block green' user-id='"
+								+ user.getId()
+								+ "' style='margin-top:5px'>Unban User</button>");
 			}
-			tagBuilder.append("<button class='btn btn-primary btn-sm admin btn-block green' user-id='"+user.getId()+"'>Set admin</button>");
+			tagBuilder
+					.append("<button class='btn btn-primary btn-sm admin btn-block green' user-id='"
+							+ user.getId()
+							+ "' style='margin-top:5px'>Set admin</button>");
 		}
-
-
-		tagBuilder.append("</div>");
-
 		tagBuilder.append("</div>");
 		tagBuilder.append("</div>");
 		tagBuilder.append("</div>");
-	    JspWriter out = getJspContext().getOut();
-	    out.println(tagBuilder.toString());
+		tagBuilder.append("</div>");
+		JspWriter out = getJspContext().getOut();
+		out.println(tagBuilder.toString());
 	}
 }
