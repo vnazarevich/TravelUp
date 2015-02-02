@@ -10,6 +10,15 @@ public class UserToTourService {
 	public static int getUserCountByTour(String tourId){
 		Dao<UserToTour> dao = new Dao<UserToTour>(UserToTour.class, "en");
 		List<UserToTour> usersToTour = dao.selectWhere("tour_id", tourId, "=");
-		return usersToTour.size();
+		int count = 0;
+		for(UserToTour userToTour:usersToTour){
+			count += userToTour.getQuantity();
+		}
+		return count;
+	}
+
+	public static int insert(UserToTour userToTour){
+		Dao<UserToTour> dao = new Dao<UserToTour>(UserToTour.class, "en");
+		return dao.insert(userToTour);
 	}
 }

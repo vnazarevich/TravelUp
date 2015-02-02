@@ -295,4 +295,33 @@ public class Dao<T>{
 			e.printStackTrace();
 		}
 	}
+
+	public void update(List<String> conditionAttrs, List<String> conditionValues, String updateAttr, String updateValue, String concatCondition){
+
+		try (Connection connection=ConnectionManager.getConnection()){
+			StringBuilder builder = new StringBuilder("Update "+tableName+" Set "+updateAttr+"=? Where ");
+			for (int i = 0; i < conditionAttrs.size(); i++) {
+				builder.append(conditionAttrs.get(i)+" = "+" ?");
+				if(i<conditionAttrs.size()-1){
+					builder.append(" "+concatCondition+" ");
+				}
+			}
+			builder.append(";");
+			PreparedStatement statement = connection.prepareStatement(builder.toString());
+
+			if(updateValue!=null&&(updateValue.equals("true")||updateValue.equals("false"))){
+				statement.setBoolean(1, Boolean.parseBoolean(updateValue));
+			}else{
+				statement.setString(1, updateValue);
+			}
+
+			for(int i=0; i<conditionValues.size();i++){
+				statement.setString(i+2,conditionValues.get(i));
+			}
+			//System.err.println(builder);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

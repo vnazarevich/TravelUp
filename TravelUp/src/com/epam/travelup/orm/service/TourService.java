@@ -20,6 +20,17 @@ public class TourService {
 		return tours;
 	}
 
+	public static Tour fillTourInformation(Tour tour, String lang){
+
+			tour.setPlaces(PlaceService.getPlacesForRoute(tour.getRoute_id().getId(), lang));
+			tour.setUserCount(UserToTourService.getUserCountByTour(tour.getId()+""));
+			if(tour.getMinCapacity()<tour.getUserCount()){
+				System.err.println("tour overflow!!!");
+			}
+
+		return tour;
+	}
+
 	public static List<Tour> getAllTours(String lang){
 		Dao<Tour> dao = new Dao<Tour>(Tour.class, lang);
 		List<Tour> tours = dao.selectAll();

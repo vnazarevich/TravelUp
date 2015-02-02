@@ -1,6 +1,9 @@
 package com.epam.travelup.orm.model;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 @DBTable(name = "cart")
 public class Cart {
@@ -27,7 +30,24 @@ public class Cart {
 
 	}
 
+	private static Comparator<Cart> comparator = new Comparator<Cart>() {
 
+		@Override
+		public int compare(Cart o1, Cart o2) {
+			if(o1.isPaid&&!o2.isPaid){
+				return 1;
+			}else if(!o1.isPaid&&o2.isPaid){
+				return -1;
+			}else {
+				return (int) (o2.date.getTime()-o1.date.getTime());
+			}
+
+		}
+	};
+
+	public static void sortByDate(List<Cart> carts){
+		Collections.sort(carts, comparator);
+	}
 
 	public int getId() {
 		return id;

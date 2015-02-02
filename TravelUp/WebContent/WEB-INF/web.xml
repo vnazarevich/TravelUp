@@ -248,5 +248,20 @@
   	<servlet-name>AddComment</servlet-name>
   	<url-pattern>/addcomment</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>BuyTour</servlet-name>
+    <servlet-class>com.epam.travelup.user.servlet.BuyTourServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BuyTour</servlet-name>
+    <url-pattern>/buytour</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>RemoveOrder</servlet-name>
+    <servlet-class>com.epam.travelup.user.servlet.RemoveOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveOrder</servlet-name>
+    <url-pattern>/removeorder</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -20,7 +20,7 @@ import com.epam.travelup.orm.service.TourService;
 
 public class SelectedTourServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,7 +37,7 @@ public class SelectedTourServlet extends HttpServlet {
 		String tourId = request.getParameter("selectedtour");
 		List<Tour> tours = TourService.getToursWhere("id", tourId, "en");
 		Tour tour = tours.get(0);
-		
+
 		List<String> placeCoordinats = new ArrayList<String>();
 		for(Place place:tour.getPlaces()){
 			placeCoordinats.add(place.getxCoordinate() + ", " + place.getyCoordinate());
@@ -50,7 +50,7 @@ public class SelectedTourServlet extends HttpServlet {
 		List<Comment> comments = TourService.getCommentsForTour(tourId, "en");
 		
 		Comment.sortByDate(comments);
-		
+
 		request.setAttribute("orig", origin);
 		request.setAttribute("dest", destination);
 		request.setAttribute("placecoordinats", placeCoordinats);
