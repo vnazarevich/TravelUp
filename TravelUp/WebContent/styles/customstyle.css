@@ -101,5 +101,11 @@
 		 
 		        padding: 0px
 		      }
-		      
+		  
+		 .center-button {
+		 	width: 160px;
+		 	margin-top: 30px;
+		 	margin-left: auto;
+		 	margin-right: auto;
+		 }
 		      

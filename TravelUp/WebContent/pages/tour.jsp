@@ -28,7 +28,8 @@
 		    $(function(){
 		    	
 		    	$('#comment-button').click(function(e){
-		    		e.preventDefault(); 
+		    		e.preventDefault();
+		    		if($("input[name='comment']").val() != ""){
 		    		var d = new Date();
 		    		var text = $("input[name='comment']").val();
 		    		$("input[name='date']").val(d.toLocaleString());
@@ -37,6 +38,8 @@
 		    		
 		    		var text = $("input[name='comment']").val();
 		    		$(".actionBox ul").prepend('<li><div class="commenterImage"><c:choose><c:when test="${sessionScope.user.picture=='null'}"><img src="images/avatar_default.jpg"/></c:when><c:otherwise><img src="${initParam["imagesPath"]}${sessionScope.user.getPicture()}" /></c:otherwise></c:choose><div class="userNameComment">${sessionScope.user.firstName}</div></div><div class="commentText"><p class="">' + text +'</p><span class="date sub-text">' + d.toLocaleString() + '</span></div></li>');		    		
+		    		$("input[name='comment']").val("");
+		    		}
 		    	});
 		    	
 		    	
@@ -266,7 +269,17 @@
                     </div><!-- /.contents-wrapper -->
 
                 </div>
-
+                
+                
+                <div class="center-button">
+						<c:set var="test1" value="${lang.getString('tourpage.list.close')}"/>
+                         <c:set var="test2" value="${tour.status}"/>
+                         <c:choose>
+           					<c:when test="${test1 != test2}">
+                         		<a id="addToCartBtn" class="addToCartBtn button btn-block"><span class="glyphicon glyphicon-ok"></span> ${lang.getString("tourpage.list.cart")}</a>
+                       		</c:when>
+                       	</c:choose>
+					</div>
 
             </section><!-- /#hotels.section -->
 
