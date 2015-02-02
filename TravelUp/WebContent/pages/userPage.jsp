@@ -47,7 +47,7 @@
 			<input type="file" id="avatarInput" class="form-control" name="image" onchange="readImage(this);" style="display:none" accept="image/*"/>
 			</form>
 				<c:choose>
-				<c:when test="${user.getPicture()=='null'}">
+				<c:when test="${user.getPicture()==null}">
 			      <img id="avatar-main" src="images/avatar_default.jpg" alt="..." class="img-rounded" >
 			     </c:when>
 			     <c:otherwise>
