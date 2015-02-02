@@ -27,11 +27,16 @@
 		    
 		    $(function(){
 		    	
-		    	$('#comment-form').submit(function(e){
+		    	$('#comment-button').click(function(e){
+		    		e.preventDefault(); 
 		    		var d = new Date();
-		    		
-		    		console.log(d.toLocaleString());
+		    		var text = $("input[name='comment']").val();
 		    		$("input[name='date']").val(d.toLocaleString());
+		    		
+		    		$.ajax({type: "POST",url: "addcomment", data: { comment: $("input[name='comment']").val(), tourId: $("input[name='tourId']").val(), date: d.toLocaleString()},success:function(result){ }});
+		    		
+		    		var text = $("input[name='comment']").val();
+		    		$(".actionBox ul").prepend('<li><div class="commenterImage"><c:choose><c:when test="${sessionScope.user.picture=='null'}"><img src="images/avatar_default.jpg"/></c:when><c:otherwise><img src="${initParam["imagesPath"]}${sessionScope.user.getPicture()}" /></c:otherwise></c:choose><div class="userNameComment">${sessionScope.user.firstName}</div></div><div class="commentText"><p class="">' + text +'</p><span class="date sub-text">' + d.toLocaleString() + '</span></div></li>');		    		
 		    	});
 		    	
 		    	
@@ -209,16 +214,22 @@
 								      <label>Коментарі</label>
 								    </div>
 								    <div class="actionBox">
-								     <form class="form-inline" id="comment-form" role="form" action="addcomment" method="post">
+								    <c:choose>
+								     <c:when test="${sessionScope.user==null}">
+								     </c:when>
+								     <c:otherwise>
+								     	<form class="form-inline" id="comment-form" role="form" action="addcomment" method="post">
 								            <div class="form-group">
 								                <input name="comment" class="form-control" type="text" placeholder="Додайте коментар" />
 								                <input name="tourId" value="${tour.id}" type="hidden">
 								                <input name="date" type="hidden" value="">
 								            </div>
 								            <div class="form-group">
-								                <button class="btn btn-default" >Додати</button>
+								                <button class="btn btn-default" id="comment-button" >Додати</button>
 								            </div>
 								        </form>
+								     </c:otherwise>
+								     </c:choose>
 								    	<br>
 								        <ul class="commentList">
 								           <c:forEach var="comment" items="${comments}">
