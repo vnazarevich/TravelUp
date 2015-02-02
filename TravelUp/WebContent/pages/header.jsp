@@ -129,7 +129,7 @@
                             <li><a href="tours"><i class="fa fa-bus"></i> ${lang.getString('menu.tours')}</a></li>
                             <li><a href="request"><i class="fa fa-location-arrow"></i> ${lang.getString('menu.sendrequest')}</a></li>
                             <li><a href="#"><i class="fa fa-map-marker"></i> ${lang.getString('menu.places')}</a></li>
-                            <li><a href="#"><i class="fa fa-picture-o"></i> ${lang.getString('menu.gallery')}</a></li>
+                            <li><a href="gallery"><i class="fa fa-picture-o"></i> ${lang.getString('menu.gallery')}</a></li>
                           <li><a href="#"><i class="fa fa-youtube-play"></i> ${lang.getString('menu.video')}</a></li>
                           <li><a href="#"><i class="fa fa-line-chart"></i> ${lang.getString('menu.about')}</a></li>
                           <c:if test="${sessionScope.user!=null}">

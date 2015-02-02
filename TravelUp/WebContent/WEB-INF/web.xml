@@ -240,4 +240,12 @@
     <param-name>imagesPath</param-name>
     <param-value>images/upload/</param-value>
   </context-param>
+  <servlet>
+    <servlet-name>Gallery</servlet-name>
+    <servlet-class>com.epam.travelup.multimedia.servlet.Gallery</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Gallery</servlet-name>
+    <url-pattern>/gallery </url-pattern>
+  </servlet-mapping>
 </web-app>
