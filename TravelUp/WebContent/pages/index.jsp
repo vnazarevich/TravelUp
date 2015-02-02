@@ -58,7 +58,7 @@
                         <div class="entry-content">
 
                             <p>Integer sollicitudin ligula non enim sodales, non lacinia nunc ornare. Sed commodo tempor dapibus.<br /> Duis convallis turpis in tortor volutpat, eget rhoncus nisi fringilla. Phasellus ornare risus in euismod varius nullam feugiat ultrices.<br /> Sed condimentum est libero, aliquet iaculis diam bibendum ullamcorper.</p>
-<br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br />
 
 
                         </div>
@@ -67,6 +67,7 @@
 
 
                     <center><a class="button" href="#">${lang.getString("mainpage.startbutton")}</a></center>
+                    <br /><br />
 
 
 
