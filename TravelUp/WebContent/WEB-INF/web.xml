@@ -248,12 +248,20 @@
     <servlet-name>BuyTour</servlet-name>
     <url-pattern>/buytour</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>RemoveOrder</servlet-name>
     <servlet-class>com.epam.travelup.user.servlet.RemoveOrderServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RemoveOrder</servlet-name>
     <url-pattern>/removeorder</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>UserInfo</servlet-name>
+    <servlet-class>com.epam.travelup.admin.servlet.UserInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserInfo</servlet-name>
+    <url-pattern>/userinfo</url-pattern>
   </servlet-mapping>
 </web-app>

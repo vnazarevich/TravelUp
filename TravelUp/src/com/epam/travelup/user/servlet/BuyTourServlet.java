@@ -63,7 +63,8 @@ public class BuyTourServlet extends HttpServlet {
 				request.setAttribute("isPaid", "error");
 			}
 		}
-		request.getRequestDispatcher("/userpage").forward(request, response);
+		//request.getRequestDispatcher("/userpage").forward(request, response);
+		response.sendRedirect("userpage");
 	}
 
 }
