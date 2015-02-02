@@ -43,7 +43,7 @@
                             <ul class="hidden-xs hidden-sm hidden-md">
 
                                 <li class="menu-item customers">
-                                    <a href="#"><i class="fa fa-users"></i> Customers</a>
+                                    <a href="search_user"><i class="fa fa-users"></i> Users</a>
                                 </li>
 
                                 <li class="menu-item suppliers">
@@ -62,8 +62,8 @@
                             <select class="top-drop-menu nav visible-sm visible-xs visible-md">
                                  <optgroup label="Admin Panel">
 
-                                    <option value="#">
-                                        Customers
+                                    <option value="search_user">
+                                        Users
                                     </option>
                                     <option value="#">
                                         Suppliers

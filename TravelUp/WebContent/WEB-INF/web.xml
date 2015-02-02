@@ -8,7 +8,7 @@
     <servlet-name>ActivationAccount</servlet-name>
     <servlet-class>com.epam.travelup.signup.servlet.ActivationAccountServlet</servlet-class>
   </servlet>
-<servlet>
+  <servlet>
     <servlet-name>DeletePortfolio</servlet-name>
     <servlet-class>com.epam.travelup.user.servlet.DeletePortfolioServlet</servlet-class>
   </servlet>
@@ -172,7 +172,7 @@
     <servlet-name>EditPortfolio</servlet-name>
     <url-pattern>/editportfolio</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>DeletePortfolio</servlet-name>
     <url-pattern>/deleteportfolio</url-pattern>
   </servlet-mapping>
@@ -192,7 +192,7 @@
     <servlet-name>SaveRequest</servlet-name>
     <url-pattern>/saverequest </url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>SelectedTour</servlet-name>
     <url-pattern>/tour</url-pattern>
   </servlet-mapping>
@@ -247,5 +247,37 @@
   <servlet-mapping>
     <servlet-name>Gallery</servlet-name>
     <url-pattern>/gallery </url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>AddComment</servlet-name>
+  	<servlet-class>com.epam.travelup.tour.servlet.AddCommentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddComment</servlet-name>
+  	<url-pattern>/addcomment</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>BuyTour</servlet-name>
+    <servlet-class>com.epam.travelup.user.servlet.BuyTourServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BuyTour</servlet-name>
+    <url-pattern>/buytour</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RemoveOrder</servlet-name>
+    <servlet-class>com.epam.travelup.user.servlet.RemoveOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveOrder</servlet-name>
+    <url-pattern>/removeorder</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>UserInfo</servlet-name>
+    <servlet-class>com.epam.travelup.admin.servlet.UserInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserInfo</servlet-name>
+    <url-pattern>/userinfo</url-pattern>
   </servlet-mapping>
 </web-app>
