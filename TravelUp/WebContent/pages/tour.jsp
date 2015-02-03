@@ -12,29 +12,35 @@
         <jsp:include page="/pages/styles.jsp" />
 		
 		 <style>
-		 .in-same-line h2{
-		 	text-align:left;
-		 	float:left;
-		 }
-		 .image-container .img-responsive {
-           
-           height: 100px;
- 		   width: 160px;
-        }
 		 
-		 
-		      #map-canvas {
-		        height: 350px;
-		        width: 500px;
-		        margin-left: auto;
-		        margin-right: auto;
-		 
-		        padding: 0px
-		      }
-		    </style>
+			 .image-container .img-responsive {
+	           
+	           height: 100px;
+	 		   width: 160px;
+	        }
+			 
+			 .entry {
+			 border: 1px solid #e0e5e9;
+			 }  
+		 </style>
 		    <script>
 		    
 		    $(function(){
+		 
+		    	$('#comment-button').click(function(e){
+		    				    		e.preventDefault(); 
+		    				    		var d = new Date();
+		    				    		
+		    				    		var text = $("input[name='comment']").val();
+		    				    		$("input[name='date']").val(d.toLocaleString());
+
+		    				    		$.ajax({type: "POST",url: "addcomment", data: { comment: $("input[name='comment']").val(), tourId: $("input[name='tourId']").val(), date: d.toLocaleString()},success:function(result){ }});
+		    				    				    		
+		    				    		var text = $("input[name='comment']").val();
+		    				       		$(".actionBox ul").prepend('<li><div class="commenterImage"><c:choose><c:when test="${sessionScope.user.picture=='null'}"><img src="images/avatar_default.jpg"/></c:when><c:otherwise><img src="${initParam["imagesPath"]}${sessionScope.user.getPicture()}" /></c:otherwise></c:choose><div class="userNameComment">${sessionScope.user.firstName}</div></div><div class="commentText"><p class="">' + text +'</p><span class="date sub-text">' + d.toLocaleString() + '</span></div></li>');		    		
+		    				    	});
+		    				    	
+		    	
 		    	$('ul.user-gallery li img').on('click',function(){
 		            var src = $(this).attr('src');
 		            var img = '<img src="' + src + '" class="img-responsive"/>';
@@ -147,7 +153,9 @@
 								
 							<div class="entry">
 								<article class="entry-content">
+								
 								<h2>Опис:</h2>							
+								
 									<c:forEach var="place" items="${tour.places}"> 
 										<p><c:out value="${place.info.getDescription(lang.getLocale().getLanguage())}"></c:out></p>
 									</c:forEach>
@@ -180,11 +188,10 @@
                                                 <div class="entry">
                                                     <article class="entry-content">
                                                     <h2>Шлях:</h2>
-                                                    <-
+                                                    &rarr;
                                                     <c:forEach var="place" items="${tour.places}">
-                                                        <a href="#" ><b>${place.type.getType(lang.getLocale().getLanguage())} ${place.info.getName(lang.getLocale().getLanguage())}</b></a> -
+                                                        <a href="#" ><b>${place.type.getType(lang.getLocale().getLanguage())} ${place.info.getName(lang.getLocale().getLanguage())}</b></a> &rarr;
 														</c:forEach>
-														>
                                                     </article>
                                             <article class="entry-content">
                                             <h2>Фотографії:</h2>       
@@ -197,13 +204,64 @@
 		                                     </c:forEach>
 		                                    </ul>
 
-                                        		</div><!-- /.entry -->
+                                        </div><!-- /.entry -->
                                             
                                         </div>
 
                                     </div><!-- /.content -->
 
-                                </div><!-- /.row -->
+                               
+
+								<div class="detailBox">
+					   				 <div class="titleBox">
+								      <label>Коментарі</label>
+								    </div>
+								    <div class="actionBox">
+								    	<c:choose>
+								     <c:when test="${sessionScope.user==null}">
+								     </c:when>
+								     <c:otherwise>
+								     	<form class="form-inline" id="comment-form" role="form" action="addcomment" method="post">
+								            <div class="form-group">
+								                <input name="comment" class="form-control" type="text" placeholder="Додайте коментар" />
+								                <input name="tourId" value="${tour.id}" type="hidden">
+								                <input name="date" type="hidden" value="">
+								            </div>
+								            <div class="form-group">
+								              <button class="btn btn-default" id="comment-button" >Додати</button>
+								            </div>
+								        </form>
+								     </c:otherwise>
+								     </c:choose>
+								    	<br>
+								        <ul class="commentList">
+								           <c:forEach var="comment" items="${comments}">
+								            <li>
+								                <div class="commenterImage">
+								                <c:choose>
+								                	<c:when test="${comment.userId.picture == 'null'}">
+								                	  <img src="images/avatar_default.jpg" />
+								                	</c:when>
+								                	<c:otherwise>
+								                		<img src="${initParam['imagesPath']}${comment.userId.getPicture()}" />
+								                	</c:otherwise>
+								                </c:choose>
+								                <div class="userNameComment">
+								                ${comment.userId.firstName}
+							                </div>
+								                </div>
+								                <div class="commentText">
+								                    <p class="">${comment.text}</p> <span class="date sub-text">${comment.date}</span>
+								
+								                </div>
+								            </li>
+								            </c:forEach>
+								        </ul>								       
+							    </div>
+								</div>
+		
+                         </div><!-- /.row -->
+
 
                             </div><!-- /.contents.grid-contents -->
 

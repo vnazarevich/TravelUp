@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.epam.travelup.orm.dao.Dao;
+import com.epam.travelup.orm.model.Comment;
 import com.epam.travelup.orm.model.Tour;
 
 public class TourService {
@@ -65,5 +66,12 @@ public class TourService {
 	public static int insertTour(Tour tour){
 		return new Dao<Tour>(Tour.class,"en").insert(tour);
 	}
+	
+	public static List<Comment> getCommentsForTour(String id, String lang){
+				Dao<Comment> dao = new Dao<>(Comment.class, lang);
+				List<Comment> comments = dao.selectWhere("tour_id", id, "=");
+				System.out.println(comments);
+				return comments;
+			}
 
 }
