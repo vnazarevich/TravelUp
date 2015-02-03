@@ -31,4 +31,17 @@ public class PlaceService {
 		List<Place> places = dao.selectAll();
 		return places;
 	}
+
+	public static List<Place> getPlacesWhere(String attr, String value, String lang){
+		Dao<Place> dao = new Dao<Place>(Place.class, lang);
+		List<Place> places = dao.selectWhere(attr, value, "=");
+		return fillTourInformation(places, lang);
+	}
+
+	private static List<Place> fillTourInformation(List<Place> places, String lang){
+		for(Place curPlace: places){
+			curPlace.setPhotos(PhotoService.getPhotosForPlace(curPlace.getId(), lang));
+		}
+		return places;
+	}
 }
