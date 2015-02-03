@@ -37,8 +37,8 @@ public class Place {
 	@DBKey(name="type_id")
 	private PlaceType type;
 
-	@DBField(name="region_id")
-	private int region;
+	@DBKey(name="region_id")
+	private Region region;
 
 	@DBField(name="x_coordinate")
 	private String xCoordinate;
@@ -77,11 +77,11 @@ public class Place {
 		this.info = info;
 	}
 
-	public int getRegion() {
+	public Region getRegion() {
 		return region;
 	}
 
-	public void setRegion(int region) {
+	public void setRegion(Region region) {
 		this.region = region;
 	}
 
