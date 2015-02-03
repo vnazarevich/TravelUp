@@ -1,9 +1,12 @@
 package com.epam.travelup.orm.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.epam.travelup.orm.dao.Dao;
+import com.epam.travelup.orm.model.Portfolio;
 import com.epam.travelup.orm.model.User;
 import com.epam.travelup.orm.transformer.Transformer;
 
@@ -65,6 +68,33 @@ public class UserService {
 		Dao<User> dao = new Dao<User>(User.class,"en");
 		dao.update("id", id	, attr, value);
 	}
+	public static Map<String,List<User>> getSpecialists(){
+		Dao<User> dao = new Dao<User>(User.class,"en");
+		List<User> users = dao.selectAll();
+		List<User> guides = new ArrayList<User>();
+		List<User> photographers = new ArrayList<User>();
+		List<User> transporters = new ArrayList<User>();
+		for(User user:users){
+			Portfolio portfolio = user.getPortfolio();
+			if(portfolio!=null){
+				if(portfolio.isGuide()){
+					guides.add(user);
+				}
+				if(portfolio.isPhotographer()){
+					photographers.add(user);
+				}
+				if(portfolio.isCarrier()){
+					transporters.add(user);
+				}
+			}
+		}
+		Map<String,List<User>> specialists = new HashMap<String, List<User>>();
+		specialists.put("photographers", photographers);
+		specialists.put("guides", guides);
+		specialists.put("transporters", transporters);
+		return specialists;
+	}
+
 
 	public static void main(String[] args) {
 		banUser("1");

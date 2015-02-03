@@ -281,10 +281,18 @@
     <url-pattern>/userinfo</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>CreateTour</servlet-name>
+    <servlet-class>com.epam.travelup.admin.servlet.StartCreateTourServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateTour</servlet-name>
+    <url-pattern>/createtour</url-pattern>
+    </servlet-mapping>
+  <servlet>
     <servlet-name>SelectedPlace</servlet-name>
     <servlet-class>com.epam.travelup.place.servlet.SelectedPlaceServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
+   <servlet-mapping>
     <servlet-name>SelectedPlace</servlet-name>
     <url-pattern>/place</url-pattern>
   </servlet-mapping>
