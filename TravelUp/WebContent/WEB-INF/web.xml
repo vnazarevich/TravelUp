@@ -280,4 +280,12 @@
     <servlet-name>UserInfo</servlet-name>
     <url-pattern>/userinfo</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>SelectedPlace</servlet-name>
+  	<servlet-class>com.epam.travelup.place.servlet.SelectedPlaceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SelectedPlace</servlet-name>
+  	<url-pattern>/place</url-pattern>
+  </servlet-mapping>
 </web-app>

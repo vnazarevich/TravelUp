@@ -338,7 +338,7 @@
 
             </section><!-- /#hotels.section -->
 
-            <jsp:include page="/pages/footer.jsp" />
+            <jsp:include page="/pages/footer_black.jsp" />
            <!-- /#footer -->
 
         </div><!-- /#site -->

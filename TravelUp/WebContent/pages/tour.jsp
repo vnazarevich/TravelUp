@@ -13,8 +13,7 @@
 		
 		 <style>
 		 
-			 .image-container .img-responsive {
-	           
+			 .image-container .img-responsive {      
 	           height: 100px;
 	 		   width: 160px;
 	        }
@@ -28,18 +27,29 @@
 		    $(function(){
 		 
 		    	$('#comment-button').click(function(e){
-		    				    		e.preventDefault(); 
-		    				    		var d = new Date();
+		    		    		e.preventDefault(); 
+		    			    	if($("input[name='comment']").val() != ""){
+		    			    		var d = new Date();
 		    				    		
-		    				    		var text = $("input[name='comment']").val();
-		    				    		$("input[name='date']").val(d.toLocaleString());
+		    			    		var text = $("input[name='comment']").val();
+		    			    		$("input[name='date']").val(d.toLocaleString());
 
-		    				    		$.ajax({type: "POST",url: "addcomment", data: { comment: $("input[name='comment']").val(), tourId: $("input[name='tourId']").val(), date: d.toLocaleString()},success:function(result){ }});
-		    				    				    		
-		    				    		var text = $("input[name='comment']").val();
-		    				       		$(".actionBox ul").prepend('<li><div class="commenterImage"><c:choose><c:when test="${sessionScope.user.picture=='null'}"><img src="images/avatar_default.jpg"/></c:when><c:otherwise><img src="${initParam["imagesPath"]}${sessionScope.user.getPicture()}" /></c:otherwise></c:choose><div class="userNameComment">${sessionScope.user.firstName}</div></div><div class="commentText"><p class="">' + text +'</p><span class="date sub-text">' + d.toLocaleString() + '</span></div></li>');		    		
-		    				    	});
+		    			    		$.ajax({type: "POST",url: "addcomment", data: { comment: $("input[name='comment']").val(), tourId: $("input[name='tourId']").val(), date: d.toLocaleString()},success:function(result){ }});
+		    			    				    		
+		    			    		var text = $("input[name='comment']").val();
+		    			       		$(".actionBox ul").prepend('<li><div class="commenterImage"><c:choose><c:when test="${sessionScope.user.picture=='null'}"><img src="images/avatar_default.jpg"/></c:when><c:otherwise><img src="${initParam["imagesPath"]}${sessionScope.user.getPicture()}" /></c:otherwise></c:choose><div class="userNameComment">${sessionScope.user.firstName}</div></div><div class="commentText"><p class="">' + text +'</p><span class="date sub-text">' + d.toLocaleString() + '</span></div></li>');		    		
+		    			       		$("input[name='comment']").val("");
+		    			    	}
+		    			    });
 		    				    	
+		    	$('.select-place form').click(function(){
+					var id = $(this).find('.selectplace').val();
+
+					$("input[name='selectedplace']").val(id);
+					$('#getdata-form').submit();
+					console.log('_a_' + id);
+				})
+		    	
 		    	
 		    	$('ul.user-gallery li img').on('click',function(){
 		            var src = $(this).attr('src');
@@ -177,7 +187,9 @@
 
                             <div class="contents grid-contents col-md-6 col-xs-12">
 
-				
+							<form id="getdata-form" action="place" method="get">
+							<input type="hidden" id="selectedplaceid" name="selectedplace" value="">
+							</form>
 
                                 <div class="row">
 
@@ -186,11 +198,14 @@
                                         <div class="inner">
 
                                                 <div class="entry">
-                                                    <article class="entry-content">
+                                                    <article class="entry-content select-place">
                                                     <h2>Шлях:</h2>
                                                     &rarr;
                                                     <c:forEach var="place" items="${tour.places}">
-                                                        <a href="#" ><b>${place.type.getType(lang.getLocale().getLanguage())} ${place.info.getName(lang.getLocale().getLanguage())}</b></a> &rarr;
+                                                        <form style="display: inline-block;">
+                                                        <a ><b>${place.type.getType(lang.getLocale().getLanguage())} ${place.info.getName(lang.getLocale().getLanguage())}</b></a> &rarr;
+														<input type="hidden" class="selectplace" value="${place.id}">
+														</form>
 														</c:forEach>
                                                     </article>
                                             <article class="entry-content">
@@ -271,10 +286,19 @@
 
                 </div>
 
+               <div class="center-button">
+						<c:set var="test1" value="${lang.getString('tourpage.list.close')}"/>
+                         <c:set var="test2" value="${tour.status}"/>
+                         <c:choose>
+           					<c:when test="${test1 != test2}">
+                         		<a id="addToCartBtn" class="addToCartBtn button btn-block"><span class="glyphicon glyphicon-ok"></span> ${lang.getString("tourpage.list.cart")}</a>
+                       		</c:when>
+                       	</c:choose>
+					</div>
 
             </section><!-- /#hotels.section -->
 
-            <jsp:include page="/pages/footer.jsp" />
+            <jsp:include page="/pages/footer_black.jsp" />
            <!-- /#footer -->
 
         </div><!-- /#site -->
