@@ -25,4 +25,10 @@ public class PlaceService {
 		}
 		return placesForRoute;
 	}
+
+	public static List<Place> getAll(String lang){
+		Dao<Place> dao = new Dao<Place>(Place.class, lang);
+		List<Place> places = dao.selectAll();
+		return places;
+	}
 }

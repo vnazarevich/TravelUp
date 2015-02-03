@@ -280,4 +280,12 @@
     <servlet-name>UserInfo</servlet-name>
     <url-pattern>/userinfo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>CreateTour</servlet-name>
+    <servlet-class>com.epam.travelup.admin.servlet.StartCreateTourServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateTour</servlet-name>
+    <url-pattern>/createtour</url-pattern>
+  </servlet-mapping>
 </web-app>
