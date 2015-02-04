@@ -41,7 +41,13 @@ public class TourService {
 		List<Tour> tours = dao.selectWhere("status_id", "4", "=");
 
 		return fillTourInformation(tours, "en");
+	}
+	
+	public static List<Tour> getTourMackets(){
+		Dao<Tour> dao = new Dao<>(Tour.class, "en");
+		List<Tour> tours = dao.selectWhere("status_id", "1", "=");
 
+		return fillTourInformation(tours, "en");
 	}
 	public static List<Tour> getSimpleTours(String lang){
 		List<String> attrs = new ArrayList<String>();

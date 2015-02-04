@@ -36,6 +36,8 @@
 				console.log($('#check1').is(':checked'));
 				console.log($('#check2').is(':checked'));
 			}
+			
+			
 
 			$('#durlist a').click(function(e){
 				list1 = $(this).html();
@@ -226,21 +228,18 @@
 											 <li><a>${lang.getString("tourpage.filters.tourdays.no-matter")}</a></li>
 									  </ul>
 									</div>
+									
+								</div><!-- /.widget -->
+								
+							<form action="tours" class="location-search"  method="get"  id="request-form" accept-charset="UTF-8">
+								<c:if test="${user.isAdmin()}">
+									<div class="search-field">
 
-                                </div><!-- /.widget -->
-
-                                <div class="widget hotel-type-filter-widget">
-                                    <h3 class="widget-title">${lang.getString("tourpage.filters.region")}</h3>
-                                    <form >
-                                        <ul>
-                                            <li><input id="check1" type="checkbox" /><label>Карпати</label></li>
-                                            <li><input id="check2" type="checkbox" /><label>Крим наш</label></li>
-                                        </ul>
-                                    </form>
-
-                                </div><!-- /.widget -->
-
-
+                                                <input type="submit" class="button wide-fat" value="Requests/Tours" name="button" id="but" />
+												<input id="forcheck" value="0" type="hidden">
+                                     </div><!-- /.search-field -->
+                                	</c:if>	
+                                	</form>
                             </div><!-- /.sidebar -->
 
                             <div class="contents grid-contents col-md-9 col-xs-12">

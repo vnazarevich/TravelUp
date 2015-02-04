@@ -28,12 +28,13 @@
 		 var array = ${placecoordinats};
 		 var desc = ${description};
 		    var markers = [];
-		    
+		    var y = 0;
 		    function createMarkers() {
 		    	for (var i = 0; i < array.length; i+=2) {		
 		    		var lat = parseFloat(array[i]);
 		    		var lng = parseFloat(array[i+1]);
-		    		markers[i] = new google.maps.LatLng(lat, lng);
+		    		console.log(y + " - " + lat + " " + lng);
+		    		markers[y++] = new google.maps.LatLng(lat, lng);
 		    	}
 		    }
 		    
@@ -51,14 +52,13 @@
 		    		        position: markers[i],
 		    		        map: map,
 		    		       
-		    		        title: 'test',
-		    		    });
-		    		  bounds.extend(marker.position);
-  			    	console.log("out " + desc[i]);	    		
+		    		        title: 'Клацни',
+		    		    });		  
+		    		  bounds.extend(marker.position);    		
 		    		  google.maps.event.addListener(marker, 'click', (function(marker, i) {
-		    			    return function() {
-		    			    	console.log("in " + desc[i]);
-		    			      infowindow.setContent('<div id="content">'+ desc[i] + '</div>');
+		    			    return function() {   
+		    			    	var j = +i + +1;
+		    			      infowindow.setContent(desc[i] + "<p><a href='http://localhost:8080/TravelUp/place?selectedplace=" + j + "'>Link з детальною інформацією</a>");
 		    			      infowindow.open(map, marker);
 		    			    }
 		    			  })(marker, i));
@@ -79,7 +79,6 @@
 				window.onload = loadScript;
 
 			    $(function(){	    	
-			    	
 			    	$('ul.user-gallery li img').on('click',function(){
 			            var src = $(this).attr('src');
 			            var img = '<img src="' + src + '" class="img-responsive"/>';

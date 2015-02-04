@@ -1,7 +1,6 @@
 package com.epam.travelup.tour.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.epam.travelup.locaization.LanguageContainer;
-import com.epam.travelup.orm.model.Place;
 import com.epam.travelup.orm.model.Tour;
 import com.epam.travelup.orm.model.User;
 import com.epam.travelup.orm.service.TourService;
+import com.epam.travelup.requestServices.ModelCreaterService;
 
 /**
  * Servlet implementation class TourServlet
@@ -37,11 +36,28 @@ public class TourServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
-		List<Tour> tours;
+		List<Tour> tours = null;
 		if(user == null || !user.isAdmin()){
 			tours = TourService.getSimpleTours(LanguageContainer.getBundle().getLocale().getLanguage());
 		} else {
-			tours = TourService.getAllTours(LanguageContainer.getBundle().getLocale().getLanguage());
+			
+			String check = (String)request.getSession().getAttribute("check");
+			System.out.println("------------" + check);
+			if(check == null || check.equals("")){
+				request.getSession().setAttribute("check", "1");
+				tours = TourService.getAllTours(LanguageContainer.getBundle().getLocale().getLanguage());
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!1");
+			}else if(check.equals("0")){
+				request.getSession().setAttribute("check", "1");
+				tours = TourService.getAllTours(LanguageContainer.getBundle().getLocale().getLanguage());
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!2");
+			} else if(check.equals("1")){
+				request.getSession().setAttribute("check", "0");
+				new ModelCreaterService().createModels();
+				tours = TourService.getTourMackets();
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!3");
+			}
+			
 		}
 	
 		
@@ -55,7 +71,7 @@ public class TourServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

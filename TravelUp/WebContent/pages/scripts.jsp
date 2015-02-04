@@ -64,3 +64,5 @@
          <!-- Modal Box -->
         <script type="text/javascript" src="inc/js/login-box.js"></script>
         <script type="text/javascript" src="inc/js/signup-box.js"></script>
+      
+        <script type="text/javascript" src="pages/jquery.session.js"></script>
