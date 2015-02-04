@@ -21,11 +21,13 @@ public class RequestCreaterService {
 	private final static String STATUS = "request";
 
 	public static void createRequest(Tour requestTour, String[] places) {
-		LOGGER.info("start createRequest");
+		LOGGER.info("RequestCreaterService ::start createRequest");
 		Route route = createRoute();
 		RouteService.insertRoute(route);
 		TourService.insertTour(fillingTour(requestTour, route));
+		System.out.println("2a");
 		PlaceToRouteService.insertListPlaceToRoute(route, createPlaceToRout(places));
+		System.out.println("2b");
 		
 		
 	}
@@ -37,11 +39,15 @@ public class RequestCreaterService {
 	}
 
 	private static Tour fillingTour(Tour requestTour, Route route) {
+		System.out.println("1a");
 		requestTour.setRoute(route);
+		System.out.println("1b");
 		requestTour.setStatusId(TOUR_TYPE);
+		System.out.println("1c");
 		requestTour.setTripDays(TRIP_DAY);
 		requestTour.setStatusId(STATUS);
 		requestTour.setTransport(TRANSPORT);
+		System.out.println("1d");
 		return requestTour;
 	}
 	

@@ -23,8 +23,8 @@
         <script type="text/javascript" src="inc/js/masonry.min.js"></script>
         
          <!-- Script validation -->
-        <script src="http://formvalidation.io/vendor/formvalidation/js/formValidation.min.js"></script>
-		<script src="http://formvalidation.io/vendor/formvalidation/js/framework/bootstrap.min.js"></script>
+        <!-- <script src="http://formvalidation.io/vendor/formvalidation/js/formValidation.min.js"></script>
+		<script src="http://formvalidation.io/vendor/formvalidation/js/framework/bootstrap.min.js"></script> -->
 
 
 
