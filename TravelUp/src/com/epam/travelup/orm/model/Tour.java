@@ -1,5 +1,6 @@
 package com.epam.travelup.orm.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -353,6 +354,14 @@ public class Tour {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+	
+	public static List<Integer> getToursId(List<Tour> tours){
+		List<Integer> result = new ArrayList<>();
+		for (Tour tour: tours){
+			result.add(tour.getId());
+		}
+		return result;
 	}
 
 
