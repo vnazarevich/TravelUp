@@ -72,6 +72,7 @@ public class PlaceService {
 	}
 	
 	public static void insertPlace(Place place){
+		System.out.println(place);
 		new Dao<Place>(Place.class,"en").insert(place);
 	}
 	

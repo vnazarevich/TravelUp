@@ -174,7 +174,6 @@
 										<p></p><h2>Гайд: </h2> - 
 										<p></p><h2>Спосіб добирання до старту: </h2> ${tour.transport}
 										<p></p><h2>Набір: </h2>${tour.minCapacity} ${lang.getString("tourpage.list.people")}
-										<p></p><h2>Вік: </h2>${tour.minAge} - ${tour.maxAge} років 
 										<p></p><h2>Тривалість: </h2>${tour.minDuration} ${lang.getString("tourpage.list.days")}
 										<p></p><h2>Дата: </h2>${tour.startDate} - ${tour.endDate}
 										<p></p><h2>Ціна: </h2>${tour.minPrice} ${lang.getString("tourpage.list.money")}
