@@ -46,16 +46,11 @@
                                     <a href="search_user"><i class="fa fa-users"></i> Users</a>
                                 </li>
 
-                                <li class="menu-item suppliers">
-                                    <a href="#"><i class="fa fa-usd"></i> Suppliers</a>
-                                </li>
-
 
                                 <li class="menu-item active-tours">
-                                    <a href="#"><i class="icon_map"></i> Active tours</a>
+                                    <a href="createtour"><i class="icon_map"></i> Add tour</a>
                                 </li>
-                                <li class="menu-item proposals">
-                                <a href="#"><i class="icon_search_alt"></i> Proposals</a> </li>
+
 
                             </ul>
 
@@ -65,14 +60,9 @@
                                     <option value="search_user">
                                         Users
                                     </option>
+
                                     <option value="#">
-                                        Suppliers
-                                    </option>
-                                    <option value="#">
-                                        Active tours
-                                    </option>
-                                    <option value="#">
-                                        Proposals
+                                        AddTour
                                     </option>
 
                               </optgroup>

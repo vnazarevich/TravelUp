@@ -10,7 +10,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>TravelUp</title>
-        
+
         <!-- Scripts -->
         <jsp:include page="/pages/scripts.jsp" />
 
@@ -38,10 +38,10 @@
          <!-- / VideoBG -->
 
           <jsp:include page="/pages/header.jsp" />
-          
+
  <c:if test="${status!=null}">
  <script type="text/javascript">$("#statusBox").modal('show') </script>
-</c:if> 
+</c:if>
 
 
 
@@ -57,7 +57,7 @@
                         <h1 class="page-title">Travel<span class="higlight">Up</span></h1>
                         <div class="entry-content">
 
-                            <p>Integer sollicitudin ligula non enim sodales, non lacinia nunc ornare. Sed commodo tempor dapibus.<br /> Duis convallis turpis in tortor volutpat, eget rhoncus nisi fringilla. Phasellus ornare risus in euismod varius nullam feugiat ultrices.<br /> Sed condimentum est libero, aliquet iaculis diam bibendum ullamcorper.</p>
+
 <br /><br /><br /><br /><br /><br /><br /><br />
 
 
@@ -66,7 +66,7 @@
                     </article><!-- /#post-6.contact -->
 
 
-                    <center><a class="button" href="#">${lang.getString("mainpage.startbutton")}</a></center>
+                    <center><a class="button" href="tours">${lang.getString("mainpage.startbutton")}</a></center>
                     <br /><br />
 
 
@@ -91,7 +91,7 @@
 
 
 
-        
+
 
     </body>
 </html>
