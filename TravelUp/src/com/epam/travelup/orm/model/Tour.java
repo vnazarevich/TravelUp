@@ -69,6 +69,9 @@ public class Tour {
 
 	@DBField(name = "trip_days_id")
 	private int tripId;
+	
+	@DBField(name = "creater_tour_id")
+	private int createrTourId;
 
 	private List<Place> places;
 
@@ -111,6 +114,22 @@ public class Tour {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Route getRoute() {
+		return route;
+	}
+
+	public void setRoute(Route route) {
+		this.route = route;
+	}
+
+	public int getCreaterTourId() {
+		return createrTourId;
+	}
+
+	public void setCreaterTourId(int createrTourId) {
+		this.createrTourId = createrTourId;
 	}
 
 	public List<Place> getPlaces() {

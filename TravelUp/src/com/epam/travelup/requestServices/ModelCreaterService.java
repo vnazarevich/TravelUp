@@ -1,4 +1,4 @@
-package com.epam.travelup.orm.service;
+package com.epam.travelup.requestServices;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +15,10 @@ import com.epam.travelup.orm.model.PlaceToRoute;
 import com.epam.travelup.orm.model.RequestToModel;
 import com.epam.travelup.orm.model.Route;
 import com.epam.travelup.orm.model.Tour;
+import com.epam.travelup.orm.service.PlaceToRouteService;
+import com.epam.travelup.orm.service.RequestToModelServices;
+import com.epam.travelup.orm.service.RouteService;
+import com.epam.travelup.orm.service.TourService;
 
 public class ModelCreaterService {
 	private final static double COEFFICIENT = 0.6;
@@ -32,26 +36,26 @@ public class ModelCreaterService {
 		LOGGER.info(":: finish create object new ModelCreaterService()");
 	}
 
-	public static void main(String[] args) {
-		System.out.println("===================Start test CreaterModels============");
-		ModelCreaterService mc = new ModelCreaterService();
-		System.out.println("===================After creating CreaterModels============");
-		mc.createModels();
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Requests count = "+ mc.requestsTours.size());
-		System.out.println();
-		for (Tour t : mc.requestsTours) {
-			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-			System.out.println(t.toString());
-		}
-		System.out.println();
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Models count = " + mc.models.size());
-		System.out.println();
-		List<Tour> list = TourService.getToursWhere("status_id", "1", "en");
-		for (Tour model : list) {
-			System.out.println("=========================================================================");
-			System.out.println("MODEL : " + model.toString()+ ", countRequests = " + model.getCountRequests());
-		}
-	}
+//	public static void main(String[] args) {
+//		System.out.println("===================Start test CreaterModels============");
+//		ModelCreaterService mc = new ModelCreaterService();
+//		System.out.println("===================After creating CreaterModels============");
+//		mc.createModels();
+//		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Requests count = "+ mc.requestsTours.size());
+//		System.out.println();
+//		for (Tour t : mc.requestsTours) {
+//			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//			System.out.println(t.toString());
+//		}
+//		System.out.println();
+//		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Models count = " + mc.models.size());
+//		System.out.println();
+//		List<Tour> list = TourService.getToursWhere("status_id", "1", "en");
+//		for (Tour model : list) {
+//			System.out.println("=========================================================================");
+//			System.out.println("MODEL : " + model.toString()+ ", countRequests = " + model.getCountRequests());
+//		}
+//	}
 
 	public void createModels() {
 		LOGGER.info("start createModels()");

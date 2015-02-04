@@ -7,15 +7,15 @@
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />	
 	<title>Insert title here</title>
 	<jsp:include page="/pages/scripts.jsp" />
-	<jsp:include page="/pages/header.jsp" />    
-    <jsp:include page="/pages/styles.jsp" /> 
+	<jsp:include page="/pages/header.jsp" />  
+     <jsp:include page="/pages/styles.jsp" />
     <link rel="stylesheet" href="inc/jquery-ui/jquery-ui.min.css"/>
-	<link rel="stylesheet" href="inc/tag-it/css/jquery.tagit.css"/>   
-	<script type="text/javascript" src="inc/jquery-ui/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="inc/tag-it/js/tag-it.js"></script> 
+	<link rel="stylesheet" href="inc/tag-it/css/jquery.tagit.css"/>
+	<!-- <script type="text/javascript" src="inc/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="inc/tag-it/js/tag-it.js"></script> -->
 </head>
 <body>
-<form action=ggg method="post" id="containerForm" class="form-horizontal">
+<form action="saverequest" method="post" id="containerForm" class="form-horizontal">
 	<div class="form-group">
         <label class="lead col-xs-3 control-label"><big><p>Tour request</p></big></label>	
         <label class="lead col-xs-4 control-label"> </label>	
@@ -66,14 +66,14 @@
     <div class="form-group">
         <label class="col-xs-3 control-label"></label>
         <div class="col-md-2 col-sm-3 col-xs-4">
-        <input type="submit" class="button wide-fat" value="Send request" name="button" id="but"/>
+       		 <input type="submit" class="btn btn-lg btn-success green" value="Send request" name="button" id="but"/>
          </div>
     </div>
     
 </form>
 </body>
 <script>
-$(function() {
+<!-- $(function() {
 	var places = new Array();
 
     <c:forEach items="${places}" var="place">
@@ -93,7 +93,7 @@ $(function() {
         afterTagAdded: function(event, ui) {
         	//$(".text-icon").css("display","block");
         },
-        fieldName: places
+        fieldName: "places"
     });
     $('#containerForm').formValidation({
         framework: 'bootstrap',
@@ -161,4 +161,4 @@ $(function() {
 });
 </script>
 
-</html>
+</html> -->

@@ -6,28 +6,6 @@ import java.util.List;
 @DBTable(name = "place")
 public class Place {
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Place other = (Place) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
 	@DBField(name = "id")
 	private int id;
 
@@ -116,6 +94,28 @@ public class Place {
 //		return "Place [id=" + id + ", info=" + info + ", type=" + type
 //				+ ", region=" + region + ", xCoordinate=" + xCoordinate
 //				+ ", yCoordinate=" + yCoordinate + ", photos=" + photos + "]";
+	}	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Place other = (Place) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 	

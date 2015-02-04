@@ -35,6 +35,7 @@ public class RequestServlet extends HttpServlet {
 		String lang = LanguageContainer.getBundle().getLocale().getLanguage();
 		List<Place> places = PlaceService.getAll(lang);
 		request.setAttribute("places", places);
+		
 		request.getRequestDispatcher("pages/request.jsp").forward(request, response);
 	}
 
