@@ -135,7 +135,7 @@ public class ModelCreaterService {
 			maxCapacity += tour.getMaxCapacity();
 			minDuration += tour.getMinDuration();
 			maxDuration += tour.getMaxDuration();
-			maxPricePerDay += tour.getMaxPrice() / maxDuration;
+			maxPricePerDay += tour.getMaxPrice() / (maxDuration+minDuration) * 2;
 			tripId += tour.getTripId();
 			startDataLong += tour.getStartDate().getTime();
 			endDateLong += tour.getEndDate().getTime();

@@ -8,11 +8,11 @@
 	<title>Insert title here</title>
 	<jsp:include page="/pages/scripts.jsp" />
 	<jsp:include page="/pages/header.jsp" />  
-     <jsp:include page="/pages/styles.jsp" />
+    <jsp:include page="/pages/styles.jsp" />
     <link rel="stylesheet" href="inc/jquery-ui/jquery-ui.min.css"/>
 	<link rel="stylesheet" href="inc/tag-it/css/jquery.tagit.css"/>
-	<!-- <script type="text/javascript" src="inc/jquery-ui/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="inc/tag-it/js/tag-it.js"></script> -->
+	<script type="text/javascript" src="inc/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="inc/tag-it/js/tag-it.js"></script>
 </head>
 <body>
 <form action="saverequest" method="post" id="containerForm" class="form-horizontal">
@@ -73,7 +73,7 @@
 </form>
 </body>
 <script>
-<!-- $(function() {
+ $(function() {
 	var places = new Array();
 
     <c:forEach items="${places}" var="place">
@@ -161,4 +161,4 @@
 });
 </script>
 
-</html> -->
+</html>
