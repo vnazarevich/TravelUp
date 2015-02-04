@@ -304,4 +304,12 @@
   	<servlet-name>AddPlace</servlet-name>
   	<url-pattern>/addplace</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>Places</servlet-name>
+  	<servlet-class>com.epam.travelup.place.servlet.PlaceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Places</servlet-name>
+  	<url-pattern>/places</url-pattern>
+  </servlet-mapping>
 </web-app>
