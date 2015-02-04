@@ -1,5 +1,6 @@
 package com.epam.travelup.orm.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,9 @@ public class Tour {
 
 	@DBKey(name = "guide_id")
 	private User guideId;
+
+	@DBKey(name = "carrier_id")
+	private User transporter;
 
 	@DBKey(name = "photograph_id")
 	private User photographer;
@@ -69,6 +73,9 @@ public class Tour {
 
 	@DBField(name = "trip_days_id")
 	private int tripId;
+	
+	@DBField(name = "creater_tour_id")
+	private int createrTourId;
 
 	private List<Place> places;
 
@@ -111,6 +118,22 @@ public class Tour {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Route getRoute() {
+		return route;
+	}
+
+	public void setRoute(Route route) {
+		this.route = route;
+	}
+
+	public int getCreaterTourId() {
+		return createrTourId;
+	}
+
+	public void setCreaterTourId(int createrTourId) {
+		this.createrTourId = createrTourId;
 	}
 
 	public List<Place> getPlaces() {
@@ -232,6 +255,14 @@ public class Tour {
 		return maxDuration;
 	}
 
+	public User getTransporter() {
+		return transporter;
+	}
+
+	public void setTransporter(User transporter) {
+		this.transporter = transporter;
+	}
+
 	public void setMaxDuration(int maxDuration) {
 		this.maxDuration = maxDuration;
 	}
@@ -334,6 +365,14 @@ public class Tour {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+	
+	public static List<Integer> getToursId(List<Tour> tours){
+		List<Integer> result = new ArrayList<>();
+		for (Tour tour: tours){
+			result.add(tour.getId());
+		}
+		return result;
 	}
 
 

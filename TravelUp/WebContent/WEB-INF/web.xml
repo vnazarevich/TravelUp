@@ -287,7 +287,7 @@
   <servlet-mapping>
     <servlet-name>CreateTour</servlet-name>
     <url-pattern>/createtour</url-pattern>
-    </servlet-mapping>
+  </servlet-mapping>
   <servlet>
     <servlet-name>SelectedPlace</servlet-name>
     <servlet-class>com.epam.travelup.place.servlet.SelectedPlaceServlet</servlet-class>
@@ -300,7 +300,7 @@
   	<servlet-name>AddPlace</servlet-name>
   	<servlet-class>com.epam.travelup.place.servlet.AddPlaceServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
+    <servlet-mapping>
   	<servlet-name>AddPlace</servlet-name>
   	<url-pattern>/addplace</url-pattern>
   </servlet-mapping>
@@ -312,4 +312,24 @@
   	<servlet-name>Places</servlet-name>
   	<url-pattern>/places</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>About</servlet-name>
+    <servlet-class>com.epam.travelup.about.servlet.AboutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>About</servlet-name>
+    <url-pattern>/about</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SubmitTour</servlet-name>
+    <servlet-class>com.epam.travelup.admin.servlet.SubmitTourServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubmitTour</servlet-name>
+    <url-pattern>/submittour</url-pattern>
+  </servlet-mapping>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/pages/error500.jsp</location>
+	</error-page>
 </web-app>

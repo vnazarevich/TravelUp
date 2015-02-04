@@ -73,5 +73,10 @@ public class TourService {
 				System.out.println(comments);
 				return comments;
 			}
+	
+	public static void deleteToursWhere(String attr, String value, String lang){
+		Dao<Tour> dao = new Dao<Tour>(Tour.class, lang);
+		dao.delete(attr, value, "=");
+	}
 
 }
