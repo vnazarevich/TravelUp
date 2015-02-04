@@ -21,6 +21,9 @@
 		<noscript>JavaScript is off. Please enable to view full
 			site.</noscript>
 	</div>
+	<c:if test="${!user.isAdmin()}">
+					<c:redirect url="/error"/>
+	</c:if>
 	<div id="site">
 		<jsp:include page="/pages/header.jsp" />
 		<jsp:include page="/pages/loginBox.jsp" />

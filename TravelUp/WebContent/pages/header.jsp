@@ -43,12 +43,16 @@
                             <ul class="hidden-xs hidden-sm hidden-md">
 
                                 <li class="menu-item customers">
-                                    <a href="search_user"><i class="fa fa-users"></i> Users</a>
+                                    <a href="search_user"><i class="fa fa-users"></i> ${lang.getString('hormenu.users')}</a>
                                 </li>
 
 
                                 <li class="menu-item active-tours">
-                                    <a href="createtour"><i class="icon_map"></i> Add tour</a>
+                                    <a href="createtour"><i class="icon_map"></i> ${lang.getString('hormenu.addtour')}</a>
+                                </li>
+
+                                <li class="menu-item active-tours">
+                                    <a href="addplace"><i class="fa fa-location-arrow"></i> ${lang.getString('hormenu.addplace')}</a>
                                 </li>
 
 
@@ -58,11 +62,15 @@
                                  <optgroup label="Admin Panel">
 
                                     <option value="search_user">
-                                        Users
+                                        ${lang.getString('hormenu.users')}
                                     </option>
 
-                                    <option value="#">
-                                        AddTour
+                                    <option value="createtour">
+                                        ${lang.getString('hormenu.addtour')}
+                                    </option>
+
+                                     <option value="createtour">
+                                        ${lang.getString('hormenu.addplace')}
                                     </option>
 
                               </optgroup>

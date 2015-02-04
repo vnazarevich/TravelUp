@@ -18,6 +18,9 @@
     <div id="status">&nbsp;</div>
     <noscript>JavaScript is off. Please enable to view full site.</noscript>
 </div>
+ <c:if test="${!user.isAdmin()}">
+					<c:redirect url="/error"/>
+</c:if>
 <div id="site">
 	 <jsp:include page="/pages/header.jsp" />
 
@@ -25,6 +28,7 @@
 
             <section class="page-head-holder">
                 <div class="container">
+
                     <div class="col-xs-6">
                       <h2>${lang.getString("users.page.caption")}</h2>
                     </div>

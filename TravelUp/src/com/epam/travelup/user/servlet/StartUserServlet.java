@@ -54,6 +54,8 @@ public class StartUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 
+
+
 		if(session.getAttribute("user") == null){
 			response.getWriter().write("0");
 		} else {
