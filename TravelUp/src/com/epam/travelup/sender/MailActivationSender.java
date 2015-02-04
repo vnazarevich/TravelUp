@@ -44,6 +44,15 @@ public class MailActivationSender {
 	public void sendRegistrationFailed() {
 		send(getTextForRegistrationFailed(), getSubjectForRegistrationFailed());
 	}
+	
+	public void sendToUserGid(String text, String subject){
+		send(text, subject);
+	}
+
+	private String getTextForUserGid() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	private void send(String text, String subject) {
 		Session session = Session.getDefaultInstance(props, new Authenticator() {

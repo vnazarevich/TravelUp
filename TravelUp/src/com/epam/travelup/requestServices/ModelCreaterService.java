@@ -1,10 +1,9 @@
-package com.epam.travelup.orm.service;
+package com.epam.travelup.requestServices;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,6 +14,10 @@ import com.epam.travelup.orm.model.PlaceToRoute;
 import com.epam.travelup.orm.model.RequestToModel;
 import com.epam.travelup.orm.model.Route;
 import com.epam.travelup.orm.model.Tour;
+import com.epam.travelup.orm.service.PlaceToRouteService;
+import com.epam.travelup.orm.service.RequestToModelService;
+import com.epam.travelup.orm.service.RouteService;
+import com.epam.travelup.orm.service.TourService;
 
 public class ModelCreaterService {
 	private final static double COEFFICIENT = 0.6;
@@ -55,6 +58,7 @@ public class ModelCreaterService {
 
 	public void createModels() {
 		LOGGER.info("start createModels()");
+		deleteOldModels();
 		// include tours like curentTour -> create 1 model
 		List<Tour> simpleTours = new ArrayList<Tour>();
 		Tour curentTour;
@@ -74,6 +78,16 @@ public class ModelCreaterService {
 			saveModels();	
 	}
 
+	private void deleteOldModels() {
+		LOGGER.info("start delete old models");
+		List<Tour> oldModels = TourService.getToursWhere("status_id", "1", "en");
+		List<Integer> oldModelsId = Tour.getToursId(oldModels);
+		for(Integer id: oldModelsId){
+			RequestToModelService.deleteRequestToModelWhere("model_id", id.toString(), "en");			
+		}
+		TourService.deleteToursWhere("status_id", "1", "en");		
+	}
+
 	private void saveModels() {
 		LOGGER.info("start saveModels()");
 		int i = 1;
@@ -81,6 +95,7 @@ public class ModelCreaterService {
 		for (Tour model : models) {
 			System.out.println("********************************** Insert in DB model number " + i++);
 			modelId = TourService.insertTour(model);
+			LOGGER.info("set in DB model, id=" + modelId);
 			
 			// set in DB requestToModel
 			RequestToModel requestToModel = new RequestToModel();			
@@ -89,8 +104,8 @@ public class ModelCreaterService {
 				requestToModel.setRequest(request);
 //				requestToModel.setModel(model);
  
-				requestToModel.setModel((TourService.getToursWhere("id", modelId+"", "en")).get(0));
-				RequestToModelServices.insertRequestToModel(requestToModel);
+				requestToModel.setModel((TourService.getToursWhere("id", modelId.toString(), "en")).get(0));
+				RequestToModelService.insertRequestToModel(requestToModel);
 			}			
 		}
 	}
@@ -102,8 +117,6 @@ public class ModelCreaterService {
 		
 		// Key - Place, V - count 
 		Map<Place, Integer> places = new HashMap<>();
-		// contain places which have more than one tour
-		Map<Place, Integer> placesPopular = new HashMap<>();
 		
 		int minCapacity = 0;
 		int maxCapacity = 0;
@@ -134,15 +147,7 @@ public class ModelCreaterService {
 				}
 			}
 		}
-		 
-		// remove unique places
-         
-		Iterator iterator = places.keySet().iterator();
-		while (iterator.hasNext()){
-			if(places.get(iterator.next()) == 1){
-				iterator.remove();
-			}
-		}
+		
 		Route route = new Route();
 		route.setRegion("Carpathians");
 		Integer routeId = RouteService.insertRoute(route);
@@ -151,11 +156,14 @@ public class ModelCreaterService {
 		System.out.println("******************** " + "RouteService.getRouteWhere(id, routeId.toString(), en) == null" + RouteService.getRouteWhere("id", routeId.toString(), "en") == null);
 		route = RouteService.getRouteWhere("id", routeId.toString(), "en").get(0);
 		
+		// set places which are more than in one request
 		PlaceToRoute placeToRoute = new PlaceToRoute();
 		for (Place place: places.keySet()){
-			placeToRoute.setPlaceId(place);
-			placeToRoute.setRouteId(route);
-			PlaceToRouteService.insertPlaceToRoute(placeToRoute);
+			if (1 != places.get(place)){
+				placeToRoute.setPlaceId(place);
+				placeToRoute.setRouteId(route);
+				PlaceToRouteService.insertPlaceToRoute(placeToRoute);
+			}
 		}
 		
 		model.setRoute_id(route);

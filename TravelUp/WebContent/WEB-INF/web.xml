@@ -292,9 +292,21 @@
     <servlet-name>SelectedPlace</servlet-name>
     <servlet-class>com.epam.travelup.place.servlet.SelectedPlaceServlet</servlet-class>
   </servlet>
+   <servlet-mapping>
+    <servlet-name>SelectedPlace</servlet-name>
+    <url-pattern>/place</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>AddPlace</servlet-name>
+  	<servlet-class>com.epam.travelup.place.servlet.AddPlaceServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>SelectedPlace</servlet-name>
     <url-pattern>/place</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+  	<servlet-name>AddPlace</servlet-name>
+  	<url-pattern>/addplace</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>About</servlet-name>

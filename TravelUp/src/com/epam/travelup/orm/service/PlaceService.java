@@ -7,6 +7,7 @@ import com.epam.travelup.orm.dao.Dao;
 import com.epam.travelup.orm.model.Place;
 import com.epam.travelup.orm.model.PlaceInfo;
 import com.epam.travelup.orm.model.PlaceToRoute;
+import com.epam.travelup.orm.model.Region;
 
 public class PlaceService {
 
@@ -59,4 +60,23 @@ public class PlaceService {
 		}
 		return places;
 	}
+	
+	public static void updatePlaceInfo(String id, String attr, String value){
+		Dao<Place> dao = new Dao<Place>(Place.class,"en");
+		dao.update("id", id	, attr, value);
+	}
+	
+	public static int countPlaces(){
+		Dao<Place> dao = new Dao<Place>(Place.class,"en");
+		return dao.count();
+	}
+	
+	public static void insertPlace(Place place){
+		new Dao<Place>(Place.class,"en").insert(place);
+	}
+	
+	public static void insertPlaceInfo(PlaceInfo placeInfo){
+		new Dao<PlaceInfo>(PlaceInfo.class,"en").insert(placeInfo);
+	}
+	
 }

@@ -1,107 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html >
 <html>
 <head>
-	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	<script src="http://formvalidation.io/vendor/formvalidation/js/formValidation.min.js"></script>
-	<script src="http://formvalidation.io/vendor/formvalidation/js/framework/bootstrap.min.js"></script>
-	<script src="//oss.maxcdn.com/momentjs/2.8.2/moment.min.js"></script>
-	<script src="/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-	<style type="text/css">
-	#datetimeForm .has-feedback .form-control-feedback {
-	    top: 0;
-	    right: -15px;
-	}
-	</style>
-	
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />	
 	<title>Insert title here</title>
+	<jsp:include page="/pages/scripts.jsp" />
+	<jsp:include page="/pages/header.jsp" />  
+     <jsp:include page="/pages/styles.jsp" />
+    <link rel="stylesheet" href="inc/jquery-ui/jquery-ui.min.css"/>
+	<link rel="stylesheet" href="inc/tag-it/css/jquery.tagit.css"/>
+	<!-- <script type="text/javascript" src="inc/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="inc/tag-it/js/tag-it.js"></script> -->
 </head>
 <body>
-<b>
-<b><big>            Tour request</big></b>
-	<form id="containerForm" class="form-horizontal">
+<form action="saverequest" method="post" id="containerForm" class="form-horizontal">
+	<div class="form-group">
+        <label class="lead col-xs-3 control-label"><big><p>Tour request</p></big></label>	
+        <label class="lead col-xs-4 control-label"> </label>	
+    </div>
     <div class="form-group">
-        <label class="col-xs-3 control-label">Enter group capacity </label>
-        <div class="col-xs-1">
-            <input type="text" class="form-control" name="minCapas" placeholder="min" />
+        <label class="col-xs-3 control-label">Select places for travel</label>
+        <div class="col-md-2 col-sm-3 col-xs-4">           
+				<ul id="myTags">
+				</ul>
         </div>
-        <div class="col-xs-1">
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 col-sm-3 col-xs-4 control-label">Enter group capacity </label>
+        <div class="col-md-1 col-sm-3 col-xs-4">
+            <input type="text" class="form-control widget-title" name="minCapas" placeholder="min" />
+        </div>
+        <div class="col-md-1 col-sm-3 col-xs-4">
             <input type="text" class="form-control" name="maxCapas" placeholder="max" />
         </div>
     </div>
     <div class="form-group">
         <label class="col-xs-3 control-label">Enter tour duration in days:</label>
-        <div class="col-xs-1">
+        <div class="col-md-1 col-sm-3 col-xs-4">
             <input type="text" class="form-control" name="minDuration" placeholder="min" />
         </div>
-        <div class="col-xs-1">
+        <div class="col-md-1 col-sm-3 col-xs-4">
             <input type="text" class="form-control" name="maxDuration" placeholder="max" />
         </div>
     </div>
     <div class="form-group">
         <label class="col-xs-3 control-label">Enter max price by tour (uah):</label>
-        <div class="col-xs-2">
+        <div class="col-md-2 col-sm-3 col-xs-4">
             <input type="text" class="form-control" name="maxPrice"  />
         </div>
     </div>
-</form>
-<script src="//oss.maxcdn.com/momentjs/2.8.2/moment.min.js"></script>
-<script src="/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-
-<form id="datetimeForm" class="form-horizontal">
     <div class="form-group">
-        <label class="col-xs-3 control-label">DateTime Picker</label>
-        <div class="col-xs-2">
-            <div class="input-group date" id="datetimePicker">
-                <input type="text" class="form-control" name="datetimePicker" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
+        <label class="col-xs-3 control-label">Enter start date:</label>
+        <div class="col-md-2 col-sm-3 col-xs-4">
+            <input id="check-in-date2" class="traveline_date_input form-control " type="text" name="startDate" />
         </div>
     </div>
+    <div class="form-group">
+        <label class="col-xs-3 control-label">Enter start date:</label>
+        <div class="col-md-2 col-sm-3 col-xs-4">
+            <input id="check-in-date3" class="traveline_date_input form-control" type="text" name="endDate" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-3 control-label"></label>
+        <div class="col-md-2 col-sm-3 col-xs-4">
+       		 <input type="submit" class="btn btn-lg btn-success green" value="Send request" name="button" id="but"/>
+         </div>
+    </div>
+    
 </form>
-
-<script>
-$(document).ready(function() {
-    $('#datetimePicker').datetimepicker();
-
-    $('#datetimeForm').formValidation({
-        framework: 'bootstrap',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            datetimePicker: {
-                validators: {
-                    notEmpty: {
-                        message: 'The date is required and cannot be empty'
-                    },
-                    date: {
-                        format: 'MM/DD/YYYY h:m A'
-                    }
-                }
-            }
-        }
-    });
-
-    $('#datetimePicker')
-        .on('dp.change dp.show', function (e) {
-            // Revalidate the date when user change it
-            $('#datetimeForm').formValidation('revalidateField', 'datetimePicker');
-        });
-});
-</script>
 </body>
 <script>
-$(document).ready(function() {
+<!-- $(function() {
+	var places = new Array();
+
+    <c:forEach items="${places}" var="place">
+       places.push("${place.info.uaName}");
+       places.push("${place.info.enName}");
+    </c:forEach>
+    console.log(places);
+
+    $("#myTags").tagit({
+        availableTags: places,
+        autocomplete: {delay: 0},
+        beforeTagAdded: function(event, ui) {
+            if ($.inArray(ui.tagLabel, places) == -1) {
+              return false;
+            }
+        },
+        afterTagAdded: function(event, ui) {
+        	//$(".text-icon").css("display","block");
+        },
+        fieldName: "places"
+    });
     $('#containerForm').formValidation({
         framework: 'bootstrap',
         err: {
@@ -119,7 +112,7 @@ $(document).ready(function() {
                         message: 'This field can contain digits only'
                     },
                     notEmpty: {
-                        message: 'The first name is required'
+                        message: 'The capacity is required'
                     }
                 }
             },
@@ -129,7 +122,7 @@ $(document).ready(function() {
                         message: 'This field can contain digits only'
                     },
                     notEmpty: {
-                        message: 'The last name is required'
+                        message: 'The capacity is required'
                     }
                 }
             },
@@ -139,7 +132,7 @@ $(document).ready(function() {
                         message: 'This field can contain digits only'
                     },
                     notEmpty: {
-                        message: 'The first name is required'
+                        message: 'The field is required'
                     }
                 }
             },
@@ -149,7 +142,7 @@ $(document).ready(function() {
                         message: 'This field can contain digits only'
                     },
                     notEmpty: {
-                        message: 'The last name is required'
+                        message: 'The field is required'
                     }
                 }
             },
@@ -159,17 +152,7 @@ $(document).ready(function() {
                         message: 'This field can contain digits only'
                     },
                     notEmpty: {
-                        message: 'The last name is required'
-                    }
-                }
-            },
-            phone: {
-                validators: {
-                    digits: {
-                        message: 'The phone number can contain digits only'
-                    },
-                    notEmpty: {
-                        message: 'The phone number is required'
+                        message: 'The field is required'
                     }
                 }
             }
@@ -178,4 +161,4 @@ $(document).ready(function() {
 });
 </script>
 
-</html>
+</html> -->
