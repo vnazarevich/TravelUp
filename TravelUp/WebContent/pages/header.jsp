@@ -46,16 +46,11 @@
                                     <a href="search_user"><i class="fa fa-users"></i> Users</a>
                                 </li>
 
-                                <li class="menu-item suppliers">
-                                    <a href="#"><i class="fa fa-usd"></i> Suppliers</a>
-                                </li>
-
 
                                 <li class="menu-item active-tours">
-                                    <a href="#"><i class="icon_map"></i> Active tours</a>
+                                    <a href="createtour"><i class="icon_map"></i> Add tour</a>
                                 </li>
-                                <li class="menu-item proposals">
-                                <a href="#"><i class="icon_search_alt"></i> Proposals</a> </li>
+
 
                             </ul>
 
@@ -65,14 +60,9 @@
                                     <option value="search_user">
                                         Users
                                     </option>
+
                                     <option value="#">
-                                        Suppliers
-                                    </option>
-                                    <option value="#">
-                                        Active tours
-                                    </option>
-                                    <option value="#">
-                                        Proposals
+                                        AddTour
                                     </option>
 
                               </optgroup>
@@ -128,13 +118,13 @@
                             <li><a data-toggle="modal" data-target="#signupBox" href="#"><i class="fa fa-user"></i> ${lang.getString('menu.register')}</a></li>
                             <li><a href="tours"><i class="fa fa-bus"></i> ${lang.getString('menu.tours')}</a></li>
                             <li><a href="request"><i class="fa fa-location-arrow"></i> ${lang.getString('menu.sendrequest')}</a></li>
-                            <li><a href="#"><i class="fa fa-map-marker"></i> ${lang.getString('menu.places')}</a></li>
+                            <li><a href="places"><i class="fa fa-map-marker"></i> ${lang.getString('menu.places')}</a></li>
                             <li><a href="gallery"><i class="fa fa-picture-o"></i> ${lang.getString('menu.gallery')}</a></li>
-                          <li><a href="#"><i class="fa fa-youtube-play"></i> ${lang.getString('menu.video')}</a></li>
-                          <li><a href="#"><i class="fa fa-line-chart"></i> ${lang.getString('menu.about')}</a></li>
+
+                          <li><a href="about"><i class="fa fa-line-chart"></i> ${lang.getString('menu.about')}</a></li>
                           <c:if test="${sessionScope.user!=null}">
 	                          <li><a href="userpage"><i class="fa fa-home"></i> ${lang.getString('menu.userpage')}</a></li>
-	                          <li><a href="#"><i class="fa fa-suitcase"></i> ${lang.getString('menu.adminpanel')}</a></li>
+
                           </c:if>
                         </ul>
 

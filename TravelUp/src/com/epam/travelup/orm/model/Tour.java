@@ -14,6 +14,9 @@ public class Tour {
 	@DBKey(name = "guide_id")
 	private User guideId;
 
+	@DBKey(name = "carrier_id")
+	private User transporter;
+
 	@DBKey(name = "photograph_id")
 	private User photographer;
 
@@ -250,6 +253,14 @@ public class Tour {
 
 	public int getMaxDuration() {
 		return maxDuration;
+	}
+
+	public User getTransporter() {
+		return transporter;
+	}
+
+	public void setTransporter(User transporter) {
+		this.transporter = transporter;
 	}
 
 	public void setMaxDuration(int maxDuration) {

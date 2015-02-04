@@ -259,11 +259,11 @@
                                             <div class="col-md-5 col-lg-4 no-margin-left">
                                              <a class="thumbnailz">
                                                 	<c:choose>
-								                	<c:when test="${tour.places[0].photos[0].photolink == 'null'}">
+								                	<c:when test="${tour.places[0].photos[0].photolink == null}">
 								                	  <img src="images/tour_img_default.jpg" />
 								                	</c:when>
 								                	<c:otherwise>
-								                		<img src=${tour.places[0].photos[0].photolink} alt="TravelUp" class="responsive-image"/>
+								                		<img src="${tour.places[0].photos[0].photolink}" alt="TravelUp" class="responsive-image"/>
 								                	</c:otherwise>
 								                </c:choose>
                                                 

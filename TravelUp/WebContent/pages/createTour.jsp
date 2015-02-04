@@ -41,7 +41,7 @@
 		</section>
 		<section id="user-info" class="section wide-fat page">
 		<div class="container">
-			<form id="tour-form">
+			<form id="tour-form"  method="post" action="submittour">
 			<div id="names">
 			<div class="row form-group">
 				<div class="col-md-6 col-sm-6 col-xs-12">
@@ -111,10 +111,40 @@
 				</div>
 				<div class="col-md-2 col-sm-6 col-xs-12 form-inline">
 				<h3>Capacity:</h3>
-				<input type="text" name="price" placeholder class="form-control" onkeypress="validate(event)">
+				<input type="text" name="capacity" placeholder="people" class="form-control" onkeypress="validate(event)">
+				</div>
+
+				<div class="col-md-2 col-sm-6 col-xs-12 form-inline">
+					<h3>Lenth:</h3>
+					<input type="text" name="lenth" placeholder="KM" class="form-control" onkeypress="validate(event)">
 				</div>
 
 			</div>
+			<div class="row">
+			<div class="col-md-3 col-sm-6 col-xs-6">
+			<h3>Reaching start point:</h3>
+				<div class="radio">
+					<label><input type="radio" name="trans" value="by-foot" checked="checked">by foot</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="trans" value="train">by train</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="trans" value="bus">by bus</label>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6 col-xs-6">
+			<h3>Region:</h3>
+				<div class="radio">
+					<label><input type="radio" name="region" value="Carpathians" checked="checked">Carpathians</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="region" value="Crimea">Crimea</label>
+				</div>
+			</div>
+			</div>
+
 			<div class="row">
 				<button type="submit" id=editPortfolioBtn class="btn btn-lg btn-success center-block green" required>
 
@@ -126,6 +156,7 @@
 			</form>
 		</div>
 		</section>
+		</div>
 
 <script>
 function validate(evt) {
@@ -158,7 +189,7 @@ $(function(){
         afterTagAdded: function(event, ui) {
         	$(".text-icon").css("display","block");
         },
-        fieldName: places
+        fieldName: "places"
     });
 });
 </script>
@@ -291,3 +322,5 @@ $( "#toggle" ).click(function() {
 
 });
 </script>
+</body>
+</html>

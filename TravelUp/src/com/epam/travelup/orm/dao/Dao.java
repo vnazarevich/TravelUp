@@ -239,14 +239,7 @@ public class Dao<T> {
 		attrs.addAll(inputs.keySet());
 		List<Object> values = new ArrayList<Object>();
 		values.addAll(inputs.values());
-		// for(int i=0;i<values.size();i++){
-		// Object value = values.get(i);
-		// if(value instanceof String){
-		// values.set(i, "'"+value+"'");
-		// }
-		// }
 		int size = attrs.size();
-		// System.out.println("Attrs "+attrs.size()+"values "+values.size());
 		StringBuilder builder = new StringBuilder("Insert into " + tableName
 				+ "(");
 		for (int i = 0; i < size - 1; i++) {
@@ -261,6 +254,10 @@ public class Dao<T> {
 							.equals(Boolean.class.getName())) {
 				value = ((boolean) value) ? 1 : 0;
 			}
+//			if (value != null&& value.getClass().getTypeName().equals(java.util.Date.class.getName())) {
+//				value=new java.sql.Date(((java.util.Date)value).getTime());
+//				System.out.println("Date insertion!!!");
+//			}
 			builder.append(value == null ? "" : "'");
 			builder.append(value);
 			builder.append(value == null ? "" : "'");
