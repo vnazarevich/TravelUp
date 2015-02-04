@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.epam.travelup.orm.dao.Dao;
 import com.epam.travelup.orm.model.Place;
+import com.epam.travelup.orm.model.PlaceInfo;
 import com.epam.travelup.orm.model.PlaceToRoute;
 
 public class PlaceService {
@@ -36,6 +37,20 @@ public class PlaceService {
 		Dao<Place> dao = new Dao<Place>(Place.class, lang);
 		List<Place> places = dao.selectWhere(attr, value, "=");
 		return fillTourInformation(places, lang);
+	}
+
+	public static Place getPlaceByName(String name){
+		Dao<PlaceInfo> nameDao = new Dao<PlaceInfo>(PlaceInfo.class, "en");
+		List<String> attrs = new ArrayList<String>();
+		attrs.add("ua_place_name");
+		attrs.add("en_place_name");
+		List<String> values = new ArrayList<String>();
+		values.add(name);
+		values.add(name);
+		PlaceInfo placeInfo = nameDao.selectWhereOr(attrs, values, "=").get(0);
+		Dao<Place> dao = new Dao<Place>(Place.class, "en");
+		Place place = dao.selectWhere("info_id", placeInfo.getId()+"", "=").get(0);
+		return place;
 	}
 
 	private static List<Place> fillTourInformation(List<Place> places, String lang){
