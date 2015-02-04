@@ -23,6 +23,7 @@ public class ModelCreaterService {
 	private final static double COEFFICIENT = 0.6;
 	private final static Logger LOGGER = Logger.getLogger("ModelCreaterService ::");
 	private final String TOUR_TYPE = "maket";
+	private final String TRIP = "no matter";
 	private final String TRANSPORT = "undefined";
 	private List<Tour> models;
 	private List<Tour> requestsTours;
@@ -172,7 +173,8 @@ public class ModelCreaterService {
 		model.setMinDuration(minDuration / simpleTours.size());
 		model.setMaxDuration(maxDuration / simpleTours.size());
 		model.setMaxPrice(maxPricePerDay * maxDuration / simpleTours.size());
-		model.setTripId(tripId / simpleTours.size());
+		model.setTripId(3);
+		model.setTripDays(TRIP);
 		model.setCountRequests(simpleTours.size());
 		model.setStartDate(new java.sql.Date(startDataLong / simpleTours.size()));
 		model.setEndDate(new java.sql.Date(endDateLong / simpleTours.size()));

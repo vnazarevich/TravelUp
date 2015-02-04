@@ -69,10 +69,15 @@
 			 		console.log("responseText " + responseText);
 			  		response = responseText;
 				});
+			 	var id=$(this).parents(".book-holder").find(".idHolder").attr("tourId");
 				if(response=="0"){
 					$('#loginModal').modal();
 				} else {
 					console.log("success");
+					var d = new Date();
+					d.toLocaleString()
+					
+					$.ajax({type: "get",url: "buytour", data: { tour: id, date: d.toLocaleString()},success:function(result){ }});
 				}
 			});
 			
@@ -280,11 +285,7 @@
                                                         <h2 class="post-title"><a title="Your Tour Title Here">${tour.name.getName(lang.getLocale().getLanguage())} (<b><i>${tour.status}</i></b>)</a></h2>
 														<input type="hidden" class="selecttour" value="${tour.id}">
 													</form>
-														<c:if test="${user.isAdmin()}">
-															<button type="button" class="btn btn-default" aria-label="Left Align" >
-															  <span class="glyphicon glyphicon-edit" aria-hidden="true"> ${lang.getString("tourpage.page.edit")}</span>
-															</button>
-                                                        </c:if>
+													
                                                         <p>${lang.getString("tourpage.list.duration")}: ${tour.minDuration} ${lang.getString("tourpage.list.days")}.</p>
 
                                                         <b>${lang.getString("tourpage.list.date")}:</b>
@@ -293,9 +294,7 @@
 
                                                     </article>
 
-                                                    <div class="entry-meta"> <span class="review"><a href="#">${lang.getString("tourpage.list.comments")}</a></span>
-                                                        <span class="go-detail"><a href="#">${lang.getString("tourpage.list.more")}</a></span>
-                                                    </div>
+                                                  
 
                                                 </div><!-- /.entry -->
                                             </div>
@@ -312,6 +311,7 @@
                          <c:choose>
            					<c:when test="${test1 != test2}">
                          		<a id="addToCartBtn" class="addToCartBtn button mini btn-block">${lang.getString("tourpage.list.cart")}</a>
+                         		<div class="idHolder" tourId="${tour.getId()}"></div>
                        		</c:when>
                        	</c:choose>
                        </div>

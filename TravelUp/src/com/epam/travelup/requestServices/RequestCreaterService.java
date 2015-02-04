@@ -42,6 +42,7 @@ public class RequestCreaterService {
 		requestTour.setTripDays(TRIP_DAY);
 		requestTour.setStatusId(STATUS);
 		requestTour.setTransport(TRANSPORT);
+		requestTour.setTripId(3);
 		return requestTour;
 	}
 	
