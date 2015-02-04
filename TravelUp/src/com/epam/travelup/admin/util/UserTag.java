@@ -5,9 +5,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import javafx.scene.control.TabBuilder;
+
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
+
+import com.epam.travelup.locaization.LanguageContainer;
 import com.epam.travelup.orm.model.User;
 
 public class UserTag extends SimpleTagSupport {
@@ -55,8 +59,8 @@ public class UserTag extends SimpleTagSupport {
 		tagBuilder.append("<ui>");
 		tagBuilder.append("<li><b>" + user.getFirstName() + " "
 				+ user.getLastName() + "</b></li>");
-		tagBuilder.append("<li><b>Email: </b>" + user.getMail() + "</li>");
-		tagBuilder.append("<li><b>Registration date: </b>" + date + "</li>");
+		tagBuilder.append("<li><b>"+LanguageContainer.getBundle().getString("users.page.email")+": </b>" + user.getMail() + "</li>");
+		tagBuilder.append("<li><b>"+LanguageContainer.getBundle().getString("users.page.date")+": </b>" + date + "</li>");
 		tagBuilder.append("</ui>");
 		tagBuilder.append("</div>");
 		tagBuilder.append("<div class='col-md-4'>");
@@ -64,24 +68,24 @@ public class UserTag extends SimpleTagSupport {
 		tagBuilder.append("<input type='hidden' name='userId' value='"
 				+ user.getId() + "'>");
 		tagBuilder
-				.append("<button type='submit' class='btn btn-success btn-sm profile btn-block green' style='margin-top:5px'>Go to profile</button>");
+				.append("<button type='submit' class='btn btn-success btn-sm profile btn-block green' style='margin-top:5px'>"+LanguageContainer.getBundle().getString("users.page.profile")+"</button>");
 		tagBuilder.append("</form>");
 		if (!user.isAdmin()) {
 			if (!user.isBanned()) {
 				tagBuilder
 						.append("<button class='btn btn-danger btn-sm ban btn-block green' user-id='"
 								+ user.getId()
-								+ "' style='margin-top:5px'>Ban User</button>");
+								+ "' style='margin-top:5px'>"+LanguageContainer.getBundle().getString("users.page.ban")+"</button>");
 			} else {
 				tagBuilder
 						.append("<button class='btn btn-warning btn-sm unban btn-block green' user-id='"
 								+ user.getId()
-								+ "' style='margin-top:5px'>Unban User</button>");
+								+ "' style='margin-top:5px'>"+LanguageContainer.getBundle().getString("users.page.unban")+"</button>");
 			}
 			tagBuilder
 					.append("<button class='btn btn-primary btn-sm admin btn-block green' user-id='"
 							+ user.getId()
-							+ "' style='margin-top:5px'>Set admin</button>");
+							+ "' style='margin-top:5px'>"+LanguageContainer.getBundle().getString("users.page.setadmin")+"</button>");
 		}
 		tagBuilder.append("</div>");
 		tagBuilder.append("</div>");

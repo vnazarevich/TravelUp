@@ -11,13 +11,16 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
    <jsp:include page="/pages/styles.jsp" />
   <script type="text/javascript" src="inc/js/jquery.object.js"></script>
-<title>Users</title>
+<title>${lang.getString("users.page.caption")}</title>
 </head>
 <body>
 <div id="preloader">
     <div id="status">&nbsp;</div>
     <noscript>JavaScript is off. Please enable to view full site.</noscript>
 </div>
+ <c:if test="${!user.isAdmin()}">
+					<c:redirect url="/error"/>
+</c:if>
 <div id="site">
 	 <jsp:include page="/pages/header.jsp" />
 
@@ -25,14 +28,15 @@
 
             <section class="page-head-holder">
                 <div class="container">
+
                     <div class="col-xs-6">
-                      <h2>Users</h2>
+                      <h2>${lang.getString("users.page.caption")}</h2>
                     </div>
                     <div class="col-xs-6">
                         <div class="breadcrumb-holder">
                             <ol class="breadcrumb">
-                                <li><a href="index">Home</a></li>
-                                <li class="active"><a href="">Users</a></li>
+                                <li><a href="index">${lang.getString("tourpage.page.home")}</a></li>
+                                <li class="active"><a href="">${lang.getString("users.page.caption")}</a></li>
                             </ol>
                         </div>
                     </div>
@@ -51,17 +55,17 @@
 	  		</div>
 			<ul>
 
-			     <li> <input type="checkbox" name="transporters" ><label>transporter</label></li>
+			     <li> <input type="checkbox" name="transporters" ><label>${lang.getString("users.page.transporter")}</label></li>
 
 
-			     <li> <input type="checkbox" name="photographers" ><label>photographer</label></li>
+			     <li> <input type="checkbox" name="photographers" ><label>${lang.getString("users.page.photographer")}</label></li>
 
-			      <li><input type="checkbox" name="guides" ><label>guide</label></li>
+			      <li><input type="checkbox" name="guides" ><label>${lang.getString("users.page.guide")}</label></li>
 				<li><input type="hidden" name="pageNo" /></li>
 			 </ul>
 			 <div class="search-field">
 				 <button type="submit" class="btn btn-success btn-md btn-block green">
-				 Search
+				 ${lang.getString("users.page.search")}
 				 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 				 </button>
 			</div>
@@ -82,7 +86,7 @@
 	  <c:if test="${!pagination.equals('no')}">
 	    <ul class="pager">
 	     <c:if test="${pageNo<pageCount-1}">
-	          <li class="next"><a  href="javascript: void(0)">Next &rarr;</a></li>
+	          <li class="next"><a  href="javascript: void(0)">${lang.getString("users.page.next")} &rarr;</a></li>
          </c:if>
          <c:choose>
          	<c:when test="${pageCount>0}">
@@ -90,7 +94,7 @@
          	</c:when>
          </c:choose>
          <c:if test="${pageNo>0}">
-	           <li class="previous"><a  href="javascript: void(0)">&larr; Previous</a></li>
+	           <li class="previous"><a  href="javascript: void(0)">&larr; ${lang.getString("users.page.previous")}</a></li>
          </c:if>
 
 

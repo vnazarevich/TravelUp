@@ -1,7 +1,28 @@
 <tiltviewergallery>
 	<photos>
-		<photo imageurl="images/presentation/1.PNG" linkurl="http://www.google.com" showFlipButton="false">
-
+		<photo imageurl="images/presentation/1.JPG" linkurl="http://www.google.com" showFlipButton="false">
+		</photo>
+		<photo imageurl="images/presentation/2.JPG" linkurl="http://www.google.com" showFlipButton="false">
+		</photo>
+		<photo imageurl="images/presentation/3.JPG" linkurl="http://www.google.com" showFlipButton="false">
+		</photo>
+		<photo imageurl="images/presentation/4.JPG" linkurl="http://www.google.com" showFlipButton="false">
+		</photo>
+		<photo imageurl="images/presentation/8.JPG" linkurl="http://www.google.com" showFlipButton="false">
+		</photo>
+		<photo imageurl="images/presentation/7.JPG" linkurl="http://www.google.com" showFlipButton="false">
+		</photo>
+		<photo imageurl="images/presentation/6.JPG" linkurl="http://www.google.com" showFlipButton="false">
+		</photo>
+		<photo imageurl="images/presentation/5.JPG" linkurl="http://www.google.com" showFlipButton="false">
+		</photo>
+		<photo imageurl="images/presentation/9.JPG" linkurl="http://www.google.com" showFlipButton="false">
+		</photo>
+		<photo imageurl="images/presentation/10.JPG" linkurl="http://www.google.com" showFlipButton="false">
+		</photo>
+		<photo imageurl="images/presentation/11.JPG" linkurl="http://www.google.com" showFlipButton="false">
+		</photo>
+		<photo imageurl="images/presentation/12.JPG" linkurl="http://www.google.com" showFlipButton="false">
 		</photo>
 
 	</photos>
